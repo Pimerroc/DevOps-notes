@@ -30,9 +30,9 @@ Git
 ## [[Основные команды git]]
 ## **Стратегии ветвления [^1]**:
 
-* Gitflow
-* GitHub Flow
-* GitLab Flow 
+* [[GitFlow]]
+* [[GitHub Flow]]
+* [[GitLab Flow]]
 * Trunk-Based
 
 
