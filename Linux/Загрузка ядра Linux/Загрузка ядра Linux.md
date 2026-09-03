@@ -1,0 +1,7 @@
+1. [[MBR и GPT]]
+2. [[MBR & GPT (extended)]]
+3. [[BIOS, EFI & UEFI]]
+4. [[ESP и загрузка UEFI]]
+5. [[GRUB - устройство, конфигурация и загрузка ядра]]
+6. [[MBR-загрузка vs UEFI-загрузка + Secure Boot]]
+![[HowLinuxWorks.pdf#page=156]]
