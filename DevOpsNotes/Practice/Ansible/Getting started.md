@@ -18,3 +18,17 @@ myhosts:
       ansible_user: mex
       ansible_port: 22222
 ```
+Далее написал playbook.yaml который выводит сообщение Hello world от каждой ноды:
+```yaml tiltle=playbook.yaml
+- name: My first play
+  hosts: myhosts
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+    - name: Print message
+      ansible.builtin.debug:
+        msg: Hello world
+
+```
+# [[Ansible concepts|Терминология]]
+
