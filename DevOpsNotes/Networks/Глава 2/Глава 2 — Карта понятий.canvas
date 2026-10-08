@@ -1,0 +1,1452 @@
+{
+ "nodes": [
+  {
+   "id": "n1",
+   "type": "text",
+   "text": "# Глава 2\n**Физический уровень**\n\n[[Глава 2]]",
+   "x": 910,
+   "y": 0,
+   "width": 300,
+   "height": 150,
+   "color": "6"
+  },
+  {
+   "id": "n2",
+   "type": "text",
+   "text": "## Среды передачи",
+   "x": 60,
+   "y": 190,
+   "width": 240,
+   "height": 70,
+   "color": "2"
+  },
+  {
+   "id": "n3",
+   "type": "text",
+   "text": "**Витая пара**\nсотни Мбит/с\n20 дБ за 100 м\n\nповторитель раз в 5 км",
+   "x": 60,
+   "y": 300,
+   "width": 250,
+   "height": 110,
+   "color": "2"
+  },
+  {
+   "id": "n4",
+   "type": "text",
+   "text": "**Коаксиал**\nдо 6 ГГц\nэкранирован\n\n50 и 75 Ом",
+   "x": 340,
+   "y": 300,
+   "width": 250,
+   "height": 110,
+   "color": "2"
+  },
+  {
+   "id": "n5",
+   "type": "text",
+   "text": "**ЛЭП**\nсигнал от 1 МГц\n\nпроводка как антенна",
+   "x": 620,
+   "y": 300,
+   "width": 250,
+   "height": 110,
+   "color": "2"
+  },
+  {
+   "id": "n6",
+   "type": "text",
+   "text": "**Оптоволокно**\nпотери < 5 %/км\n\nповторитель раз в 50 км",
+   "x": 900,
+   "y": 300,
+   "width": 250,
+   "height": 110,
+   "color": "2"
+  },
+  {
+   "id": "n7",
+   "type": "text",
+   "text": "## Расширение спектра",
+   "x": 1190,
+   "y": 190,
+   "width": 240,
+   "height": 70,
+   "color": "5"
+  },
+  {
+   "id": "n8",
+   "type": "text",
+   "text": "**FHSS**\nпрыгает по частотам\n\nBluetooth · старый 802.11",
+   "x": 1190,
+   "y": 300,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n9",
+   "type": "text",
+   "text": "**DSSS**\nразмазывает кодом\n\n3G · GPS · 802.11b",
+   "x": 1470,
+   "y": 300,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n10",
+   "type": "text",
+   "text": "**UWB**\n≥ 500 МГц или ≥ 20 %\n\nне мешает другим",
+   "x": 1750,
+   "y": 300,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n11",
+   "type": "text",
+   "text": "## Линейные коды",
+   "x": 60,
+   "y": 450,
+   "width": 240,
+   "height": 70,
+   "color": "1"
+  },
+  {
+   "id": "n12",
+   "type": "text",
+   "text": "**NRZ**\nдешевле всего\n\nзалипает на единицах",
+   "x": 60,
+   "y": 560,
+   "width": 250,
+   "height": 110,
+   "color": "1"
+  },
+  {
+   "id": "n13",
+   "type": "text",
+   "text": "**NRZI**\nединица — переход\n\nприменяется в USB",
+   "x": 340,
+   "y": 560,
+   "width": 250,
+   "height": 110,
+   "color": "1"
+  },
+  {
+   "id": "n14",
+   "type": "text",
+   "text": "**Манчестер**\nпереход в середине\n\nполоса вдвое больше",
+   "x": 620,
+   "y": 560,
+   "width": 250,
+   "height": 110,
+   "color": "1"
+  },
+  {
+   "id": "n15",
+   "type": "text",
+   "text": "**4B/5B**\nне более 3 нулей\n\nизбыточность 25 %",
+   "x": 60,
+   "y": 700,
+   "width": 250,
+   "height": 110,
+   "color": "1"
+  },
+  {
+   "id": "n16",
+   "type": "text",
+   "text": "**8B/10B**\nКПД 80 %\n\nFibre Channel",
+   "x": 340,
+   "y": 700,
+   "width": 250,
+   "height": 110,
+   "color": "1"
+  },
+  {
+   "id": "n17",
+   "type": "text",
+   "text": "**AMI**\nсреднее = 0\n\nтелефонные сети",
+   "x": 620,
+   "y": 700,
+   "width": 250,
+   "height": 110,
+   "color": "1"
+  },
+  {
+   "id": "n18",
+   "type": "text",
+   "text": "## Цифровая модуляция",
+   "x": 910,
+   "y": 450,
+   "width": 240,
+   "height": 70,
+   "color": "4"
+  },
+  {
+   "id": "n19",
+   "type": "text",
+   "text": "**ASK**\nсдвиг амплитуды\n\n1 бит/символ",
+   "x": 910,
+   "y": 560,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n20",
+   "type": "text",
+   "text": "**FSK**\nсдвиг частоты\n\nсозвездие не рисуется",
+   "x": 1190,
+   "y": 560,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n21",
+   "type": "text",
+   "text": "**PSK / BPSK**\nсдвиг фазы\n\n1 бит/символ",
+   "x": 1470,
+   "y": 560,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n22",
+   "type": "text",
+   "text": "**QPSK**\n4 фазы\n\n2 бита/символ",
+   "x": 910,
+   "y": 700,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n23",
+   "type": "text",
+   "text": "**QAM**\nамплитуда + фаза\n\nчастоту с фазой нельзя",
+   "x": 1190,
+   "y": 700,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n24",
+   "type": "text",
+   "text": "**Код Грея**\nсоседи — 1 бит\n\nшум портит один бит",
+   "x": 1470,
+   "y": 700,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n25",
+   "type": "text",
+   "text": "## Бод — ключевое понятие",
+   "x": 60,
+   "y": 850,
+   "width": 240,
+   "height": 70,
+   "color": "3"
+  },
+  {
+   "id": "n26",
+   "type": "text",
+   "text": "**битрейт**\n= бодрейт × бит/символ\n\nбод = символы/с",
+   "x": 60,
+   "y": 960,
+   "width": 250,
+   "height": 110,
+   "color": "3"
+  },
+  {
+   "id": "n27",
+   "type": "text",
+   "text": "**V.32**\n2400 бод · 4 бит\n= 9600 бит/с\n\nQAM-16",
+   "x": 340,
+   "y": 960,
+   "width": 250,
+   "height": 110,
+   "color": "3"
+  },
+  {
+   "id": "n28",
+   "type": "text",
+   "text": "## Две теоремы",
+   "x": 630,
+   "y": 850,
+   "width": 240,
+   "height": 70,
+   "color": "6"
+  },
+  {
+   "id": "n29",
+   "type": "text",
+   "text": "**Найквист**\n2·B·log₂V бит/с\n\nпотолок системы",
+   "x": 630,
+   "y": 960,
+   "width": 250,
+   "height": 110,
+   "color": "6"
+  },
+  {
+   "id": "n30",
+   "type": "text",
+   "text": "**Шеннон**\nB·log₂(1+S/N)\n\nпотолок из-за шума",
+   "x": 910,
+   "y": 960,
+   "width": 250,
+   "height": 110,
+   "color": "6"
+  },
+  {
+   "id": "n31",
+   "type": "text",
+   "text": "## Мультиплексирование",
+   "x": 1200,
+   "y": 850,
+   "width": 240,
+   "height": 70,
+   "color": "5"
+  },
+  {
+   "id": "n32",
+   "type": "text",
+   "text": "**FDM**\nпо частоте\n\nзащитные полосы",
+   "x": 1200,
+   "y": 960,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n33",
+   "type": "text",
+   "text": "**OFDM**\nортогональные несущие\n\nзащитный интервал",
+   "x": 1480,
+   "y": 960,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n34",
+   "type": "text",
+   "text": "**TDM**\nпо времени\n\nзащитные интервалы",
+   "x": 1760,
+   "y": 960,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n35",
+   "type": "text",
+   "text": "**STDM**\nпо статистике\n\nэто пакетная коммутация",
+   "x": 1200,
+   "y": 1100,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n36",
+   "type": "text",
+   "text": "**WDM**\nпо длине волны\n\nпассивная решётка",
+   "x": 1480,
+   "y": 1100,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n37",
+   "type": "text",
+   "text": "**CDM**\nпо кодам\n\n64 или 128 чипов",
+   "x": 1760,
+   "y": 1100,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n38",
+   "type": "text",
+   "text": "## Телефонная сеть",
+   "x": 60,
+   "y": 1250,
+   "width": 240,
+   "height": 70,
+   "color": "3"
+  },
+  {
+   "id": "n39",
+   "type": "text",
+   "text": "**PCM**\n8000 сэмплов/с\n8 бит = 64 Кбит/с\n\nинтервал 125 мкс",
+   "x": 60,
+   "y": 1360,
+   "width": 250,
+   "height": 110,
+   "color": "3"
+  },
+  {
+   "id": "n40",
+   "type": "text",
+   "text": "**T1**\n24 канала · 193 бита\n1,544 Мбит/с\n\nАмерика и Япония",
+   "x": 340,
+   "y": 1360,
+   "width": 250,
+   "height": 110,
+   "color": "3"
+  },
+  {
+   "id": "n41",
+   "type": "text",
+   "text": "**E1**\n32 сэмпла\n2,048 Мбит/с\n\nостальной мир",
+   "x": 620,
+   "y": 1360,
+   "width": 250,
+   "height": 110,
+   "color": "3"
+  },
+  {
+   "id": "n42",
+   "type": "text",
+   "text": "**SONET**\nSTS-1 = 51,84 Мбит/с\n\nс 1989 года",
+   "x": 60,
+   "y": 1500,
+   "width": 250,
+   "height": 110,
+   "color": "3"
+  },
+  {
+   "id": "n43",
+   "type": "text",
+   "text": "**SDH**\nначинается со STM-1\n155,52 Мбит/с\n\nнет скорости ≈ 51,84",
+   "x": 340,
+   "y": 1500,
+   "width": 250,
+   "height": 110,
+   "color": "3"
+  },
+  {
+   "id": "n44",
+   "type": "text",
+   "text": "**Каналы против пакетов**\n\n10 с на установление",
+   "x": 620,
+   "y": 1500,
+   "width": 250,
+   "height": 110,
+   "color": "3"
+  },
+  {
+   "id": "n45",
+   "type": "text",
+   "text": "## xDSL и оптика доступа",
+   "x": 910,
+   "y": 1250,
+   "width": 240,
+   "height": 70,
+   "color": "5"
+  },
+  {
+   "id": "n46",
+   "type": "text",
+   "text": "**Фильтр затухания**\n300 и 3400 Гц\n\nобходится при DSL",
+   "x": 910,
+   "y": 1360,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n47",
+   "type": "text",
+   "text": "**1,1 МГц**\n256 каналов\nпо 4312,5 Гц\n\nканал 0 — голос",
+   "x": 1190,
+   "y": 1360,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n48",
+   "type": "text",
+   "text": "**DMT**\nреализация OFDM\n\nоснова ADSL",
+   "x": 1470,
+   "y": 1360,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n49",
+   "type": "text",
+   "text": "**VDSL2**\n200 / 100 Мбит/с\n\nполоса 12 МГц",
+   "x": 910,
+   "y": 1500,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n50",
+   "type": "text",
+   "text": "**G.fast**\n~1 Гбит/с на 100 м\n\nсвязывание пар",
+   "x": 1190,
+   "y": 1500,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n51",
+   "type": "text",
+   "text": "**PON**\nGPON · EPON\n\nдо 20 км, пассивная",
+   "x": 1470,
+   "y": 1500,
+   "width": 250,
+   "height": 110,
+   "color": "5"
+  },
+  {
+   "id": "n52",
+   "type": "text",
+   "text": "## Сотовые сети и спутники",
+   "x": 60,
+   "y": 1650,
+   "width": 240,
+   "height": 70,
+   "color": "4"
+  },
+  {
+   "id": "n53",
+   "type": "text",
+   "text": "**1G → 2G**\nаналог → цифровой голос\n\nAMPS → GSM",
+   "x": 60,
+   "y": 1760,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n54",
+   "type": "text",
+   "text": "**3G**\nголос и данные\n\nWCDMA · CDMA2000",
+   "x": 340,
+   "y": 1760,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n55",
+   "type": "text",
+   "text": "**4G**\nкоммутация пакетов\n\nEPC · eNodeB",
+   "x": 620,
+   "y": 1760,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n56",
+   "type": "text",
+   "text": "**5G**\nплощадь × 1000\n\nмиллиметровые волны",
+   "x": 60,
+   "y": 1900,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n57",
+   "type": "text",
+   "text": "**GEO**\n35 000 км · 270 мс\n\n3 спутника",
+   "x": 340,
+   "y": 1900,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n58",
+   "type": "text",
+   "text": "**LEO**\n1–7 мс · 50 спутников\n\nмного спутников",
+   "x": 620,
+   "y": 1900,
+   "width": 250,
+   "height": 110,
+   "color": "4"
+  },
+  {
+   "id": "n59",
+   "type": "text",
+   "text": "## Чего в главе 2 нет",
+   "x": 910,
+   "y": 1650,
+   "width": 240,
+   "height": 70,
+   "color": "6"
+  },
+  {
+   "id": "n60",
+   "type": "text",
+   "text": "**BER, RTT**\n\nтермины не введены",
+   "x": 910,
+   "y": 1760,
+   "width": 250,
+   "height": 110,
+   "color": "6"
+  },
+  {
+   "id": "n61",
+   "type": "text",
+   "text": "**ATM, CRC**\n\nв главе 3",
+   "x": 1190,
+   "y": 1760,
+   "width": 250,
+   "height": 110,
+   "color": "6"
+  },
+  {
+   "id": "n62",
+   "type": "text",
+   "text": "**UTP, STP**\n\nUTP есть, STP нет",
+   "x": 1470,
+   "y": 1760,
+   "width": 250,
+   "height": 110,
+   "color": "6"
+  },
+  {
+   "id": "n63",
+   "type": "text",
+   "text": "**RJ-45, BRI, PRI**\n\nне упоминаются",
+   "x": 1750,
+   "y": 1760,
+   "width": 250,
+   "height": 110,
+   "color": "6"
+  }
+ ],
+ "edges": [
+  {
+   "id": "e1",
+   "fromNode": "n2",
+   "fromSide": "bottom",
+   "toNode": "n3",
+   "toSide": "top",
+   "color": "2"
+  },
+  {
+   "id": "e2",
+   "fromNode": "n2",
+   "fromSide": "bottom",
+   "toNode": "n4",
+   "toSide": "top",
+   "color": "2"
+  },
+  {
+   "id": "e3",
+   "fromNode": "n2",
+   "fromSide": "bottom",
+   "toNode": "n5",
+   "toSide": "top",
+   "color": "2"
+  },
+  {
+   "id": "e4",
+   "fromNode": "n2",
+   "fromSide": "bottom",
+   "toNode": "n6",
+   "toSide": "top",
+   "color": "2"
+  },
+  {
+   "id": "e5",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n3",
+   "toSide": "top",
+   "color": "2"
+  },
+  {
+   "id": "e6",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n4",
+   "toSide": "top",
+   "color": "2"
+  },
+  {
+   "id": "e7",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n5",
+   "toSide": "top",
+   "color": "2"
+  },
+  {
+   "id": "e8",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n6",
+   "toSide": "top",
+   "color": "2"
+  },
+  {
+   "id": "e9",
+   "fromNode": "n7",
+   "fromSide": "bottom",
+   "toNode": "n8",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e10",
+   "fromNode": "n7",
+   "fromSide": "bottom",
+   "toNode": "n9",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e11",
+   "fromNode": "n7",
+   "fromSide": "bottom",
+   "toNode": "n10",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e12",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n8",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e13",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n9",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e14",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n10",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e15",
+   "fromNode": "n11",
+   "fromSide": "bottom",
+   "toNode": "n12",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e16",
+   "fromNode": "n11",
+   "fromSide": "bottom",
+   "toNode": "n13",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e17",
+   "fromNode": "n11",
+   "fromSide": "bottom",
+   "toNode": "n14",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e18",
+   "fromNode": "n11",
+   "fromSide": "bottom",
+   "toNode": "n15",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e19",
+   "fromNode": "n11",
+   "fromSide": "bottom",
+   "toNode": "n16",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e20",
+   "fromNode": "n11",
+   "fromSide": "bottom",
+   "toNode": "n17",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e21",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n12",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e22",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n13",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e23",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n14",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e24",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n15",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e25",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n16",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e26",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n17",
+   "toSide": "top",
+   "color": "1"
+  },
+  {
+   "id": "e27",
+   "fromNode": "n18",
+   "fromSide": "bottom",
+   "toNode": "n19",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e28",
+   "fromNode": "n18",
+   "fromSide": "bottom",
+   "toNode": "n20",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e29",
+   "fromNode": "n18",
+   "fromSide": "bottom",
+   "toNode": "n21",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e30",
+   "fromNode": "n18",
+   "fromSide": "bottom",
+   "toNode": "n22",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e31",
+   "fromNode": "n18",
+   "fromSide": "bottom",
+   "toNode": "n23",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e32",
+   "fromNode": "n18",
+   "fromSide": "bottom",
+   "toNode": "n24",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e33",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n19",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e34",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n20",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e35",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n21",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e36",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n22",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e37",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n23",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e38",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n24",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e39",
+   "fromNode": "n25",
+   "fromSide": "bottom",
+   "toNode": "n26",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e40",
+   "fromNode": "n25",
+   "fromSide": "bottom",
+   "toNode": "n27",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e41",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n26",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e42",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n27",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e43",
+   "fromNode": "n28",
+   "fromSide": "bottom",
+   "toNode": "n29",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e44",
+   "fromNode": "n28",
+   "fromSide": "bottom",
+   "toNode": "n30",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e45",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n29",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e46",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n30",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e47",
+   "fromNode": "n31",
+   "fromSide": "bottom",
+   "toNode": "n32",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e48",
+   "fromNode": "n31",
+   "fromSide": "bottom",
+   "toNode": "n33",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e49",
+   "fromNode": "n31",
+   "fromSide": "bottom",
+   "toNode": "n34",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e50",
+   "fromNode": "n31",
+   "fromSide": "bottom",
+   "toNode": "n35",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e51",
+   "fromNode": "n31",
+   "fromSide": "bottom",
+   "toNode": "n36",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e52",
+   "fromNode": "n31",
+   "fromSide": "bottom",
+   "toNode": "n37",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e53",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n32",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e54",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n33",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e55",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n34",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e56",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n35",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e57",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n36",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e58",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n37",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e59",
+   "fromNode": "n38",
+   "fromSide": "bottom",
+   "toNode": "n39",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e60",
+   "fromNode": "n38",
+   "fromSide": "bottom",
+   "toNode": "n40",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e61",
+   "fromNode": "n38",
+   "fromSide": "bottom",
+   "toNode": "n41",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e62",
+   "fromNode": "n38",
+   "fromSide": "bottom",
+   "toNode": "n42",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e63",
+   "fromNode": "n38",
+   "fromSide": "bottom",
+   "toNode": "n43",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e64",
+   "fromNode": "n38",
+   "fromSide": "bottom",
+   "toNode": "n44",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e65",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n39",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e66",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n40",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e67",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n41",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e68",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n42",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e69",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n43",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e70",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n44",
+   "toSide": "top",
+   "color": "3"
+  },
+  {
+   "id": "e71",
+   "fromNode": "n45",
+   "fromSide": "bottom",
+   "toNode": "n46",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e72",
+   "fromNode": "n45",
+   "fromSide": "bottom",
+   "toNode": "n47",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e73",
+   "fromNode": "n45",
+   "fromSide": "bottom",
+   "toNode": "n48",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e74",
+   "fromNode": "n45",
+   "fromSide": "bottom",
+   "toNode": "n49",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e75",
+   "fromNode": "n45",
+   "fromSide": "bottom",
+   "toNode": "n50",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e76",
+   "fromNode": "n45",
+   "fromSide": "bottom",
+   "toNode": "n51",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e77",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n46",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e78",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n47",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e79",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n48",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e80",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n49",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e81",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n50",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e82",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n51",
+   "toSide": "top",
+   "color": "5"
+  },
+  {
+   "id": "e83",
+   "fromNode": "n52",
+   "fromSide": "bottom",
+   "toNode": "n53",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e84",
+   "fromNode": "n52",
+   "fromSide": "bottom",
+   "toNode": "n54",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e85",
+   "fromNode": "n52",
+   "fromSide": "bottom",
+   "toNode": "n55",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e86",
+   "fromNode": "n52",
+   "fromSide": "bottom",
+   "toNode": "n56",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e87",
+   "fromNode": "n52",
+   "fromSide": "bottom",
+   "toNode": "n57",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e88",
+   "fromNode": "n52",
+   "fromSide": "bottom",
+   "toNode": "n58",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e89",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n53",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e90",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n54",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e91",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n55",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e92",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n56",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e93",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n57",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e94",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n58",
+   "toSide": "top",
+   "color": "4"
+  },
+  {
+   "id": "e95",
+   "fromNode": "n59",
+   "fromSide": "bottom",
+   "toNode": "n60",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e96",
+   "fromNode": "n59",
+   "fromSide": "bottom",
+   "toNode": "n61",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e97",
+   "fromNode": "n59",
+   "fromSide": "bottom",
+   "toNode": "n62",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e98",
+   "fromNode": "n59",
+   "fromSide": "bottom",
+   "toNode": "n63",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e99",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n60",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e100",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n61",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e101",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n62",
+   "toSide": "top",
+   "color": "6"
+  },
+  {
+   "id": "e102",
+   "fromNode": "n1",
+   "fromSide": "bottom",
+   "toNode": "n63",
+   "toSide": "top",
+   "color": "6"
+  }
+ ]
+}
