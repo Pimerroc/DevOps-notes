@@ -1,1286 +1,152 @@
 {
- "nodes": [
-  {
-   "id": "n1",
-   "type": "text",
-   "text": "# Глава 3\n**Канальный уровень**\n\n[[Глава 3]]",
-   "x": 910,
-   "y": 0,
-   "width": 300,
-   "height": 150,
-   "color": "6"
-  },
-  {
-   "id": "n2",
-   "type": "text",
-   "text": "## Четыре задачи уровня",
-   "x": 60,
-   "y": 190,
-   "width": 240,
-   "height": 70,
-   "color": "1"
-  },
-  {
-   "id": "n3",
-   "type": "text",
-   "text": "**Служба**\nинтерфейс сетевому уровню\n\nстр. 243",
-   "x": 60,
-   "y": 300,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n4",
-   "type": "text",
-   "text": "**Фрейминг**\nиз потока байтов\n\nстр. 246",
-   "x": 340,
-   "y": 300,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n5",
-   "type": "text",
-   "text": "**Обработка ошибок**\nровно один раз\n\nстр. 250",
-   "x": 620,
-   "y": 300,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n6",
-   "type": "text",
-   "text": "**Управление потоком**\n«пожарный шланг»\n\nстр. 251",
-   "x": 900,
-   "y": 300,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n7",
-   "type": "text",
-   "text": "## Три службы сетевому уровню",
-   "x": 1190,
-   "y": 190,
-   "width": 240,
-   "height": 70,
-   "color": "2"
-  },
-  {
-   "id": "n8",
-   "type": "text",
-   "text": "**Без подтверждений**\nбез соединения\n\nEthernet",
-   "x": 1190,
-   "y": 300,
-   "width": 250,
-   "height": 110,
-   "color": "2"
-  },
-  {
-   "id": "n9",
-   "type": "text",
-   "text": "**С подтверждениями**\nбез соединения\n\n802.11",
-   "x": 1470,
-   "y": 300,
-   "width": 250,
-   "height": 110,
-   "color": "2"
-  },
-  {
-   "id": "n10",
-   "type": "text",
-   "text": "**С подтверждениями**\nс соединением\n\nспутник, междугородняя",
-   "x": 1750,
-   "y": 300,
-   "width": 250,
-   "height": 110,
-   "color": "2"
-  },
-  {
-   "id": "n11",
-   "type": "text",
-   "text": "## Четыре метода фрейминга",
-   "x": 60,
-   "y": 450,
-   "width": 240,
-   "height": 70,
-   "color": "4"
-  },
-  {
-   "id": "n12",
-   "type": "text",
-   "text": "**Подсчёт байтов**\nне применяется\n\n5 → 7 и всё",
-   "x": 60,
-   "y": 560,
-   "width": 250,
-   "height": 110,
-   "color": "4"
-  },
-  {
-   "id": "n13",
-   "type": "text",
-   "text": "**Байт-стаффинг**\nFLAG 0x7E · ESC 0x7D\n\nPPP",
-   "x": 340,
-   "y": 560,
-   "width": 250,
-   "height": 110,
-   "color": "4"
-  },
-  {
-   "id": "n14",
-   "type": "text",
-   "text": "**Бит-стаффинг**\nпять единиц → 0\n\nHDLC · USB",
-   "x": 60,
-   "y": 700,
-   "width": 250,
-   "height": 110,
-   "color": "4"
-  },
-  {
-   "id": "n15",
-   "type": "text",
-   "text": "**Запрещённые сигналы**\n4B/5B: 16 из 32\n\nданные не трогаются",
-   "x": 340,
-   "y": 700,
-   "width": 250,
-   "height": 110,
-   "color": "4"
-  },
-  {
-   "id": "n16",
-   "type": "text",
-   "text": "## Обнаружение или коррекция",
-   "x": 630,
-   "y": 450,
-   "width": 240,
-   "height": 70,
-   "color": "3"
-  },
-  {
-   "id": "n17",
-   "type": "text",
-   "text": "**FEC**\nупреждающая коррекция\n\nисправляет на месте",
-   "x": 630,
-   "y": 560,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n18",
-   "type": "text",
-   "text": "**Хэмминг (11, 7)**\nсиндром указывает бит\n\nрасстояние 3",
-   "x": 910,
-   "y": 560,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n19",
-   "type": "text",
-   "text": "**CRC**\nтолько обнаруживает\n\nостаток ≠ 0 → повтор",
-   "x": 1190,
-   "y": 560,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n20",
-   "type": "text",
-   "text": "**Рида — Соломона**\nсимволы, не биты\n\n2t → t ошибок",
-   "x": 630,
-   "y": 700,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n21",
-   "type": "text",
-   "text": "**LDPC**\nнизкая плотность\n\n10 Гбит/с Ethernet",
-   "x": 910,
-   "y": 700,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n22",
-   "type": "text",
-   "text": "**Чередование**\nпакеты ошибок\n\nn бит чётности",
-   "x": 1190,
-   "y": 700,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n23",
-   "type": "text",
-   "text": "## Что именно обнаруживает CRC",
-   "x": 60,
-   "y": 850,
-   "width": 240,
-   "height": 70,
-   "color": "3"
-  },
-  {
-   "id": "n24",
-   "type": "text",
-   "text": "**Однобитовые**\n\nвсе",
-   "x": 60,
-   "y": 960,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n25",
-   "type": "text",
-   "text": "**Нечёткое число битов**\n\nполовина ошибок",
-   "x": 340,
-   "y": 960,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n26",
-   "type": "text",
-   "text": "**Пакет ≤ r**\n\nвсе",
-   "x": 620,
-   "y": 960,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n27",
-   "type": "text",
-   "text": "**Пакет r + 1**\n\nвероятность (1/2)^(r−1)",
-   "x": 900,
-   "y": 960,
-   "width": 250,
-   "height": 110,
-   "color": "3"
-  },
-  {
-   "id": "n28",
-   "type": "text",
-   "text": "## Формулы главы",
-   "x": 1190,
-   "y": 850,
-   "width": 240,
-   "height": 70,
-   "color": "6"
-  },
-  {
-   "id": "n29",
-   "type": "text",
-   "text": "**(3.1)**\nm + r + 1 ≤ 2^r\n\nнижний предел",
-   "x": 1190,
-   "y": 960,
-   "width": 250,
-   "height": 110,
-   "color": "6"
-  },
-  {
-   "id": "n30",
-   "type": "text",
-   "text": "**w = 2·BD + 1**\nразмер окна\n\nполоса × задержка",
-   "x": 1470,
-   "y": 960,
-   "width": 250,
-   "height": 110,
-   "color": "6"
-  },
-  {
-   "id": "n31",
-   "type": "text",
-   "text": "**BD**\nполоса × задержка\n\nизмеряется во фреймах",
-   "x": 1190,
-   "y": 1100,
-   "width": 250,
-   "height": 110,
-   "color": "6"
-  },
-  {
-   "id": "n32",
-   "type": "text",
-   "text": "**CRC-32 IEEE**\nпакеты ≤ 32 бита\n\nрасстояние всего 4",
-   "x": 1470,
-   "y": 1100,
-   "width": 250,
-   "height": 110,
-   "color": "6"
-  },
-  {
-   "id": "n33",
-   "type": "text",
-   "text": "## Шесть протоколов",
-   "x": 60,
-   "y": 1250,
-   "width": 240,
-   "height": 70,
-   "color": "5"
-  },
-  {
-   "id": "n34",
-   "type": "text",
-   "text": "**1. Утопия**\nничего\n\nидеальный канал",
-   "x": 60,
-   "y": 1360,
-   "width": 250,
-   "height": 110,
-   "color": "5"
-  },
-  {
-   "id": "n35",
-   "type": "text",
-   "text": "**2. Остановка и ожидание**\nуправление потоком\n\nсимплексный",
-   "x": 340,
-   "y": 1360,
-   "width": 250,
-   "height": 110,
-   "color": "5"
-  },
-  {
-   "id": "n36",
-   "type": "text",
-   "text": "**3. PAR / ARQ**\nномера и подтверждения\n\nMAX_SEQ = 1",
-   "x": 620,
-   "y": 1360,
-   "width": 250,
-   "height": 110,
-   "color": "5"
-  },
-  {
-   "id": "n37",
-   "type": "text",
-   "text": "**4. Окно 1 бит**\nвложенные подтверждения\n\nдуплексный",
-   "x": 60,
-   "y": 1500,
-   "width": 250,
-   "height": 110,
-   "color": "5"
-  },
-  {
-   "id": "n38",
-   "type": "text",
-   "text": "**5. Возврат к n**\nMAX_SEQ = 7\n\nокно растёт",
-   "x": 340,
-   "y": 1500,
-   "width": 250,
-   "height": 110,
-   "color": "5"
-  },
-  {
-   "id": "n39",
-   "type": "text",
-   "text": "**6. Выборочный повтор**\nNR_BUFS = 4\n\nбуфер и NAK",
-   "x": 620,
-   "y": 1500,
-   "width": 250,
-   "height": 110,
-   "color": "5"
-  },
-  {
-   "id": "n40",
-   "type": "text",
-   "text": "## Раздвижное окно",
-   "x": 910,
-   "y": 1250,
-   "width": 240,
-   "height": 70,
-   "color": "2"
-  },
-  {
-   "id": "n41",
-   "type": "text",
-   "text": "**Поле номера**\nn бит → 2ⁿ − 1\n\nне то же, что окно",
-   "x": 910,
-   "y": 1360,
-   "width": 250,
-   "height": 110,
-   "color": "2"
-  },
-  {
-   "id": "n42",
-   "type": "text",
-   "text": "**Окно ≤ половины**\nв протоколе 6\n\nиначе перекрытие",
-   "x": 1190,
-   "y": 1360,
-   "width": 250,
-   "height": 110,
-   "color": "2"
-  },
-  {
-   "id": "n43",
-   "type": "text",
-   "text": "**Кумулятивное**\nack n значит и n−1\n\nи все предыдущие",
-   "x": 910,
-   "y": 1500,
-   "width": 250,
-   "height": 110,
-   "color": "2"
-  },
-  {
-   "id": "n44",
-   "type": "text",
-   "text": "**ack = последний**\n(frame_exp + MAX_SEQ) % …\n\nне следующий",
-   "x": 1190,
-   "y": 1500,
-   "width": 250,
-   "height": 110,
-   "color": "2"
-  },
-  {
-   "id": "n45",
-   "type": "text",
-   "text": "## Практические протоколы",
-   "x": 60,
-   "y": 1650,
-   "width": 240,
-   "height": 70,
-   "color": "1"
-  },
-  {
-   "id": "n46",
-   "type": "text",
-   "text": "**PPP**\nфрейминг · LCP · NCP\n\nобычно без подтверждений",
-   "x": 60,
-   "y": 1760,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n47",
-   "type": "text",
-   "text": "**HDLC**\nбит-ориентированный\n\nнадёжная передача",
-   "x": 340,
-   "y": 1760,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n48",
-   "type": "text",
-   "text": "**ATM**\nячейки по 53 байта\n\n48 данных + 5",
-   "x": 620,
-   "y": 1760,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n49",
-   "type": "text",
-   "text": "**AAL5**\nLength + CRC\n\nпакетные данные",
-   "x": 60,
-   "y": 1900,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n50",
-   "type": "text",
-   "text": "**DOCSIS**\nPHY · MAC\n\nMAC — в главе 4",
-   "x": 340,
-   "y": 1900,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n51",
-   "type": "text",
-   "text": "**Скремблирование**\nXOR с ПСЧ\n\nдля синхронизации",
-   "x": 620,
-   "y": 1900,
-   "width": 250,
-   "height": 110,
-   "color": "1"
-  },
-  {
-   "id": "n52",
-   "type": "text",
-   "text": "## Чего в главе 3 нет",
-   "x": 910,
-   "y": 1650,
-   "width": 240,
-   "height": 70,
-   "color": "6"
-  },
-  {
-   "id": "n53",
-   "type": "text",
-   "text": "**LLC / SNAP**\n\nнет ни разу — это глава 4",
-   "x": 910,
-   "y": 1760,
-   "width": 250,
-   "height": 110,
-   "color": "6"
-  },
-  {
-   "id": "n54",
-   "type": "text",
-   "text": "**Кадр Ethernet**\nкак структура\n\nтолько упоминания",
-   "x": 1190,
-   "y": 1760,
-   "width": 250,
-   "height": 110,
-   "color": "6"
-  },
-  {
-   "id": "n55",
-   "type": "text",
-   "text": "**Таблица кодов CRC**\n\nесть только правила",
-   "x": 910,
-   "y": 1900,
-   "width": 250,
-   "height": 110,
-   "color": "6"
-  },
-  {
-   "id": "n56",
-   "type": "text",
-   "text": "**VPI / VCI · STS · BER**\n\nв других главах",
-   "x": 1190,
-   "y": 1900,
-   "width": 250,
-   "height": 110,
-   "color": "6"
-  }
- ],
- "edges": [
-  {
-   "id": "e1",
-   "fromNode": "n2",
-   "fromSide": "bottom",
-   "toNode": "n3",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e2",
-   "fromNode": "n2",
-   "fromSide": "bottom",
-   "toNode": "n4",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e3",
-   "fromNode": "n2",
-   "fromSide": "bottom",
-   "toNode": "n5",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e4",
-   "fromNode": "n2",
-   "fromSide": "bottom",
-   "toNode": "n6",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e5",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n3",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e6",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n4",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e7",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n5",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e8",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n6",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e9",
-   "fromNode": "n7",
-   "fromSide": "bottom",
-   "toNode": "n8",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e10",
-   "fromNode": "n7",
-   "fromSide": "bottom",
-   "toNode": "n9",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e11",
-   "fromNode": "n7",
-   "fromSide": "bottom",
-   "toNode": "n10",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e12",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n8",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e13",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n9",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e14",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n10",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e15",
-   "fromNode": "n11",
-   "fromSide": "bottom",
-   "toNode": "n12",
-   "toSide": "top",
-   "color": "4"
-  },
-  {
-   "id": "e16",
-   "fromNode": "n11",
-   "fromSide": "bottom",
-   "toNode": "n13",
-   "toSide": "top",
-   "color": "4"
-  },
-  {
-   "id": "e17",
-   "fromNode": "n11",
-   "fromSide": "bottom",
-   "toNode": "n14",
-   "toSide": "top",
-   "color": "4"
-  },
-  {
-   "id": "e18",
-   "fromNode": "n11",
-   "fromSide": "bottom",
-   "toNode": "n15",
-   "toSide": "top",
-   "color": "4"
-  },
-  {
-   "id": "e19",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n12",
-   "toSide": "top",
-   "color": "4"
-  },
-  {
-   "id": "e20",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n13",
-   "toSide": "top",
-   "color": "4"
-  },
-  {
-   "id": "e21",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n14",
-   "toSide": "top",
-   "color": "4"
-  },
-  {
-   "id": "e22",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n15",
-   "toSide": "top",
-   "color": "4"
-  },
-  {
-   "id": "e23",
-   "fromNode": "n16",
-   "fromSide": "bottom",
-   "toNode": "n17",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e24",
-   "fromNode": "n16",
-   "fromSide": "bottom",
-   "toNode": "n18",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e25",
-   "fromNode": "n16",
-   "fromSide": "bottom",
-   "toNode": "n19",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e26",
-   "fromNode": "n16",
-   "fromSide": "bottom",
-   "toNode": "n20",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e27",
-   "fromNode": "n16",
-   "fromSide": "bottom",
-   "toNode": "n21",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e28",
-   "fromNode": "n16",
-   "fromSide": "bottom",
-   "toNode": "n22",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e29",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n17",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e30",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n18",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e31",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n19",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e32",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n20",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e33",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n21",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e34",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n22",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e35",
-   "fromNode": "n23",
-   "fromSide": "bottom",
-   "toNode": "n24",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e36",
-   "fromNode": "n23",
-   "fromSide": "bottom",
-   "toNode": "n25",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e37",
-   "fromNode": "n23",
-   "fromSide": "bottom",
-   "toNode": "n26",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e38",
-   "fromNode": "n23",
-   "fromSide": "bottom",
-   "toNode": "n27",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e39",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n24",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e40",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n25",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e41",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n26",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e42",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n27",
-   "toSide": "top",
-   "color": "3"
-  },
-  {
-   "id": "e43",
-   "fromNode": "n28",
-   "fromSide": "bottom",
-   "toNode": "n29",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e44",
-   "fromNode": "n28",
-   "fromSide": "bottom",
-   "toNode": "n30",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e45",
-   "fromNode": "n28",
-   "fromSide": "bottom",
-   "toNode": "n31",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e46",
-   "fromNode": "n28",
-   "fromSide": "bottom",
-   "toNode": "n32",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e47",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n29",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e48",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n30",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e49",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n31",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e50",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n32",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e51",
-   "fromNode": "n33",
-   "fromSide": "bottom",
-   "toNode": "n34",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e52",
-   "fromNode": "n33",
-   "fromSide": "bottom",
-   "toNode": "n35",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e53",
-   "fromNode": "n33",
-   "fromSide": "bottom",
-   "toNode": "n36",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e54",
-   "fromNode": "n33",
-   "fromSide": "bottom",
-   "toNode": "n37",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e55",
-   "fromNode": "n33",
-   "fromSide": "bottom",
-   "toNode": "n38",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e56",
-   "fromNode": "n33",
-   "fromSide": "bottom",
-   "toNode": "n39",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e57",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n34",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e58",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n35",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e59",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n36",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e60",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n37",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e61",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n38",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e62",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n39",
-   "toSide": "top",
-   "color": "5"
-  },
-  {
-   "id": "e63",
-   "fromNode": "n40",
-   "fromSide": "bottom",
-   "toNode": "n41",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e64",
-   "fromNode": "n40",
-   "fromSide": "bottom",
-   "toNode": "n42",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e65",
-   "fromNode": "n40",
-   "fromSide": "bottom",
-   "toNode": "n43",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e66",
-   "fromNode": "n40",
-   "fromSide": "bottom",
-   "toNode": "n44",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e67",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n41",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e68",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n42",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e69",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n43",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e70",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n44",
-   "toSide": "top",
-   "color": "2"
-  },
-  {
-   "id": "e71",
-   "fromNode": "n45",
-   "fromSide": "bottom",
-   "toNode": "n46",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e72",
-   "fromNode": "n45",
-   "fromSide": "bottom",
-   "toNode": "n47",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e73",
-   "fromNode": "n45",
-   "fromSide": "bottom",
-   "toNode": "n48",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e74",
-   "fromNode": "n45",
-   "fromSide": "bottom",
-   "toNode": "n49",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e75",
-   "fromNode": "n45",
-   "fromSide": "bottom",
-   "toNode": "n50",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e76",
-   "fromNode": "n45",
-   "fromSide": "bottom",
-   "toNode": "n51",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e77",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n46",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e78",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n47",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e79",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n48",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e80",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n49",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e81",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n50",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e82",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n51",
-   "toSide": "top",
-   "color": "1"
-  },
-  {
-   "id": "e83",
-   "fromNode": "n52",
-   "fromSide": "bottom",
-   "toNode": "n53",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e84",
-   "fromNode": "n52",
-   "fromSide": "bottom",
-   "toNode": "n54",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e85",
-   "fromNode": "n52",
-   "fromSide": "bottom",
-   "toNode": "n55",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e86",
-   "fromNode": "n52",
-   "fromSide": "bottom",
-   "toNode": "n56",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e87",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n53",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e88",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n54",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e89",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n55",
-   "toSide": "top",
-   "color": "6"
-  },
-  {
-   "id": "e90",
-   "fromNode": "n1",
-   "fromSide": "bottom",
-   "toNode": "n56",
-   "toSide": "top",
-   "color": "6"
-  }
- ]
+	"nodes":[
+		{"id":"n1","type":"text","text":"# Глава 3\n**Канальный уровень**\n\n[[Глава 3]]","x":910,"y":0,"width":300,"height":150,"color":"6"},
+		{"id":"n2","type":"text","text":"## Четыре задачи уровня","x":60,"y":190,"width":240,"height":70,"color":"1"},
+		{"id":"n3","type":"text","text":"**Служба**\nинтерфейс сетевому уровню\n\nстр. 243","x":60,"y":300,"width":250,"height":110,"color":"1"},
+		{"id":"n4","type":"text","text":"**Фрейминг**\nиз потока байтов\n\nстр. 246","x":340,"y":300,"width":250,"height":110,"color":"1"},
+		{"id":"n5","type":"text","text":"**Обработка ошибок**\nровно один раз\n\nстр. 250","x":620,"y":300,"width":250,"height":110,"color":"1"},
+		{"id":"n6","type":"text","text":"**Управление потоком**\n«пожарный шланг»\n\nстр. 251","x":900,"y":300,"width":250,"height":110,"color":"1"},
+		{"id":"n7","type":"text","text":"## Три службы сетевому уровню","x":1190,"y":190,"width":240,"height":70,"color":"2"},
+		{"id":"n8","type":"text","text":"**Без подтверждений**\nбез соединения\n\nEthernet","x":1190,"y":300,"width":250,"height":110,"color":"2"},
+		{"id":"n9","type":"text","text":"**С подтверждениями**\nбез соединения\n\n802.11","x":1470,"y":300,"width":250,"height":110,"color":"2"},
+		{"id":"n10","type":"text","text":"**С подтверждениями**\nс соединением\n\nспутник, междугородняя","x":1750,"y":300,"width":250,"height":110,"color":"2"},
+		{"id":"n11","type":"text","text":"## Четыре метода фрейминга","x":60,"y":450,"width":240,"height":70,"color":"4"},
+		{"id":"n12","type":"text","text":"**Подсчёт байтов**\nне применяется\n\n5 → 7 и всё","x":60,"y":560,"width":250,"height":110,"color":"4"},
+		{"id":"n13","type":"text","text":"**Байт-стаффинг**\nFLAG 0x7E · ESC 0x7D\n\nPPP","x":340,"y":560,"width":250,"height":110,"color":"4"},
+		{"id":"n14","type":"text","text":"**Бит-стаффинг**\nпять единиц → 0\n\nHDLC · USB","x":60,"y":700,"width":250,"height":110,"color":"4"},
+		{"id":"n15","type":"text","text":"**Запрещённые сигналы**\n4B/5B: 16 из 32\n\nданные не трогаются","x":340,"y":700,"width":250,"height":110,"color":"4"},
+		{"id":"n16","type":"text","text":"## Обнаружение или коррекция","x":630,"y":450,"width":240,"height":70,"color":"3"},
+		{"id":"n17","type":"text","text":"**FEC**\nупреждающая коррекция\n\nисправляет на месте","x":630,"y":560,"width":250,"height":110,"color":"3"},
+		{"id":"n18","type":"text","text":"**Хэмминг (11, 7)**\nсиндром указывает бит\n\nрасстояние 3","x":910,"y":560,"width":250,"height":110,"color":"3"},
+		{"id":"n19","type":"text","text":"**CRC**\nтолько обнаруживает\n\nостаток ≠ 0 → повтор","x":1190,"y":560,"width":250,"height":110,"color":"3"},
+		{"id":"n20","type":"text","text":"**Рида — Соломона**\nсимволы, не биты\n\n2t → t ошибок","x":630,"y":700,"width":250,"height":110,"color":"3"},
+		{"id":"n21","type":"text","text":"**LDPC**\nнизкая плотность\n\n10 Гбит/с Ethernet","x":910,"y":700,"width":250,"height":110,"color":"3"},
+		{"id":"n22","type":"text","text":"**Чередование**\nпакеты ошибок\n\nn бит чётности","x":1190,"y":700,"width":250,"height":110,"color":"3"},
+		{"id":"n23","type":"text","text":"## Что именно обнаруживает CRC","x":60,"y":850,"width":240,"height":70,"color":"3"},
+		{"id":"n24","type":"text","text":"**Однобитовые**\n\nвсе","x":60,"y":960,"width":250,"height":110,"color":"3"},
+		{"id":"n25","type":"text","text":"**Нечёткое число битов**\n\nполовина ошибок","x":340,"y":960,"width":250,"height":110,"color":"3"},
+		{"id":"n26","type":"text","text":"**Пакет ≤ r**\n\nвсе","x":620,"y":960,"width":250,"height":110,"color":"3"},
+		{"id":"n27","type":"text","text":"**Пакет r + 1**\n\nвероятность (1/2)^(r−1)","x":900,"y":960,"width":250,"height":110,"color":"3"},
+		{"id":"n28","type":"text","text":"## Формулы главы","x":1190,"y":850,"width":240,"height":70,"color":"6"},
+		{"id":"n29","type":"text","text":"**(3.1)**\nm + r + 1 ≤ 2^r\n\nнижний предел","x":1190,"y":960,"width":250,"height":110,"color":"6"},
+		{"id":"n30","type":"text","text":"**w = 2·BD + 1**\nразмер окна\n\nполоса × задержка","x":1470,"y":960,"width":250,"height":110,"color":"6"},
+		{"id":"n31","type":"text","text":"**BD**\nполоса × задержка\n\nизмеряется во фреймах","x":1190,"y":1100,"width":250,"height":110,"color":"6"},
+		{"id":"n32","type":"text","text":"**CRC-32 IEEE**\nпакеты ≤ 32 бита\n\nрасстояние всего 4","x":1470,"y":1100,"width":250,"height":110,"color":"6"},
+		{"id":"n33","type":"text","text":"## Шесть протоколов","x":60,"y":1250,"width":240,"height":70,"color":"5"},
+		{"id":"n34","type":"text","text":"**1. Утопия**\nничего\n\nидеальный канал","x":60,"y":1360,"width":250,"height":110,"color":"5"},
+		{"id":"n35","type":"text","text":"**2. Остановка и ожидание**\nуправление потоком\n\nсимплексный","x":340,"y":1360,"width":250,"height":110,"color":"5"},
+		{"id":"n36","type":"text","text":"**3. PAR / ARQ**\nномера и подтверждения\n\nMAX_SEQ = 1","x":620,"y":1360,"width":250,"height":110,"color":"5"},
+		{"id":"n37","type":"text","text":"**4. Окно 1 бит**\nвложенные подтверждения\n\nдуплексный","x":60,"y":1500,"width":250,"height":110,"color":"5"},
+		{"id":"n38","type":"text","text":"**5. Возврат к n**\nMAX_SEQ = 7\n\nокно растёт","x":340,"y":1500,"width":250,"height":110,"color":"5"},
+		{"id":"n39","type":"text","text":"**6. Выборочный повтор**\nNR_BUFS = 4\n\nбуфер и NAK","x":620,"y":1500,"width":250,"height":110,"color":"5"},
+		{"id":"n40","type":"text","text":"## Раздвижное окно","x":910,"y":1250,"width":240,"height":70,"color":"2"},
+		{"id":"n41","type":"text","text":"**Поле номера**\nn бит → 2ⁿ − 1\n\nне то же, что окно","x":910,"y":1360,"width":250,"height":110,"color":"2"},
+		{"id":"n42","type":"text","text":"**Окно ≤ половины**\nв протоколе 6\n\nиначе перекрытие","x":1190,"y":1360,"width":250,"height":110,"color":"2"},
+		{"id":"n43","type":"text","text":"**Кумулятивное**\nack n значит и n−1\n\nи все предыдущие","x":910,"y":1500,"width":250,"height":110,"color":"2"},
+		{"id":"n44","type":"text","text":"**ack = последний**\n(frame_exp + MAX_SEQ) % …\n\nне следующий","x":1190,"y":1500,"width":250,"height":110,"color":"2"},
+		{"id":"n45","type":"text","text":"## Практические протоколы","x":60,"y":1650,"width":240,"height":70,"color":"1"},
+		{"id":"n46","type":"text","text":"**PPP**\nфрейминг · LCP · NCP\n\nобычно без подтверждений","x":60,"y":1760,"width":250,"height":110,"color":"1"},
+		{"id":"n47","type":"text","text":"**HDLC**\nбит-ориентированный\n\nнадёжная передача","x":340,"y":1760,"width":250,"height":110,"color":"1"},
+		{"id":"n48","type":"text","text":"**ATM**\nячейки по 53 байта\n\n48 данных + 5","x":620,"y":1760,"width":250,"height":110,"color":"1"},
+		{"id":"n49","type":"text","text":"**AAL5**\nLength + CRC\n\nпакетные данные","x":60,"y":1900,"width":250,"height":110,"color":"1"},
+		{"id":"n50","type":"text","text":"**DOCSIS**\nPHY · MAC\n\nMAC — в главе 4","x":340,"y":1900,"width":250,"height":110,"color":"1"},
+		{"id":"n51","type":"text","text":"**Скремблирование**\nXOR с ПСЧ\n\nдля синхронизации","x":620,"y":1900,"width":250,"height":110,"color":"1"},
+		{"id":"n52","type":"text","text":"## Чего в главе 3 нет","x":910,"y":1650,"width":240,"height":70,"color":"6"},
+		{"id":"n53","type":"text","text":"**LLC / SNAP**\n\nнет ни разу — это глава 4","x":910,"y":1760,"width":250,"height":110,"color":"6"},
+		{"id":"n54","type":"text","text":"**Кадр Ethernet**\nкак структура\n\nтолько упоминания","x":1190,"y":1760,"width":250,"height":110,"color":"6"},
+		{"id":"n55","type":"text","text":"**Таблица кодов CRC**\n\nесть только правила","x":910,"y":1900,"width":250,"height":110,"color":"6"},
+		{"id":"n56","type":"text","text":"**VPI / VCI · STS · BER**\n\nв других главах","x":1190,"y":1900,"width":250,"height":110,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"n2","fromSide":"bottom","toNode":"n3","toSide":"top","color":"1"},
+		{"id":"e2","fromNode":"n2","fromSide":"bottom","toNode":"n4","toSide":"top","color":"1"},
+		{"id":"e3","fromNode":"n2","fromSide":"bottom","toNode":"n5","toSide":"top","color":"1"},
+		{"id":"e4","fromNode":"n2","fromSide":"bottom","toNode":"n6","toSide":"top","color":"1"},
+		{"id":"e5","fromNode":"n1","fromSide":"bottom","toNode":"n3","toSide":"top","color":"1"},
+		{"id":"e6","fromNode":"n1","fromSide":"bottom","toNode":"n4","toSide":"top","color":"1"},
+		{"id":"e7","fromNode":"n1","fromSide":"bottom","toNode":"n5","toSide":"top","color":"1"},
+		{"id":"e8","fromNode":"n1","fromSide":"bottom","toNode":"n6","toSide":"top","color":"1"},
+		{"id":"e9","fromNode":"n7","fromSide":"bottom","toNode":"n8","toSide":"top","color":"2"},
+		{"id":"e10","fromNode":"n7","fromSide":"bottom","toNode":"n9","toSide":"top","color":"2"},
+		{"id":"e11","fromNode":"n7","fromSide":"bottom","toNode":"n10","toSide":"top","color":"2"},
+		{"id":"e12","fromNode":"n1","fromSide":"bottom","toNode":"n8","toSide":"top","color":"2"},
+		{"id":"e13","fromNode":"n1","fromSide":"bottom","toNode":"n9","toSide":"top","color":"2"},
+		{"id":"e14","fromNode":"n1","fromSide":"bottom","toNode":"n10","toSide":"top","color":"2"},
+		{"id":"e15","fromNode":"n11","fromSide":"bottom","toNode":"n12","toSide":"top","color":"4"},
+		{"id":"e16","fromNode":"n11","fromSide":"bottom","toNode":"n13","toSide":"top","color":"4"},
+		{"id":"e17","fromNode":"n11","fromSide":"bottom","toNode":"n14","toSide":"top","color":"4"},
+		{"id":"e18","fromNode":"n11","fromSide":"bottom","toNode":"n15","toSide":"top","color":"4"},
+		{"id":"e19","fromNode":"n1","fromSide":"bottom","toNode":"n12","toSide":"top","color":"4"},
+		{"id":"e20","fromNode":"n1","fromSide":"bottom","toNode":"n13","toSide":"top","color":"4"},
+		{"id":"e21","fromNode":"n1","fromSide":"bottom","toNode":"n14","toSide":"top","color":"4"},
+		{"id":"e22","fromNode":"n1","fromSide":"bottom","toNode":"n15","toSide":"top","color":"4"},
+		{"id":"e23","fromNode":"n16","fromSide":"bottom","toNode":"n17","toSide":"top","color":"3"},
+		{"id":"e24","fromNode":"n16","fromSide":"bottom","toNode":"n18","toSide":"top","color":"3"},
+		{"id":"e25","fromNode":"n16","fromSide":"bottom","toNode":"n19","toSide":"top","color":"3"},
+		{"id":"e26","fromNode":"n16","fromSide":"bottom","toNode":"n20","toSide":"top","color":"3"},
+		{"id":"e27","fromNode":"n16","fromSide":"bottom","toNode":"n21","toSide":"top","color":"3"},
+		{"id":"e28","fromNode":"n16","fromSide":"bottom","toNode":"n22","toSide":"top","color":"3"},
+		{"id":"e29","fromNode":"n1","fromSide":"bottom","toNode":"n17","toSide":"top","color":"3"},
+		{"id":"e30","fromNode":"n1","fromSide":"bottom","toNode":"n18","toSide":"top","color":"3"},
+		{"id":"e31","fromNode":"n1","fromSide":"bottom","toNode":"n19","toSide":"top","color":"3"},
+		{"id":"e32","fromNode":"n1","fromSide":"bottom","toNode":"n20","toSide":"top","color":"3"},
+		{"id":"e33","fromNode":"n1","fromSide":"bottom","toNode":"n21","toSide":"top","color":"3"},
+		{"id":"e34","fromNode":"n1","fromSide":"bottom","toNode":"n22","toSide":"top","color":"3"},
+		{"id":"e35","fromNode":"n23","fromSide":"bottom","toNode":"n24","toSide":"top","color":"3"},
+		{"id":"e36","fromNode":"n23","fromSide":"bottom","toNode":"n25","toSide":"top","color":"3"},
+		{"id":"e37","fromNode":"n23","fromSide":"bottom","toNode":"n26","toSide":"top","color":"3"},
+		{"id":"e38","fromNode":"n23","fromSide":"bottom","toNode":"n27","toSide":"top","color":"3"},
+		{"id":"e39","fromNode":"n1","fromSide":"bottom","toNode":"n24","toSide":"top","color":"3"},
+		{"id":"e40","fromNode":"n1","fromSide":"bottom","toNode":"n25","toSide":"top","color":"3"},
+		{"id":"e41","fromNode":"n1","fromSide":"bottom","toNode":"n26","toSide":"top","color":"3"},
+		{"id":"e42","fromNode":"n1","fromSide":"bottom","toNode":"n27","toSide":"top","color":"3"},
+		{"id":"e43","fromNode":"n28","fromSide":"bottom","toNode":"n29","toSide":"top","color":"6"},
+		{"id":"e44","fromNode":"n28","fromSide":"bottom","toNode":"n30","toSide":"top","color":"6"},
+		{"id":"e45","fromNode":"n28","fromSide":"bottom","toNode":"n31","toSide":"top","color":"6"},
+		{"id":"e46","fromNode":"n28","fromSide":"bottom","toNode":"n32","toSide":"top","color":"6"},
+		{"id":"e47","fromNode":"n1","fromSide":"bottom","toNode":"n29","toSide":"top","color":"6"},
+		{"id":"e48","fromNode":"n1","fromSide":"bottom","toNode":"n30","toSide":"top","color":"6"},
+		{"id":"e49","fromNode":"n1","fromSide":"bottom","toNode":"n31","toSide":"top","color":"6"},
+		{"id":"e50","fromNode":"n1","fromSide":"bottom","toNode":"n32","toSide":"top","color":"6"},
+		{"id":"e51","fromNode":"n33","fromSide":"bottom","toNode":"n34","toSide":"top","color":"5"},
+		{"id":"e52","fromNode":"n33","fromSide":"bottom","toNode":"n35","toSide":"top","color":"5"},
+		{"id":"e53","fromNode":"n33","fromSide":"bottom","toNode":"n36","toSide":"top","color":"5"},
+		{"id":"e54","fromNode":"n33","fromSide":"bottom","toNode":"n37","toSide":"top","color":"5"},
+		{"id":"e55","fromNode":"n33","fromSide":"bottom","toNode":"n38","toSide":"top","color":"5"},
+		{"id":"e56","fromNode":"n33","fromSide":"bottom","toNode":"n39","toSide":"top","color":"5"},
+		{"id":"e57","fromNode":"n1","fromSide":"bottom","toNode":"n34","toSide":"top","color":"5"},
+		{"id":"e58","fromNode":"n1","fromSide":"bottom","toNode":"n35","toSide":"top","color":"5"},
+		{"id":"e59","fromNode":"n1","fromSide":"bottom","toNode":"n36","toSide":"top","color":"5"},
+		{"id":"e60","fromNode":"n1","fromSide":"bottom","toNode":"n37","toSide":"top","color":"5"},
+		{"id":"e61","fromNode":"n1","fromSide":"bottom","toNode":"n38","toSide":"top","color":"5"},
+		{"id":"e62","fromNode":"n1","fromSide":"bottom","toNode":"n39","toSide":"top","color":"5"},
+		{"id":"e63","fromNode":"n40","fromSide":"bottom","toNode":"n41","toSide":"top","color":"2"},
+		{"id":"e64","fromNode":"n40","fromSide":"bottom","toNode":"n42","toSide":"top","color":"2"},
+		{"id":"e65","fromNode":"n40","fromSide":"bottom","toNode":"n43","toSide":"top","color":"2"},
+		{"id":"e66","fromNode":"n40","fromSide":"bottom","toNode":"n44","toSide":"top","color":"2"},
+		{"id":"e67","fromNode":"n1","fromSide":"bottom","toNode":"n41","toSide":"top","color":"2"},
+		{"id":"e68","fromNode":"n1","fromSide":"bottom","toNode":"n42","toSide":"top","color":"2"},
+		{"id":"e69","fromNode":"n1","fromSide":"bottom","toNode":"n43","toSide":"top","color":"2"},
+		{"id":"e70","fromNode":"n1","fromSide":"bottom","toNode":"n44","toSide":"top","color":"2"},
+		{"id":"e71","fromNode":"n45","fromSide":"bottom","toNode":"n46","toSide":"top","color":"1"},
+		{"id":"e72","fromNode":"n45","fromSide":"bottom","toNode":"n47","toSide":"top","color":"1"},
+		{"id":"e73","fromNode":"n45","fromSide":"bottom","toNode":"n48","toSide":"top","color":"1"},
+		{"id":"e74","fromNode":"n45","fromSide":"bottom","toNode":"n49","toSide":"top","color":"1"},
+		{"id":"e75","fromNode":"n45","fromSide":"bottom","toNode":"n50","toSide":"top","color":"1"},
+		{"id":"e76","fromNode":"n45","fromSide":"bottom","toNode":"n51","toSide":"top","color":"1"},
+		{"id":"e77","fromNode":"n1","fromSide":"bottom","toNode":"n46","toSide":"top","color":"1"},
+		{"id":"e78","fromNode":"n1","fromSide":"bottom","toNode":"n47","toSide":"top","color":"1"},
+		{"id":"e79","fromNode":"n1","fromSide":"bottom","toNode":"n48","toSide":"top","color":"1"},
+		{"id":"e80","fromNode":"n1","fromSide":"bottom","toNode":"n49","toSide":"top","color":"1"},
+		{"id":"e81","fromNode":"n1","fromSide":"bottom","toNode":"n50","toSide":"top","color":"1"},
+		{"id":"e82","fromNode":"n1","fromSide":"bottom","toNode":"n51","toSide":"top","color":"1"},
+		{"id":"e83","fromNode":"n52","fromSide":"bottom","toNode":"n53","toSide":"top","color":"6"},
+		{"id":"e84","fromNode":"n52","fromSide":"bottom","toNode":"n54","toSide":"top","color":"6"},
+		{"id":"e85","fromNode":"n52","fromSide":"bottom","toNode":"n55","toSide":"top","color":"6"},
+		{"id":"e86","fromNode":"n52","fromSide":"bottom","toNode":"n56","toSide":"top","color":"6"},
+		{"id":"e87","fromNode":"n1","fromSide":"bottom","toNode":"n53","toSide":"top","color":"6"},
+		{"id":"e88","fromNode":"n1","fromSide":"bottom","toNode":"n54","toSide":"top","color":"6"},
+		{"id":"e89","fromNode":"n1","fromSide":"bottom","toNode":"n55","toSide":"top","color":"6"},
+		{"id":"e90","fromNode":"n1","fromSide":"bottom","toNode":"n56","toSide":"top","color":"6"}
+	]
 }
