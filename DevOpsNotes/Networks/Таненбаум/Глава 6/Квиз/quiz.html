@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Глава 6 — Транспортный уровень · квиз</title>
+<style>
+  :root{
+    --bg:#0b1220;
+    --card:#121e35;
+    --card-2:#172642;
+    --line:rgba(148,163,184,.16);
+    --text:#e8eefc;
+    --muted:#94a3b8;
+    --accent:#38bdf8;
+    --accent-2:#2dd4bf;
+    --green:#34d399;
+    --amber:#fbbf24;
+    --red:#f87171;
+    --radius:18px;
+    --shadow:0 18px 50px rgba(2,8,23,.35);
+  }
+
+  *{box-sizing:border-box}
+
+  html,body{margin:0;min-height:100%}
+
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1100px 560px at 8% -10%, rgba(56,189,248,.16), transparent 62%),
+      radial-gradient(900px 520px at 100% 0%, rgba(45,212,191,.11), transparent 58%),
+      var(--bg);
+    min-height:100vh;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:linear-gradient(rgba(148,163,184,.035) 1px, transparent 1px),linear-gradient(90deg, rgba(148,163,184,.035) 1px, transparent 1px);
+    background-size:44px 44px;
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,.55), transparent 70%);
+  }
+
+  button{font:inherit}
+
+  .app{
+    position:relative;
+    z-index:1;
+    max-width:960px;
+    margin:0 auto;
+    padding:28px 20px 64px;
+  }
+
+  .hidden{display:none !important}
+
+  /* ---------- top bar ---------- */
+
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:28px;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:0;
+  }
+
+  .brand-mark{
+    width:44px;
+    height:44px;
+    flex:0 0 44px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    font-size:20px;
+    font-weight:800;
+    color:#06121f;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 8px 24px rgba(56,189,248,.26);
+  }
+
+  .brand-title{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.01em;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .brand-sub{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:1px;
+  }
+
+  .top-actions{display:flex;gap:8px;align-items:center}
+
+  /* ---------- buttons ---------- */
+
+  .btn{
+    appearance:none;
+    border:1px solid transparent;
+    border-radius:12px;
+    padding:11px 18px;
+    font-size:14px;
+    font-weight:650;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:transform .16s ease, background .16s ease, border-color .16s ease, opacity .16s ease;
+    white-space:nowrap;
+  }
+
+  .btn:hover:not(:disabled){transform:translateY(-1px)}
+  .btn:active:not(:disabled){transform:translateY(0)}
+  .btn:disabled{opacity:.42;cursor:not-allowed}
+
+  .btn.primary{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#06121f;
+    box-shadow:0 8px 22px rgba(56,189,248,.22);
+  }
+
+  .btn.primary:hover:not(:disabled){box-shadow:0 10px 28px rgba(56,189,248,.3)}
+
+  .btn.ghost{
+    background:rgba(148,163,184,.07);
+    border-color:var(--line);
+    color:var(--text);
+  }
+
+  .btn.ghost:hover:not(:disabled){background:rgba(148,163,184,.12)}
+
+  .btn.small{padding:8px 12px;font-size:13px;border-radius:10px}
+
+  .btn:focus-visible,
+  .option:focus-visible,
+  .conf-btn:focus-visible,
+  summary:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  /* ---------- intro ---------- */
+
+  .hero{
+    padding:34px 0 12px;
+    max-width:780px;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:16px;
+  }
+
+  .eyebrow::before{
+    content:"";
+    width:18px;
+    height:2px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    border-radius:2px;
+  }
+
+  h1{
+    margin:0 0 16px;
+    font-size:clamp(32px,5vw,54px);
+    line-height:1.08;
+    letter-spacing:-.03em;
+    font-weight:800;
+  }
+
+  .grad{
+    background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .lead{
+    margin:0;
+    font-size:17px;
+    color:#b9c6dc;
+    max-width:680px;
+  }
+
+  .meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:26px 0 30px;
+  }
+
+  .meta{
+    background:rgba(148,163,184,.055);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:12px 16px;
+    min-width:112px;
+  }
+
+  .meta b{
+    display:block;
+    font-size:20px;
+    line-height:1.2;
+    color:var(--text);
+  }
+
+  .meta span{
+    display:block;
+    font-size:12px;
+    color:var(--muted);
+    margin-top:2px;
+  }
+
+  .intro-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+  }
+
+  .confidence-explainer{
+    margin-top:34px;
+    padding:20px 22px;
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(56,189,248,.055), rgba(148,163,184,.025));
+    max-width:760px;
+  }
+
+  .conf-title{
+    font-size:13px;
+    font-weight:750;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+    margin-bottom:8px;
+  }
+
+  .confidence-explainer p{margin:0;color:#c3cfe2;font-size:14px}
+  .confidence-explainer b{font-weight:750}
+  .c1{color:var(--red)}
+  .c2{color:var(--amber)}
+  .c3{color:var(--green)}
+
+  /* ---------- quiz ---------- */
+
+  .quiz-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:10px;
+  }
+
+  .quiz-block{
+    font-size:12px;
+    font-weight:750;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+
+  .quiz-count{
+    font-size:13px;
+    color:var(--muted);
+    font-variant-numeric:tabular-nums;
+  }
+
+  .quiz-count b{color:var(--text);font-size:15px}
+
+  .progress{
+    height:6px;
+    border-radius:999px;
+    background:rgba(148,163,184,.12);
+    overflow:hidden;
+    margin-bottom:24px;
+  }
+
+  .progress > div{
+    height:100%;
+    width:0;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    transition:width .3s ease;
+  }
+
+  .question-card{
+    background:linear-gradient(180deg, rgba(23,38,66,.92), rgba(18,30,53,.92));
+    border:1px solid var(--line);
+    border-radius:calc(var(--radius) + 4px);
+    padding:clamp(20px,4vw,34px);
+    box-shadow:var(--shadow);
+  }
+
+  .q-kicker{
+    display:inline-block;
+    font-size:11px;
+    font-weight:750;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    background:rgba(148,163,184,.08);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:4px 10px;
+    margin-bottom:14px;
+  }
+
+  .question-card h2{
+    margin:0 0 24px;
+    font-size:clamp(19px,2.6vw,25px);
+    line-height:1.35;
+    letter-spacing:-.01em;
+    font-weight:700;
+  }
+
+  .question-card code,
+  .review-body code,
+  .save-status code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    font-size:.9em;
+    background:rgba(56,189,248,.1);
+    border:1px solid rgba(56,189,248,.16);
+    border-radius:6px;
+    padding:1px 5px;
+    color:#bfe9ff;
+  }
+
+  .options{display:grid;gap:10px}
+
+  .option{
+    appearance:none;
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-align:left;
+    padding:14px 16px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:rgba(148,163,184,.045);
+    color:var(--text);
+    cursor:pointer;
+    transition:background .16s ease, border-color .16s ease, transform .16s ease;
+  }
+
+  .option:hover{
+    background:rgba(56,189,248,.07);
+    border-color:rgba(56,189,248,.3);
+    transform:translateX(2px);
+  }
+
+  .option.selected{
+    background:linear-gradient(90deg, rgba(56,189,248,.16), rgba(45,212,191,.08));
+    border-color:rgba(56,189,248,.65);
+    box-shadow:inset 0 0 0 1px rgba(56,189,248,.2);
+  }
+
+  .option-letter{
+    width:32px;
+    height:32px;
+    flex:0 0 32px;
+    display:grid;
+    place-items:center;
+    border-radius:9px;
+    background:rgba(148,163,184,.1);
+    border:1px solid var(--line);
+    font-size:13px;
+    font-weight:800;
+    color:var(--muted);
+    transition:background .16s ease, color .16s ease, border-color .16s ease;
+  }
+
+  .option.selected .option-letter{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    border-color:transparent;
+    color:#06121f;
+  }
+
+  .option-text{flex:1;font-size:15px}
+
+  .option-check{
+    width:20px;
+    text-align:center;
+    color:var(--accent);
+    font-weight:800;
+    opacity:0;
+    transform:scale(.8);
+    transition:opacity .16s ease, transform .16s ease;
+  }
+
+  .option.selected .option-check{opacity:1;transform:scale(1)}
+
+  .confidence{
+    margin-top:22px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+  }
+
+  .conf-head{
+    font-size:13px;
+    font-weight:700;
+    color:#c3cfe2;
+    margin-bottom:10px;
+  }
+
+  .conf-options{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+
+  .conf-btn{
+    appearance:none;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:2px;
+    padding:11px 13px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:rgba(148,163,184,.04);
+    color:var(--muted);
+    cursor:pointer;
+    text-align:left;
+    transition:background .16s ease, border-color .16s ease, color .16s ease;
+  }
+
+  .conf-btn:hover{background:rgba(148,163,184,.08)}
+
+  .conf-btn b{font-size:13px;color:var(--text)}
+  .conf-btn span{font-size:11px;color:var(--muted)}
+
+  .conf-btn.selected.c1{border-color:rgba(248,113,113,.65);background:rgba(248,113,113,.1)}
+  .conf-btn.selected.c2{border-color:rgba(251,191,36,.65);background:rgba(251,191,36,.1)}
+  .conf-btn.selected.c3{border-color:rgba(52,211,153,.65);background:rgba(52,211,153,.1)}
+
+  .quiz-nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:20px;
+  }
+
+  .kbd-hint{
+    font-size:11px;
+    color:var(--muted);
+    text-align:center;
+    flex:1;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  kbd{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:10px;
+    background:rgba(148,163,184,.1);
+    border:1px solid var(--line);
+    border-bottom-width:2px;
+    border-radius:4px;
+    padding:1px 4px;
+    color:#c3cfe2;
+  }
+
+  /* ---------- result ---------- */
+
+  .result-hero{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:28px;
+    padding:10px 0 30px;
+  }
+
+  .result-hero h1{
+    font-size:clamp(38px,7vw,68px);
+    margin-bottom:10px;
+  }
+
+  .result-message{
+    margin:0;
+    color:#b9c6dc;
+    font-size:16px;
+    max-width:520px;
+  }
+
+  .result-sub{
+    margin-top:12px;
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  .score-ring{
+    --p:0;
+    --ring:var(--green);
+    width:154px;
+    height:154px;
+    flex:0 0 154px;
+    border-radius:50%;
+    background:conic-gradient(var(--ring) calc(var(--p) * 1%), rgba(148,163,184,.14) 0);
+    display:grid;
+    place-items:center;
+    position:relative;
+    box-shadow:0 0 40px rgba(52,211,153,.08);
+  }
+
+  .score-ring::before{
+    content:"";
+    position:absolute;
+    inset:11px;
+    border-radius:50%;
+    background:var(--card);
+    border:1px solid rgba(148,163,184,.08);
+  }
+
+  .score-ring > div{
+    position:relative;
+    z-index:1;
+    text-align:center;
+  }
+
+  .score-ring b{
+    display:block;
+    font-size:34px;
+    line-height:1;
+    letter-spacing:-.03em;
+  }
+
+  .score-ring span{
+    display:block;
+    font-size:11px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    margin-top:6px;
+  }
+
+  .block-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:12px;
+  }
+
+  .block-card{
+    background:rgba(148,163,184,.045);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px 18px;
+  }
+
+  .block-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+
+  .block-id{
+    width:34px;
+    height:34px;
+    flex:0 0 34px;
+    display:grid;
+    place-items:center;
+    border-radius:10px;
+    background:rgba(56,189,248,.1);
+    border:1px solid rgba(56,189,248,.22);
+    color:var(--accent);
+    font-weight:800;
+    font-size:13px;
+  }
+
+  .block-name{font-size:13px;font-weight:700;line-height:1.25}
+  .block-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+  .mini-bar{
+    height:5px;
+    border-radius:999px;
+    background:rgba(148,163,184,.12);
+    overflow:hidden;
+  }
+
+  .mini-bar span{
+    display:block;
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  }
+
+  .panel{
+    background:linear-gradient(180deg, rgba(23,38,66,.72), rgba(18,30,53,.72));
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+    margin-top:12px;
+  }
+
+  .panel-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:14px;
+  }
+
+  .panel h2{
+    margin:0;
+    font-size:17px;
+    letter-spacing:-.01em;
+  }
+
+  .panel-head > span{
+    font-size:12px;
+    color:var(--muted);
+    font-variant-numeric:tabular-nums;
+  }
+
+  .calibration-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+  }
+
+  .calibration-table th{
+    text-align:left;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    color:var(--muted);
+    font-weight:700;
+    padding:0 10px 8px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .calibration-table td{
+    padding:10px 10px 10px 0;
+    border-bottom:1px solid rgba(148,163,184,.08);
+  }
+
+  .calibration-table tr:last-child td{border-bottom:0}
+
+  .calibration-table td:not(:first-child){
+    font-variant-numeric:tabular-nums;
+    color:#c3cfe2;
+  }
+
+  .conf-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    font-weight:700;
+  }
+
+  .conf-pill::before{
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:currentColor;
+  }
+
+  .calibration-note{
+    margin:14px 0 0;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    font-size:13px;
+    color:#c3cfe2;
+  }
+
+  .calibration-note b{color:var(--text)}
+
+  .mistake-list{display:flex;flex-wrap:wrap;gap:8px}
+
+  .mistake-chip{
+    appearance:none;
+    border:1px solid rgba(248,113,113,.3);
+    background:rgba(248,113,113,.07);
+    color:#fecaca;
+    border-radius:999px;
+    padding:7px 12px;
+    font-size:12px;
+    font-weight:650;
+    cursor:pointer;
+    transition:background .16s ease, border-color .16s ease;
+  }
+
+  .mistake-chip:hover{background:rgba(248,113,113,.14);border-color:rgba(248,113,113,.5)}
+
+  .muted{color:var(--muted);font-size:13px;margin:12px 0 0}
+  .good{color:var(--green);font-size:14px;margin:0}
+
+  .review-panel{padding:0;overflow:hidden}
+
+  .review-panel .panel-head{padding:22px 22px 0;margin-bottom:14px}
+
+  .review-item{
+    border-top:1px solid var(--line);
+    transition:background .3s ease;
+  }
+
+  .review-item.flash{background:rgba(56,189,248,.07)}
+
+  .review-item summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 22px;
+    transition:background .16s ease;
+  }
+
+  .review-item summary::-webkit-details-marker{display:none}
+
+  .review-item summary:hover{background:rgba(148,163,184,.04)}
+
+  .review-num{
+    width:26px;
+    height:26px;
+    flex:0 0 26px;
+    display:grid;
+    place-items:center;
+    border-radius:8px;
+    background:rgba(148,163,184,.09);
+    border:1px solid var(--line);
+    font-size:11px;
+    font-weight:800;
+    color:var(--muted);
+  }
+
+  .review-topic{
+    flex:1;
+    font-size:13px;
+    font-weight:650;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .review-badge{
+    font-size:10px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    padding:3px 7px;
+    border-radius:999px;
+  }
+
+  .review-badge.ok{background:rgba(52,211,153,.1);color:var(--green);border:1px solid rgba(52,211,153,.22)}
+  .review-badge.bad{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.22)}
+
+  .review-conf{display:inline-flex;gap:3px;align-items:center}
+  .review-conf .dot{width:6px;height:6px;border-radius:50%;background:rgba(148,163,184,.2)}
+  .review-conf.c1 .dot.on{background:var(--red)}
+  .review-conf.c2 .dot.on{background:var(--amber)}
+  .review-conf.c3 .dot.on{background:var(--green)}
+
+  .review-time{
+    font-size:11px;
+    color:var(--muted);
+    font-variant-numeric:tabular-nums;
+    min-width:44px;
+    text-align:right;
+  }
+
+  .review-body{
+    padding:0 22px 22px 58px;
+    animation:fade .18s ease;
+  }
+
+  @keyframes fade{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+
+  .review-q{
+    margin:0 0 14px;
+    font-size:14px;
+    color:#d5dfef;
+    line-height:1.5;
+  }
+
+  .review-answers{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:14px;
+  }
+
+  .answer{
+    padding:10px 12px;
+    border-radius:11px;
+    border:1px solid var(--line);
+    background:rgba(148,163,184,.04);
+  }
+
+  .answer span{
+    display:block;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+    margin-bottom:3px;
+  }
+
+  .answer b{font-size:13px;font-weight:650}
+
+  .answer.bad{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.055)}
+  .answer.bad b{color:#fecaca}
+
+  .answer.right{border-color:rgba(52,211,153,.25);background:rgba(52,211,153,.055)}
+  .answer.right b{color:#bbf7d0}
+
+  .review-expl{
+    border-left:2px solid rgba(56,189,248,.45);
+    padding-left:12px;
+  }
+
+  .review-expl > span{
+    display:block;
+    font-size:10px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.09em;
+    color:var(--accent);
+    margin-bottom:4px;
+  }
+
+  .review-expl p{margin:0;font-size:13px;color:#b9c6dc;line-height:1.55}
+
+  /* ---------- export ---------- */
+
+  .export-panel p{margin:0 0 16px;color:#b9c6dc;font-size:14px;max-width:680px}
+
+  .export-actions{display:flex;flex-wrap:wrap;gap:8px}
+
+  .save-status{
+    margin-top:14px;
+    padding:11px 13px;
+    border-radius:11px;
+    border:1px solid var(--line);
+    background:rgba(148,163,184,.04);
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  .save-status.ok{border-color:rgba(52,211,153,.25);background:rgba(52,211,153,.06);color:#bbf7d0}
+  .save-status.warn{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);color:#fde68a}
+  .save-status.pending{border-color:rgba(56,189,248,.25);background:rgba(56,189,248,.06);color:#bfe9ff}
+
+  .json-details{margin-top:14px}
+
+  .json-details summary{
+    cursor:pointer;
+    font-size:12px;
+    color:var(--muted);
+    user-select:none;
+  }
+
+  .json-details summary:hover{color:var(--text)}
+
+  .json-details pre{
+    margin:12px 0 0;
+    max-height:320px;
+    overflow:auto;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:rgba(2,8,23,.45);
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    font-size:11px;
+    line-height:1.5;
+    color:#c3cfe2;
+    white-space:pre-wrap;
+    word-break:break-word;
+  }
+
+  .footer{
+    margin-top:30px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    font-size:11px;
+    color:var(--muted);
+  }
+
+  /* ---------- toast ---------- */
+
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:26px;
+    transform:translate(-50%, 16px);
+    opacity:0;
+    pointer-events:none;
+    background:#e8eefc;
+    color:#0b1220;
+    padding:10px 16px;
+    border-radius:12px;
+    font-size:13px;
+    font-weight:650;
+    box-shadow:0 12px 30px rgba(2,8,23,.4);
+    transition:opacity .2s ease, transform .2s ease;
+    z-index:50;
+    max-width:calc(100vw - 40px);
+    text-align:center;
+  }
+
+  .toast.show{opacity:1;transform:translate(-50%, 0)}
+
+  /* ---------- responsive ---------- */
+
+  @media (max-width:640px){
+    .app{padding:20px 14px 48px}
+    .brand-title{font-size:13px}
+    .brand-sub{font-size:11px}
+    .hero{padding-top:18px}
+    .meta-row{gap:8px}
+    .meta{flex:1 1 calc(50% - 8px);min-width:0;padding:10px 12px}
+    .meta b{font-size:18px}
+    .question-card{padding:18px}
+    .option{padding:12px;gap:11px}
+    .option-text{font-size:14px}
+    .conf-options{grid-template-columns:1fr}
+    .conf-btn{flex-direction:row;align-items:baseline;gap:8px;padding:10px 12px}
+    .quiz-nav{flex-wrap:wrap}
+    .kbd-hint{display:none}
+    .quiz-nav .btn{flex:1}
+    .result-hero{flex-direction:column;align-items:flex-start;gap:20px}
+    .score-ring{width:132px;height:132px;flex-basis:132px}
+    .block-grid{grid-template-columns:1fr}
+    .review-item summary{padding:12px 16px;gap:8px}
+    .review-time{display:none}
+    .review-body{padding:0 16px 18px 16px}
+    .review-answers{grid-template-columns:1fr}
+    .panel{padding:18px}
+    .review-panel{padding:0}
+    .review-panel .panel-head{padding:18px 16px 0}
+    .export-actions .btn{flex:1 1 auto}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition:none !important;animation:none !important}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">6</div>
+      <div>
+        <div class="brand-title">Транспортный уровень</div>
+        <div class="brand-sub">Глава 6 · интерактивный квиз</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button type="button" id="topReset" class="btn ghost small hidden">Сбросить</button>
+    </div>
+  </header>
+
+  <!-- ================= INTRO ================= -->
+  <main id="screen-intro" class="screen">
+    <section class="hero">
+      <div class="eyebrow">Tanenbaum · Computer Networks · 6th ed.</div>
+      <h1>Проверь, как держится<br><span class="grad">глава 6</span></h1>
+      <p class="lead">15 вопросов о соединениях, окнах, перегрузке и производительности. Сначала отвечаешь — правильные ответы и разбор появятся только в конце.</p>
+
+      <div class="meta-row">
+        <div class="meta"><b>15</b><span>вопросов</span></div>
+        <div class="meta"><b>2</b><span>блока</span></div>
+        <div class="meta"><b>3</b><span>уровня уверенности</span></div>
+        <div class="meta"><b>~10</b><span>минут</span></div>
+      </div>
+
+      <div class="intro-actions">
+        <button type="button" id="startBtn" class="btn primary">Начать <span aria-hidden="true">→</span></button>
+        <button type="button" id="resumeBtn" class="btn ghost hidden">Продолжить с вопроса <span id="resumeNum"></span></button>
+      </div>
+
+      <div class="confidence-explainer">
+        <div class="conf-title">Зачем уверенность</div>
+        <p>После каждого ответа выбери одно из трёх: <b class="c1">не уверен</b>, <b class="c2">сомневаюсь</b>, <b class="c3">уверен</b>. В результатах будет видно, где ошибка — реальный пробел или удачная догадка. Ответы не показываются до конца.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= QUIZ ================= -->
+  <main id="screen-quiz" class="screen hidden">
+    <div class="quiz-head">
+      <div class="quiz-block" id="blockLabel">Блок A</div>
+      <div class="quiz-count"><b id="qNum">1</b> / 15</div>
+    </div>
+    <div class="progress" aria-hidden="true"><div id="progressBar"></div></div>
+
+    <section class="question-card" aria-live="polite">
+      <div class="q-kicker" id="qTopic">Тема</div>
+      <h2 id="qText"></h2>
+      <div id="options" class="options"></div>
+
+      <div id="confidencePanel" class="confidence hidden">
+        <div class="conf-head">Насколько ты уверен в ответе?</div>
+        <div class="conf-options">
+          <button type="button" class="conf-btn c1" data-level="1"><b>1 · Не уверен</b><span>угадываю</span></button>
+          <button type="button" class="conf-btn c2" data-level="2"><b>2 · Сомневаюсь</b><span>между вариантами</span></button>
+          <button type="button" class="conf-btn c3" data-level="3"><b>3 · Уверен</b><span>знаю ответ</span></button>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiz-nav">
+      <button type="button" id="backBtn" class="btn ghost">← Назад</button>
+      <div class="kbd-hint"><kbd>A</kbd>–<kbd>D</kbd> ответ · <kbd>1</kbd>–<kbd>3</kbd> уверенность · <kbd>Enter</kbd> далее</div>
+      <button type="button" id="nextBtn" class="btn primary" disabled>Далее →</button>
+    </div>
+  </main>
+
+  <!-- ================= RESULT ================= -->
+  <main id="screen-result" class="screen hidden">
+    <section class="result-hero">
+      <div>
+        <div class="eyebrow">Результат</div>
+        <h1 id="resultTitle">0 из 15</h1>
+        <p id="resultMessage" class="result-message"></p>
+        <div id="resultSub" class="result-sub"></div>
+      </div>
+      <div class="score-ring" id="scoreRing">
+        <div><b id="scorePercent">0%</b><span>точность</span></div>
+      </div>
+    </section>
+
+    <div class="block-grid" id="blockGrid"></div>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Калибровка уверенности</h2><span>где знание, а где догадка</span></div>
+      <table class="calibration-table">
+        <thead><tr><th>Уверенность</th><th>Отвечено</th><th>Верно</th><th>Точность</th></tr></thead>
+        <tbody id="calibrationBody"></tbody>
+      </table>
+      <p class="calibration-note" id="calibrationNote"></p>
+    </section>
+
+    <section class="panel" id="mistakesPanel"></section>
+
+    <section class="panel review-panel">
+      <div class="panel-head"><h2>Разбор ответов</h2><span>нажми на строку, чтобы раскрыть</span></div>
+      <div id="reviewList"></div>
+    </section>
+
+    <section class="panel export-panel">
+      <div class="panel-head"><h2>Результат для агента</h2><span>JSON</span></div>
+      <p>Скачай файл или скопируй JSON в чат. Если запущен локальный сервер, результат уже сохранён в <code>Квиз/results/latest.json</code>.</p>
+      <div class="export-actions">
+        <button type="button" id="downloadBtn" class="btn primary">Скачать JSON</button>
+        <button type="button" id="copyBtn" class="btn ghost">Скопировать JSON</button>
+        <button type="button" id="againBtn" class="btn ghost">Пройти заново</button>
+      </div>
+      <div id="saveStatus" class="save-status">Проверяю локальный сервер…</div>
+      <details class="json-details">
+        <summary>Показать JSON</summary>
+        <pre id="jsonPreview"></pre>
+      </details>
+    </section>
+
+    <footer class="footer">
+      <span>Глава 6 · Транспортный уровень</span>
+      <span>Источник: Tanenbaum, Feamster, Wetherall. Computer Networks, 6th ed.</span>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   Данные квиза
+   ============================================================ */
+
+const BLOCKS = {
+  A: "Соединения и окна",
+  B: "Перегрузка, TCP и производительность"
+};
+
+const CONFIDENCE = {
+  1: { label: "Не уверен", short: "угадываю", className: "c1" },
+  2: { label: "Сомневаюсь", short: "между вариантами", className: "c2" },
+  3: { label: "Уверен", short: "знаю ответ", className: "c3" }
+};
+
+const QUESTIONS = [
+  {
+    id: 1,
+    block: "A",
+    topic: "SYN + ACK",
+    question: "Клиент отправляет SYN с SEQ = 1000. Сервер отвечает SYN + ACK с SEQ = 5000. Какое значение ACK будет во втором сегменте?",
+    options: ["1000", "1001", "5000", "5001"],
+    correct: "B",
+    explanation: "SYN клиента занимает номер 1000, поэтому сервер подтверждает следующий ожидаемый байт — 1001. Число 5001 — это следующий байт собственного пространства сервера; его подтвердит клиент в третьем сегменте."
+  },
+  {
+    id: 2,
+    block: "A",
+    topic: "Номер SYN",
+    question: "Зачем сегмент SYN занимает один байт пространства порядковых номеров?",
+    options: [
+      "Чтобы SYN можно было отличить от данных по номеру",
+      "Чтобы подтверждение SYN не совпало с подтверждением первого байта данных",
+      "Чтобы ускорить установление соединения",
+      "Чтобы разрешить одновременное открытие соединения"
+    ],
+    correct: "B",
+    explanation: "SYN расходует один номер. Если бы он не занимал байт, ACK на SYN и ACK на первый байт данных выглядели бы одинаково, и получатель не смог бы отличить установление соединения от доставки данных."
+  },
+  {
+    id: 3,
+    block: "A",
+    topic: "Старый дубликат CR",
+    question: "Приходит старый дубликат CR с SEQ = x. Что делает принимающая сторона по схеме тройного рукопожатия?",
+    options: [
+      "Молча игнорирует его",
+      "Отправляет ACK и ждёт подтверждения; если инициатор отказывается — соединение не устанавливается",
+      "Сразу устанавливает соединение",
+      "Отправляет RST"
+    ],
+    correct: "B",
+    explanation: "По одному SEQ старый дубликат не отличить от нового CR. Поэтому принимающая сторона отвечает ACK и ждёт третий шаг: если инициатор подтверждает — соединение установлено, если отправляет REJECT — это был дубликат. Молчаливое игнорирование сломало бы и нормальное открытие."
+  },
+  {
+    id: 4,
+    block: "A",
+    topic: "Две армии",
+    question: "Что доказывает проблема двух армий?",
+    options: [
+      "Что тройное рукопожатие всегда надёжно",
+      "Что по ненадёжному каналу нельзя конечным числом сообщений гарантировать согласие",
+      "Что TCP не может разорвать соединение",
+      "Что нужен таймер повторной передачи"
+    ],
+    correct: "B",
+    explanation: "Последнее сообщение всегда остаётся неподтверждённым: отправитель не знает, дошло ли оно. Поэтому согласие нельзя гарантировать конечным числом сообщений по ненадёжному каналу; на практике используют таймеры и решение приложения."
+  },
+  {
+    id: 5,
+    block: "A",
+    topic: "Разрыв TCP",
+    question: "Сколько сегментов обычно нужно для разрыва TCP и сколько минимально?",
+    options: ["2 и 1", "3 и 2", "4 и 3", "5 и 4"],
+    correct: "C",
+    explanation: "Каждое направление закрывается отдельно: FIN + ACK в одну сторону и FIN + ACK в другую — всего 4 сегмента. Если получатель совмещает ACK на чужой FIN со своим FIN, получается 3. Меньше 3 нельзя: FIN нужно подтвердить, а направления два."
+  },
+  {
+    id: 6,
+    block: "A",
+    topic: "TIME WAIT",
+    question: "Через сколько закрывается состояние TIME WAIT, если максимальное время жизни пакета равно 120 с?",
+    options: ["60 с", "120 с", "240 с", "480 с"],
+    correct: "C",
+    explanation: "TIME WAIT = 2 × T, где T — максимальное время жизни пакета. При T = 120 с это 240 с. Одного T мало: нужно, чтобы из сети исчезли не только пакеты, но и их подтверждения и повторные передачи."
+  },
+  {
+    id: 7,
+    block: "A",
+    topic: "BDP",
+    question: "Канал 1 Мбит/с, RTT 200 мс. Чему равен BDP?",
+    options: ["20 Кбит", "200 Кбит", "1 Мбит", "5 Мбит"],
+    correct: "B",
+    explanation: "BDP = скорость × RTT = 1 Мбит/с × 0,2 с = 200 Кбит = 25 Кбайт. Это объём данных, который помещается в канал «туда и обратно»."
+  },
+  {
+    id: 8,
+    block: "A",
+    topic: "Нулевое окно",
+    question: "Получатель объявил окно 0. Что может отправить отправитель?",
+    options: [
+      "Ничего и никогда",
+      "Только 1-байтный пробный сегмент (и срочные данные)",
+      "Полный сегмент",
+      "RST"
+    ],
+    correct: "B",
+    explanation: "Нулевое окно означает «стоп». Разрешены только срочные данные (URG) и 1-байтный пробный сегмент, который просит получателя повторить объявление окна. Без пробника потерянное обновление окна могло бы заблокировать соединение навсегда."
+  },
+  {
+    id: 9,
+    block: "B",
+    topic: "Медленный старт",
+    question: "`cwnd = 1 КБ`, `ssthresh = 32 КБ`, потерь нет. Через сколько RTT окно достигнет порога при медленном старте?",
+    options: ["4", "5", "6", "8"],
+    correct: "B",
+    explanation: "Медленный старт удваивает cwnd каждый RTT: 1 → 2 → 4 → 8 → 16 → 32 КБ. Порог 32 КБ достигается через 5 RTT; дальше начинается линейный рост."
+  },
+  {
+    id: 10,
+    block: "B",
+    topic: "ssthresh",
+    question: "Потеря обнаружена при `cwnd = 40 КБ`. Чему равен новый `ssthresh`?",
+    options: ["10 КБ", "20 КБ", "40 КБ", "80 КБ"],
+    correct: "B",
+    explanation: "При потере ssthresh = cwnd / 2 = 40 / 2 = 20 КБ. Дальше cwnd сбрасывается в 1 КБ (Tahoe) или переходит в быстрое восстановление (Reno), но порог остаётся 20 КБ."
+  },
+  {
+    id: 11,
+    block: "B",
+    topic: "Три дубликата ACK",
+    question: "Что означает получение трёх дубликатов ACK?",
+    options: [
+      "Перегрузка уже подтверждена",
+      "Вероятна потеря следующего сегмента; можно выполнить быструю повторную передачу",
+      "Получатель закрыл окно",
+      "Нужно сбросить соединение"
+    ],
+    correct: "B",
+    explanation: "Дубликаты ACK означают, что получатель видит сегменты после пропуска и снова подтверждает недостающий. Три дубликата — сигнал вероятной потери: можно выполнить быструю повторную передачу, не дожидаясь RTO. Это ещё не доказательство перегрузки, а повод среагировать."
+  },
+  {
+    id: 12,
+    block: "B",
+    topic: "RTO",
+    question: "`SRTT = 800 мс`, `RTTVAR = 100 мс`. Чему равен RTO по формуле Джейкобсона?",
+    options: ["800 мс", "900 мс", "1200 мс", "4000 мс"],
+    correct: "C",
+    explanation: "RTO = SRTT + 4 × RTTVAR = 800 + 4 × 100 = 1200 мс. Минимум 1 с здесь не срабатывает: 1200 мс больше."
+  },
+  {
+    id: 13,
+    block: "B",
+    topic: "Потери и throughput",
+    question: "Пропускная способность TCP растёт обратно пропорционально корню из вероятности потерь. Во сколько раз она упадёт при росте потерь с 1 % до 10 %?",
+    options: ["В 1,5 раза", "В 3,2 раза", "В 10 раз", "В 100 раз"],
+    correct: "B",
+    explanation: "Пропускная способность пропорциональна 1/√p. Отношение скоростей: √(0,10 / 0,01) = √10 ≈ 3,16, то есть падение примерно в 3,2 раза, а не в 10."
+  },
+  {
+    id: 14,
+    block: "B",
+    topic: "Max-min",
+    question: "Три потока B, C и D делят канал 1 поровну, каждому по 1/3. Поток A конкурирует с B на следующем участке. Сколько получит A по max-min?",
+    options: ["1/3", "1/2", "2/3", "1"],
+    correct: "C",
+    explanation: "На общем участке B уже ограничен 1/3 downstream-каналом, поэтому больше не возьмёт, даже если A уступит. Значит, A достаётся весь остаток 2/3. Max-min выравнивает доли только среди потоков, которые делят один и тот же узкий участок."
+  },
+  {
+    id: 15,
+    block: "B",
+    topic: "Окно и BDP",
+    question: "Линия 1 Гбит/с, RTT 40 мс. Какой минимальный размер окна нужен, чтобы полностью использовать канал?",
+    options: ["4 Мбит", "5 Мбит", "40 Мбит", "400 Мбит"],
+    correct: "C",
+    explanation: "BDP = 1 Гбит/с × 0,04 с = 40 Мбит = 5 Мбайт. Окно должно вмещать весь BDP, иначе канал простаивает. 5 Мбит — это 0,625 Мбайт, в 8 раз меньше; здесь легко перепутать биты и байты."
+  }
+];
+
+const TOTAL = QUESTIONS.length;
+const LETTERS = ["A", "B", "C", "D"];
+const STORAGE_KEY = "ch6-quiz-v1";
+
+/* ============================================================
+   Состояние
+   ============================================================ */
+
+const state = {
+  current: 0,
+  answers: QUESTIONS.map(() => ({ choice: null, confidence: null, seconds: 0 })),
+  startedAt: null,
+  finishedAt: null,
+  savedFile: null
+};
+
+let questionShownAt = null;
+let toastTimer = null;
+let lastResult = null;
+
+/* ============================================================
+   DOM
+   ============================================================ */
+
+const screenIntro = document.getElementById("screen-intro");
+const screenQuiz = document.getElementById("screen-quiz");
+const screenResult = document.getElementById("screen-result");
+const startBtn = document.getElementById("startBtn");
+const resumeBtn = document.getElementById("resumeBtn");
+const resumeNum = document.getElementById("resumeNum");
+const topReset = document.getElementById("topReset");
+const blockLabel = document.getElementById("blockLabel");
+const qNum = document.getElementById("qNum");
+const qTopic = document.getElementById("qTopic");
+const qText = document.getElementById("qText");
+const optionsEl = document.getElementById("options");
+const confidencePanel = document.getElementById("confidencePanel");
+const backBtn = document.getElementById("backBtn");
+const nextBtn = document.getElementById("nextBtn");
+const progressBar = document.getElementById("progressBar");
+const resultTitle = document.getElementById("resultTitle");
+const resultMessage = document.getElementById("resultMessage");
+const resultSub = document.getElementById("resultSub");
+const scoreRing = document.getElementById("scoreRing");
+const scorePercent = document.getElementById("scorePercent");
+const blockGrid = document.getElementById("blockGrid");
+const calibrationBody = document.getElementById("calibrationBody");
+const calibrationNote = document.getElementById("calibrationNote");
+const mistakesPanel = document.getElementById("mistakesPanel");
+const reviewList = document.getElementById("reviewList");
+const saveStatus = document.getElementById("saveStatus");
+const jsonPreview = document.getElementById("jsonPreview");
+const toastEl = document.getElementById("toast");
+
+/* ============================================================
+   Утилиты
+   ============================================================ */
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (ch) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[ch]));
+}
+
+function formatText(value) {
+  return escapeHtml(value).replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function formatDuration(totalSeconds) {
+  const sec = Math.max(0, Math.round(totalSeconds));
+  if (sec < 60) return sec + " с";
+  const minutes = Math.floor(sec / 60);
+  const seconds = sec % 60;
+  return minutes + " мин " + seconds + " с";
+}
+
+function showToast(message) {
+  toastEl.textContent = message;
+  toastEl.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2600);
+}
+
+function showScreen(name) {
+  screenIntro.classList.toggle("hidden", name !== "intro");
+  screenQuiz.classList.toggle("hidden", name !== "quiz");
+  screenResult.classList.toggle("hidden", name !== "result");
+  topReset.classList.toggle("hidden", name === "intro");
+  window.scrollTo(0, 0);
+}
+
+/* ============================================================
+   Сохранение прогресса
+   ============================================================ */
+
+function persist() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      current: state.current,
+      answers: state.answers,
+      startedAt: state.startedAt,
+      finishedAt: state.finishedAt,
+      savedFile: state.savedFile
+    }));
+  } catch (error) {
+    /* localStorage может быть недоступен на file:// — это не критично */
+  }
+}
+
+function restore() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const saved = JSON.parse(raw);
+    if (!saved || !Array.isArray(saved.answers) || saved.answers.length !== TOTAL) return false;
+
+    state.current = clamp(Number(saved.current) || 0, 0, TOTAL - 1);
+    state.answers = saved.answers.map((item) => ({
+      choice: typeof item.choice === "string" ? item.choice : null,
+      confidence: [1, 2, 3].includes(item.confidence) ? item.confidence : null,
+      seconds: Number.isFinite(item.seconds) ? item.seconds : 0
+    }));
+    state.startedAt = typeof saved.startedAt === "string" ? saved.startedAt : null;
+    state.finishedAt = typeof saved.finishedAt === "string" ? saved.finishedAt : null;
+    state.savedFile = typeof saved.savedFile === "string" ? saved.savedFile : null;
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function allAnswered() {
+  return state.answers.every((item) => item.choice && item.confidence);
+}
+
+function firstUnansweredIndex() {
+  const index = state.answers.findIndex((item) => !item.choice || !item.confidence);
+  return index === -1 ? TOTAL - 1 : index;
+}
+
+/* ============================================================
+   Таймер вопроса
+   ============================================================ */
+
+function markQuestionShown() {
+  questionShownAt = performance.now();
+}
+
+function accumulateTime() {
+  if (questionShownAt === null) return;
+  const elapsed = (performance.now() - questionShownAt) / 1000;
+  state.answers[state.current].seconds += elapsed;
+  questionShownAt = null;
+}
+
+/* ============================================================
+   Экран вопроса
+   ============================================================ */
+
+function renderQuestion() {
+  const question = QUESTIONS[state.current];
+  const answer = state.answers[state.current];
+
+  blockLabel.textContent = "Блок " + question.block + " · " + BLOCKS[question.block];
+  qNum.textContent = String(state.current + 1);
+  qTopic.textContent = question.topic;
+  qText.innerHTML = formatText(question.question);
+
+  optionsEl.innerHTML = question.options.map((option, index) => {
+    const letter = LETTERS[index];
+    const selected = answer.choice === letter;
+    return '<button type="button" class="option' + (selected ? " selected" : "") + '" data-letter="' + letter + '" aria-pressed="' + selected + '">' +
+      '<span class="option-letter">' + letter + '</span>' +
+      '<span class="option-text">' + formatText(option) + '</span>' +
+      '<span class="option-check" aria-hidden="true">' + (selected ? "✓" : "") + '</span>' +
+    '</button>';
+  }).join("");
+
+  confidencePanel.classList.toggle("hidden", !answer.choice);
+
+  confidencePanel.querySelectorAll(".conf-btn").forEach((button) => {
+    const level = Number(button.dataset.level);
+    const selected = answer.confidence === level;
+    button.classList.toggle("selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+
+  const ready = Boolean(answer.choice && answer.confidence);
+  nextBtn.disabled = !ready;
+  nextBtn.textContent = state.current === TOTAL - 1 ? "Завершить →" : "Далее →";
+  backBtn.disabled = state.current === 0;
+  progressBar.style.width = (((state.current + 1) / TOTAL) * 100) + "%";
+
+  markQuestionShown();
+}
+
+function selectOption(letter) {
+  const answer = state.answers[state.current];
+  if (answer.choice === letter) return;
+
+  accumulateTime();
+  answer.choice = letter;
+  answer.confidence = null;
+  renderQuestion();
+  persist();
+}
+
+function setConfidence(level) {
+  const answer = state.answers[state.current];
+  if (!answer.choice || !CONFIDENCE[level]) return;
+  if (answer.confidence === level) return;
+
+  accumulateTime();
+  answer.confidence = level;
+  renderQuestion();
+  persist();
+}
+
+function goNext() {
+  const answer = state.answers[state.current];
+  if (!answer.choice || !answer.confidence) return;
+
+  accumulateTime();
+
+  if (state.current === TOTAL - 1) {
+    finishQuiz();
+    return;
+  }
+
+  state.current += 1;
+  renderQuestion();
+  persist();
+}
+
+function goBack() {
+  if (state.current === 0) return;
+  accumulateTime();
+  state.current -= 1;
+  renderQuestion();
+  persist();
+}
+
+function startQuiz(resume) {
+  if (!resume || !state.startedAt) {
+    state.current = 0;
+    state.answers = QUESTIONS.map(() => ({ choice: null, confidence: null, seconds: 0 }));
+    state.startedAt = new Date().toISOString();
+    state.finishedAt = null;
+    state.savedFile = null;
+  }
+
+  showScreen("quiz");
+  renderQuestion();
+  persist();
+}
+
+function resetQuiz(silent) {
+  if (!silent && !window.confirm("Сбросить прогресс и начать заново?")) return;
+
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (error) {
+    /* ignore */
+  }
+
+  state.current = 0;
+  state.answers = QUESTIONS.map(() => ({ choice: null, confidence: null, seconds: 0 }));
+  state.startedAt = null;
+  state.finishedAt = null;
+  state.savedFile = null;
+  lastResult = null;
+  questionShownAt = null;
+  showIntro();
+}
+
+/* ============================================================
+   Результат
+   ============================================================ */
+
+function finishQuiz() {
+  if (!allAnswered()) {
+    state.current = firstUnansweredIndex();
+    renderQuestion();
+    showToast("Сначала ответь на все вопросы и отметь уверенность.");
+    return;
+  }
+
+  state.finishedAt = new Date().toISOString();
+  persist();
+  renderResult();
+  showScreen("result");
+}
+
+function buildResult() {
+  const answers = QUESTIONS.map((question, index) => {
+    const answer = state.answers[index];
+    const selectedIndex = LETTERS.indexOf(answer.choice);
+    const correctIndex = LETTERS.indexOf(question.correct);
+
+    return {
+      id: question.id,
+      block: question.block,
+      topic: question.topic,
+      question: question.question,
+      selected: answer.choice,
+      selectedText: selectedIndex >= 0 ? question.options[selectedIndex] : null,
+      correct: question.correct,
+      correctText: question.options[correctIndex],
+      isCorrect: answer.choice === question.correct,
+      confidence: answer.confidence,
+      confidenceLabel: answer.confidence ? CONFIDENCE[answer.confidence].label : null,
+      seconds: Math.round(answer.seconds * 10) / 10,
+      explanation: question.explanation
+    };
+  });
+
+  const score = answers.filter((item) => item.isCorrect).length;
+  const blocks = ["A", "B"].map((id) => {
+    const items = answers.filter((item) => item.block === id);
+    return {
+      id: id,
+      title: BLOCKS[id],
+      score: items.filter((item) => item.isCorrect).length,
+      total: items.length
+    };
+  });
+
+  const calibration = [1, 2, 3].map((level) => {
+    const items = answers.filter((item) => item.confidence === level);
+    return {
+      level: level,
+      label: CONFIDENCE[level].label,
+      total: items.length,
+      correct: items.filter((item) => item.isCorrect).length
+    };
+  });
+
+  const mistakes = answers.filter((item) => !item.isCorrect).map((item) => item.id);
+  const luckyGuesses = answers.filter((item) => item.isCorrect && item.confidence === 1).map((item) => item.id);
+  const dangerousMistakes = answers.filter((item) => !item.isCorrect && item.confidence === 3).map((item) => item.id);
+
+  const started = state.startedAt ? new Date(state.startedAt) : new Date();
+  const finished = state.finishedAt ? new Date(state.finishedAt) : new Date();
+  const durationSec = Math.max(0, Math.round((finished.getTime() - started.getTime()) / 1000));
+
+  return {
+    quiz: "ch6-transport",
+    title: "Глава 6 — Транспортный уровень",
+    version: 1,
+    startedAt: state.startedAt,
+    finishedAt: state.finishedAt,
+    durationSec: durationSec,
+    score: score,
+    total: TOTAL,
+    percent: Math.round((score / TOTAL) * 100),
+    blocks: blocks,
+    calibration: calibration,
+    mistakes: mistakes,
+    luckyGuesses: luckyGuesses,
+    dangerousMistakes: dangerousMistakes,
+    answers: answers
+  };
+}
+
+function messageFor(score) {
+  if (score === TOTAL) return "Идеально. Глава держится: соединения, окна и перегрузка на месте.";
+  if (score >= 13) return "Сильно. Осталось закрыть пару мест — разбор покажет, каких именно.";
+  if (score >= 10) return "База есть. Ошибки точечные: разбор покажет, где знание дало трещину.";
+  if (score >= 7) return "Половина пути. Стоит вернуться к жизненному циклу соединения и окнам.";
+  return "Есть что чинить. Начни с блока A: соединение и окна дают каркас для остального.";
+}
+
+function dots(level) {
+  return [1, 2, 3].map((value) => '<span class="dot' + (value <= level ? " on" : "") + '"></span>').join("");
+}
+
+function renderResult() {
+  const result = buildResult();
+  lastResult = result;
+
+  resultTitle.textContent = result.score + " из " + result.total;
+  resultMessage.textContent = messageFor(result.score);
+  resultSub.textContent = formatDuration(result.durationSec) + " · " + result.mistakes.length + " " + plural(result.mistakes.length, ["ошибка", "ошибки", "ошибок"]);
+
+  scorePercent.textContent = result.percent + "%";
+  scoreRing.style.setProperty("--p", String(result.percent));
+  scoreRing.style.setProperty("--ring", result.percent >= 80 ? "var(--green)" : result.percent >= 60 ? "var(--amber)" : "var(--red)");
+
+  blockGrid.innerHTML = result.blocks.map((block) => {
+    const percent = block.total ? Math.round((block.score / block.total) * 100) : 0;
+    return '<div class="block-card">' +
+      '<div class="block-top">' +
+        '<div class="block-id">' + block.id + '</div>' +
+        '<div><div class="block-name">' + escapeHtml(block.title) + '</div>' +
+        '<div class="block-sub">' + block.score + ' из ' + block.total + ' · ' + percent + '%</div></div>' +
+      '</div>' +
+      '<div class="mini-bar"><span style="width:' + percent + '%"></span></div>' +
+    '</div>';
+  }).join("");
+
+  calibrationBody.innerHTML = result.calibration.map((row) => {
+    const percent = row.total ? Math.round((row.correct / row.total) * 100) : null;
+    return '<tr>' +
+      '<td><span class="conf-pill ' + CONFIDENCE[row.level].className + '">' + row.label + '</span></td>' +
+      '<td>' + row.total + '</td>' +
+      '<td>' + row.correct + '</td>' +
+      '<td>' + (percent === null ? "—" : percent + "%") + '</td>' +
+    '</tr>';
+  }).join("");
+
+  const notes = [];
+  if (result.dangerousMistakes.length) {
+    notes.push('<b>' + result.dangerousMistakes.length + '</b> ' + plural(result.dangerousMistakes.length, ["ошибка", "ошибки", "ошибок"]) + ' с уверенностью «Уверен»: вопросы ' + result.dangerousMistakes.join(", ") + '. Это главные кандидаты в разбор.');
+  }
+  if (result.luckyGuesses.length) {
+    notes.push('<b>' + result.luckyGuesses.length + '</b> ' + plural(result.luckyGuesses.length, ["верный ответ", "верных ответа", "верных ответов"]) + ' с уверенностью «Не уверен»: вопросы ' + result.luckyGuesses.join(", ") + '. Проверь, не случайность ли это.');
+  }
+  if (!notes.length) {
+    notes.push("Калибровка ровная: уверенность совпадает с результатом. Отдельных «опасных» ошибок или случайных попаданий нет.");
+  }
+  calibrationNote.innerHTML = notes.join("<br>");
+
+  if (result.mistakes.length) {
+    mistakesPanel.innerHTML = '<div class="panel-head"><h2>Что чинить</h2><span>' + result.mistakes.length + ' из ' + result.total + '</span></div>' +
+      '<div class="mistake-list">' +
+        result.answers.filter((item) => !item.isCorrect).map((item) =>
+          '<button type="button" class="mistake-chip" data-goto="' + item.id + '">' + item.id + '. ' + escapeHtml(item.topic) + '</button>'
+        ).join("") +
+      '</div>' +
+      '<p class="muted">Нажми на тему — откроется разбор ниже.</p>';
+  } else {
+    mistakesPanel.innerHTML = '<div class="panel-head"><h2>Что чинить</h2><span>0 ошибок</span></div>' +
+      '<p class="good">Ошибок нет. Можно переходить к следующей главе.</p>';
+  }
+
+  reviewList.innerHTML = result.answers.map((item) => {
+    const correct = item.isCorrect;
+    const confidence = CONFIDENCE[item.confidence];
+    return '<details class="review-item ' + (correct ? "ok" : "bad") + '" id="review-' + item.id + '"' + (correct ? "" : " open") + '>' +
+      '<summary>' +
+        '<span class="review-num">' + item.id + '</span>' +
+        '<span class="review-topic">' + escapeHtml(item.topic) + '</span>' +
+        '<span class="review-badge ' + (correct ? "ok" : "bad") + '">' + (correct ? "верно" : "ошибка") + '</span>' +
+        '<span class="review-conf ' + confidence.className + '" title="' + confidence.label + '">' + dots(item.confidence) + '</span>' +
+        '<span class="review-time">' + item.seconds + ' с</span>' +
+      '</summary>' +
+      '<div class="review-body">' +
+        '<p class="review-q">' + formatText(item.question) + '</p>' +
+        '<div class="review-answers">' +
+          '<div class="answer ' + (correct ? "right" : "bad") + '"><span>Твой ответ</span><b>' + item.selected + ') ' + escapeHtml(item.selectedText) + '</b></div>' +
+          '<div class="answer right"><span>Правильно</span><b>' + item.correct + ') ' + escapeHtml(item.correctText) + '</b></div>' +
+        '</div>' +
+        '<div class="review-expl"><span>Почему</span><p>' + formatText(item.explanation) + '</p></div>' +
+      '</div>' +
+    '</details>';
+  }).join("");
+
+  jsonPreview.textContent = JSON.stringify(result, null, 2);
+
+  if (state.savedFile) {
+    showSaved(state.savedFile);
+  } else {
+    saveResult(result);
+  }
+}
+
+function plural(number, forms) {
+  const mod10 = number % 10;
+  const mod100 = number % 100;
+  if (mod10 === 1 && mod100 !== 11) return forms[0];
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return forms[1];
+  return forms[2];
+}
+
+function showSaved(file) {
+  saveStatus.className = "save-status ok";
+  saveStatus.innerHTML = 'Сохранено на сервере: <code>' + escapeHtml(file) + '</code>';
+}
+
+async function saveResult(result) {
+  const endpoint = location.protocol === "file:"
+    ? "http://127.0.0.1:8765/api/save"
+    : "/api/save";
+
+  saveStatus.className = "save-status pending";
+  saveStatus.textContent = "Сохраняю результат на локальном сервере…";
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(result)
+    });
+
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const data = await response.json();
+    if (!data || !data.ok) throw new Error("bad response");
+
+    state.savedFile = data.file || "results/latest.json";
+    persist();
+    showSaved(state.savedFile);
+  } catch (error) {
+    saveStatus.className = "save-status warn";
+    saveStatus.innerHTML = "Локальный сервер не отвечает. Скачай JSON или скопируй его в чат — агент прочитает ответы оттуда.";
+  }
+}
+
+/* ============================================================
+   Экспорт
+   ============================================================ */
+
+function downloadJSON() {
+  const result = lastResult || buildResult();
+  const blob = new Blob([JSON.stringify(result, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-");
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "quiz-ch6-" + stamp + ".json";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1200);
+  showToast("JSON скачан");
+}
+
+async function copyJSON() {
+  const text = JSON.stringify(lastResult || buildResult(), null, 2);
+
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast("JSON скопирован в буфер обмена");
+  } catch (error) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand("copy");
+      showToast("JSON скопирован");
+    } catch (fallbackError) {
+      showToast("Не удалось скопировать JSON");
+    }
+    textarea.remove();
+  }
+}
+
+/* ============================================================
+   Интро
+   ============================================================ */
+
+function showIntro() {
+  const restored = Boolean(state.startedAt) && !state.finishedAt;
+  startBtn.textContent = restored ? "Начать заново" : "Начать";
+  resumeBtn.classList.toggle("hidden", !restored);
+
+  if (restored) {
+    const index = firstUnansweredIndex();
+    resumeNum.textContent = String(index + 1);
+  }
+
+  showScreen("intro");
+}
+
+/* ============================================================
+   События
+   ============================================================ */
+
+optionsEl.addEventListener("click", (event) => {
+  const button = event.target.closest(".option");
+  if (!button) return;
+  selectOption(button.dataset.letter);
+});
+
+confidencePanel.addEventListener("click", (event) => {
+  const button = event.target.closest(".conf-btn");
+  if (!button) return;
+  setConfidence(Number(button.dataset.level));
+});
+
+backBtn.addEventListener("click", goBack);
+nextBtn.addEventListener("click", goNext);
+startBtn.addEventListener("click", () => {
+  if (state.startedAt && !state.finishedAt && !window.confirm("Начать заново? Текущий прогресс будет потерян.")) return;
+  startQuiz(false);
+});
+resumeBtn.addEventListener("click", () => startQuiz(true));
+topReset.addEventListener("click", () => resetQuiz(false));
+document.getElementById("againBtn").addEventListener("click", () => resetQuiz(false));
+document.getElementById("downloadBtn").addEventListener("click", downloadJSON);
+document.getElementById("copyBtn").addEventListener("click", copyJSON);
+
+mistakesPanel.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-goto]");
+  if (!button) return;
+  const item = document.getElementById("review-" + button.dataset.goto);
+  if (!item) return;
+  item.open = true;
+  item.scrollIntoView({ behavior: "smooth", block: "center" });
+  item.classList.add("flash");
+  setTimeout(() => item.classList.remove("flash"), 1200);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (screenQuiz.classList.contains("hidden")) return;
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
+  if (event.target instanceof Element && event.target.matches("input, textarea, select")) return;
+
+  const key = event.key.toUpperCase();
+
+  if (LETTERS.includes(key)) {
+    event.preventDefault();
+    selectOption(key);
+    return;
+  }
+
+  if (["1", "2", "3"].includes(event.key)) {
+    event.preventDefault();
+    setConfidence(Number(event.key));
+    return;
+  }
+
+  if (event.key === "Enter") {
+    event.preventDefault();
+    if (!nextBtn.disabled) goNext();
+    return;
+  }
+
+  if (event.key === "Backspace" || event.key === "ArrowLeft") {
+    event.preventDefault();
+    goBack();
+    return;
+  }
+
+  if (event.key === "ArrowRight") {
+    event.preventDefault();
+    if (!nextBtn.disabled) goNext();
+  }
+});
+
+/* ============================================================
+   Старт
+   ============================================================ */
+
+(function init() {
+  const restored = restore();
+
+  if (restored && state.finishedAt && allAnswered()) {
+    renderResult();
+    showScreen("result");
+    return;
+  }
+
+  showIntro();
+})();
+</script>
+</body>
+</html>
