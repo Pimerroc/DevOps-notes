@@ -2,7 +2,11 @@ import asyncio
 import logging
 import time
 from collections.abc import AsyncIterator
-
+import json
+import sys
+from  ontextvars import ContextVar
+from datetime import datetime, timezone
+import uuid 
 import uvicorn
 from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.responses import Response
@@ -14,12 +18,29 @@ from prometheus_client import (
     generate_latest,
 )
 
-# Настройка логирования
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
+request_id_var: ContextVar[str] = ContextVar("request_id", default="-")
 
+
+class JsonFormatter(logging.Formatter):
+    def format(self, record: logging.LogRecord) -> str:
+        payload = {
+            "time": datetime.fromtimestamp(
+                record.created, tz=timezone.utc
+            ).isoformat(),
+            "level": record.levelname.lower(),
+            "logger": record.name,
+            "service": "backend",
+            "message": record.getMessage(),
+            "request_id": request_id_var.get(),
+        }
+        if record.exc_info:
+            payload["exception"] = self.formatException(record.exc_info)
+        return json.dumps(payload, ensure_ascii=False)
+
+
+handler = logging.StreamHandler(sys.stdout)
+handler.setFormatter(JsonFormatter())
+logging.basicConfig(level=logging.INFO, handlers=[handler], force=True)
 logger = logging.getLogger(__name__)
 
 APP_NAME = "fastapi"
@@ -73,30 +94,34 @@ app = FastAPI(
 
 @app.middleware("http")
 async def prometheus_middleware(request: Request, call_next):
-    # Сам /metrics не учитываем, чтобы не засорять статистику
     if request.url.path == "/metrics":
         return await call_next(request)
 
     method = request.method
     raw_path = request.url.path
-
     start = time.perf_counter()
     status_code = 500
     path = raw_path
 
+    request_id = request.headers.get("x-request-id") or str(uuid.uuid4())
+    token = request_id_var.set(request_id)
+
     try:
         response = await call_next(request)
         status_code = response.status_code
-
-        # После маршрутизации в scope появляется шаблон пути,
-        # например /status/{status_code} вместо /status/500
         route = request.scope.get("route")
         path = getattr(route, "path", None) or raw_path
-
+        response.headers["x-request-id"] = request_id
         return response
     finally:
         duration = time.perf_counter() - start
-
+        logger.info(
+            "request finished method=%s path=%s status=%s duration_ms=%.2f",
+            method,
+            path,
+            status_code,
+            duration * 1000,
+        )
         REQUESTS_TOTAL.labels(
             app_name=APP_NAME,
             method=method,
@@ -108,6 +133,7 @@ async def prometheus_middleware(request: Request, call_next):
             method=method,
             path=path,
         ).observe(duration)
+        request_id_var.reset(token)
 
 
 @app.get("/")
@@ -139,4 +165,4 @@ async def metrics() -> Response:
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=False, workers=1)
+    uvicorn.run(app, host="0.0.0.0", port=8080)

@@ -1,0 +1,85 @@
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+discovery.relabel "containers" {
+  targets = []
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+  rule {
+    source_labels = ["__meta_docker_container_label_com_docker_compose_service"]
+    target_label  = "service"
+  }
+  rule {
+    source_labels = ["__meta_docker_container_label_com_docker_compose_project"]
+    target_label  = "project"
+  }
+}
+
+loki.source.docker "containers" {
+  host          = "unix:///var/run/docker.sock"
+  targets       = discovery.docker.containers.targets
+  labels        = { job = "docker" }
+  relabel_rules = discovery.relabel.containers.rules
+  forward_to    = [loki.process.filter_logs.receiver]
+}
+
+loki.process "filter_logs" {
+  stage.json {
+    expressions = {
+      level = "level",
+      request_id = "request_id",
+      logger = "logger",
+    }
+  }
+
+  stage.labels {
+    values = { level = "",}
+  }
+
+  stage.structured_metadata {
+    values = {
+      request_id = "",
+      logger = "",
+    }
+  }
+  stage.drop {
+	  older_than = "1h"
+	  drop_counter_reason = "too_old"
+  }
+  forward_to = [loki.write.grafana_loki.receiver]
+}
+
+loki.write "grafana_loki" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+
+    // basic_auth {
+    //  username = "admin"
+    //  password = "admin"
+    // }
+  }
+}
+
+
+prometheus.scrape "scrape_metrics" {
+  targets         = [{__address__ = "backend:8080"}]
+  job_name        = "fastapi"
+  forward_to      = [prometheus.remote_write.metrics_service.receiver]
+  scrape_interval = "15s"
+}
+
+prometheus.remote_write "metrics_service" {
+    endpoint {
+        url = "http://prometheus:9090/api/v1/write"
+
+        // basic_auth {
+        //   username = "admin"
+        //   password = "admin"
+        // }
+    }
+}
+
