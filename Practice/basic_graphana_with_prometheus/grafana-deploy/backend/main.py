@@ -1,12 +1,13 @@
 import asyncio
-import logging
-import time
-from collections.abc import AsyncIterator
 import json
+import logging
 import sys
+import time
+import uuid
+from collections.abc import AsyncIterator
 from contextvars import ContextVar
 from datetime import datetime, timezone
-import uuid 
+
 import uvicorn
 from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.responses import Response
@@ -24,9 +25,7 @@ request_id_var: ContextVar[str] = ContextVar("request_id", default="-")
 class JsonFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
         payload = {
-            "time": datetime.fromtimestamp(
-                record.created, tz=timezone.utc
-            ).isoformat(),
+            "time": datetime.fromtimestamp(record.created, tz=timezone.utc).isoformat(),
             "level": record.levelname.lower(),
             "logger": record.name,
             "service": "backend",
