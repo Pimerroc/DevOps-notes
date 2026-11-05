@@ -610,7 +610,7 @@
             },
             "direction": "backward",
             "editorMode": "code",
-            "expr": "{job=\"docker-logs\", container_name=\"backend\"} | json | line_format `{{.log}}`",
+            "expr": "{job=\"docker\", service=\"backend\"} | json | __error__=\"\" | line_format `{{.message}}`",
             "hide": false,
             "queryType": "range",
             "refId": "A"
