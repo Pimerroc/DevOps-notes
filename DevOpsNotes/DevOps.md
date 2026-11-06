@@ -19,7 +19,13 @@
 
 - [[Practice/DevOps/README|Practice/DevOps]] — лабораторные и проекты
 
+## Инструменты
+
+- `/live` — livecoding в kitty + nvim: логгер, live-метрики и разбор после сессии без вмешательства.
+- `.opencode/skills/livecoding/SKILL.md` — контракт скилла.
+
 ## Текущий фокус
 
-- Стартовая диагностика: `/diagnostic`
-- После диагностики — корректировка [[DevOps/Roadmap|Roadmap]] и первый модуль.
+- Стартовая диагностика пройдена: **20/30 (67%)**.
+- Фокус — модуль 1: Linux internals (namespaces, systemd, cgroups).
+- Дальше: containers, Kubernetes, security.
