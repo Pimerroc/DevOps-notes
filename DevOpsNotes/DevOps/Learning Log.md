@@ -17,6 +17,7 @@ tags: [devops, log]
 | Дата | Тема | Режим | Что сделано | Артефакт | Пробелы | Следующий шаг |
 |---|---|---|---|---|---|---|
 | 2026-11-06 | Старт | setup | Создан учебный контур и агенты | [[DevOps/Roadmap]] | Диагностика не пройдена | `/diagnostic` |
+| 2026-11-06 | Стартовая диагностика | diagnostic | 20/30 (67%); сильные — IaC/CI-CD и сети, слабые — Linux internals, containers, K8s, security | [[DevOps/Diagnostics/2026-11-06]] | namespaces, systemd, Docker layers, Service/Secret, least privilege | Модуль 1: Linux internals |
 
 ## Как вести
 

@@ -16,6 +16,10 @@ tags: [devops, review]
 
 | Заметка | Тема | review_at | confidence 1-5 | Статус |
 |---|---|---|---|---|
+| [[DevOps/Diagnostics/2026-11-06]] | Linux internals: namespaces, systemd, overlayfs | 2026-11-09 | 1 | pending |
+| [[DevOps/Diagnostics/2026-11-06]] | Containers: layers, PID 1, volumes | 2026-11-10 | 1 | pending |
+| [[DevOps/Diagnostics/2026-11-06]] | Kubernetes: Service, Secret, RBAC | 2026-11-12 | 2 | pending |
+| [[DevOps/Diagnostics/2026-11-06]] | Security: least privilege, secrets at rest | 2026-11-12 | 1 | pending |
 
 ## Правила
 
