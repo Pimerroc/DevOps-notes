@@ -1,4 +1,6 @@
 .obsidian
 .venv
 __pycache__/
+.opencode/
+.zcode/
 
