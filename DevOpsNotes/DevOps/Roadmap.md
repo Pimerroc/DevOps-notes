@@ -73,20 +73,22 @@ tags: [devops, roadmap]
 
 Ставить kubectl/terraform/trivy/dive — в начале соответствующего этапа. Ставка инструментов этапа 1 (на хосте отсутствуют): `stress-ng`, `strace`, `lvm2` — в день 1. Ansible уже есть в `Practice/.venv` (pip), системного нет.
 
-**Правило детализации:** этап, на который заходим, раскладывается на дни (MIN/MAX) в момент старта — так план не протухает. Детальный план этапа 1 ниже; этапы 2–8 раскладываются по той же схеме.
+**Правило детализации:** этап, на который заходим, раскладывается на дни (MIN/MAX) в момент старта — так план не протухает. **Каждый день начинается с теоретического блока** (один источник + 3–5 тезисов своими словами, ≤30 мин): лаба без теории — это набор команд. Источники-минимум на этап указываются при старте этапа; если темы нет в книгах — man 7 / official docs / kernel docs. Детальный план этапа 1 ниже; этапы 2–8 раскладываются по той же схеме.
 
 ### Этап 1 — детальный план (8 дней)
 
-| День | MIN | MAX |
-|---|---|---|
-| 1 | `lsns`; `unshare --user --map-root-user --pid --fork --mount-proc bash`; сравнить `ps -ef` и `readlink /proc/$$/ns/pid` внутри/снаружи | + `nsenter` обратно; начать `Notes/Linux/Namespaces.md` |
-| 2 | Второй терминал: `unshare --net`, сравнить `ip link` внутри/снаружи | пройтись по mnt/uts/user/ipc; дописать заметку |
-| 3 | 5 открытых вопросов по namespaces (проверка по man7.org) | заметка до `evergreen`, `review_at`, карточка в Review Queue |
-| 4 | `sudo pacman -S --needed stress-ng strace lvm2`; `systemd-run --property=MemoryMax=50M --property=CPUQuota=20% stress-ng ...`; наблюдать в `systemd-cgtop`, `/sys/fs/cgroup` | + `IOReadIOPSMax=`/`IOWriteIOPSMax=` (io.max в cgroup v2); заметка `cgroups v2.md` |
-| 5 | OOM-эксперимент: лимит и превышение, что пишет journald | разбор `docker-compose.override.yml.memlim` из digradation: какие лимиты и почему |
-| 6 | Порт `Systemd-unit.md` на `Type=notify` + `sd_notify` | сравнение simple/exec/notify на своём сервисе, разбор в journald |
-| 7 | LVM-лаба: snapshot, resize | восстановление из snapshot; заметка (у тебя уже есть база — эксперименты были) |
-| 8 | Черновик runbook «Диагностика зависшего сервиса» (ps → lsof → strace → journalctl → systemd-cgtop) | прогнать runbook на живом случае + фактчек + модульный квиз 10 открытых вопросов |
+Источники-минимум этапа: `man 7 namespaces`, `man 7 pid_namespaces`, `man 8 unshare`, `man 8 nsenter` (дни 1–3); `man 5 systemd.resource-control`, `man 8 systemd-cgtop` (дни 4–5); `man 5 systemd.service`, freedesktop sd_notify (день 6); `man 8 lvm` / Red Hat LVM admin guide (день 7).
+
+| День | Теория-минимум | MIN | MAX |
+|---|---|---|---|
+| 1 | mental model ns + 3 syscall (clone/unshare/setns) | `lsns`; `unshare --user --map-root-user --pid --fork --mount-proc bash`; сравнить `ps -ef` и `readlink /proc/$$/ns/pid` внутри/снаружи | + `nsenter` обратно; начать `Notes/Linux/Namespaces.md` |
+| 2 | типы ns: за что отвечает каждый (таблица из man 7) | Второй терминал: `unshare --net`, сравнить `ip link` внутри/снаружи | пройтись по mnt/uts/user/ipc; дописать заметку |
+| 3 | user ns как граница привилегий; CVE-паттерн «userns + баг ядра = escape» | 5 открытых вопросов по namespaces (проверка по man7.org) | заметка до `evergreen`, `review_at`, карточка в Review Queue |
+| 4 | cgroups v2: единая иерархия, контроллеры, `systemd` как API | `sudo pacman -S --needed stress-ng strace lvm2`; `systemd-run --property=MemoryMax=50M --property=CPUQuota=20% stress-ng ...`; наблюдать в `systemd-cgtop`, `/sys/fs/cgroup` | + `IOReadIOPSMax=`/`IOWriteIOPSMax=` (io.max в cgroup v2); заметка `cgroups v2.md` |
+| 5 | OOM killer: как выбирает жертву, что пишет journald | OOM-эксперимент: лимит и превышение, что пишет journald | разбор `docker-compose.override.yml.memlim` из digradation: какие лимиты и почему |
+| 6 | Типы юнитов и `Type=`: кто сигнализирует о готовности и почему это важно | Порт `Systemd-unit.md` на `Type=notify` + `sd_notify` | сравнение simple/exec/notify на своём сервисе, разбор в journald |
+| 7 | LVM: PV/VG/LV, snapshot как CoW | LVM-лаба: snapshot, resize | восстановление из snapshot; заметка (у тебя уже есть база — эксперименты были) |
+| 8 | Метод диагностики: от симптома к слою (proc → fd → syscall → cgroup → лог) | Черновик runbook «Диагностика зависшего сервиса» (ps → lsof → strace → journalctl → systemd-cgtop) | прогнать runbook на живом случае + фактчек + модульный квиз 10 открытых вопросов |
 
 ## Поток В — реальные задачи
 
