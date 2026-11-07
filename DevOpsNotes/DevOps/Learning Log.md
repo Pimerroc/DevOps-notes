@@ -7,7 +7,9 @@ created: 2026-11-06
 review_at:
 verified: true
 last_verified: 2026-11-06
-tags: [devops, log]
+tags:
+  - devops
+  - log
 ---
 
 # Learning Log

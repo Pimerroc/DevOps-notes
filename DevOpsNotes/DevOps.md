@@ -17,7 +17,7 @@
 
 ## Практика
 
-- [[Practice/DevOps/README|Practice/DevOps]] — лабораторные и проекты
+- [[DevOpsNotes/Practice Theory/DevOps/README|Practice/DevOps]] — лабораторные и проекты
 
 ## Инструменты
 
