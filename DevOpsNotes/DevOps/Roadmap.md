@@ -4,40 +4,144 @@ status: growing
 topic: roadmap
 difficulty: 1
 created: 2026-11-06
-review_at:
+review_at: 2026-11-14
 verified: true
-last_verified: 2026-11-06
+last_verified: 2026-11-07
 tags: [devops, roadmap]
 ---
 
 # DevOps Roadmap
 
-> [!summary] 12-недельный интенсив: глубокая теория + лабораторные + проекты + фактчек. Цель — самостоятельная работа с инфраструктурой и подготовка к найму.
+> [!summary] Этапный план практики поверх имеющейся теории. Порядок этапов фиксирован, темп свободный. Этап закрыт выходным критерием (артефакт + проверка), а не временем. Дневные цели — минимум/максимум, не часы.
 
-> [!info] Диагностика 2026-11-06: **20/30 (67%)**. Сильные — IaC/CI-CD и сети; приоритет — Linux internals, containers, Kubernetes, security. Начинаем с модуля 1.
+> [!info] Диагностика 2026-11-06: **20/30 (67%)**. Сильные — IaC/CI-CD и сети (теория); приоритет — Linux internals, containers, Kubernetes, security. Git пропущен (learngitbranching + практика).
 
-## Формат
+## Как работать с планом
 
-- 7 часов в день, без выходных.
-- 4 блока: повторение → теория → практика → фактчек и заметки.
-- Воскресенье — consolidation: без новой теории, только повторение, проект и рефакторинг заметок.
-- Каждая неделя заканчивается артефактом: runbook, лабораторная или проект.
+**Потоки** (параллельные, у каждого своя дорожка в [[DevOps/Board|Board]]):
 
-## Распорядок дня
-
-| Блок | Время | Содержание |
+| Поток | Что это | Слоты |
 |---|---|---|
-| Review + план | 60 мин | Повторение, квиз, цель дня |
-| Глубокая теория | 120 мин | Книга/официальные docs, внутреннее устройство |
-| Практика / livecoding | 180 мин | Лабораторная, пайплайн, отладка, инцидент |
-| Фактчек + заметка | 60 мин | Проверка, заметка, коммит, план на завтра |
+| А — книга | Таненбаум: добить гл. 7 заметкой и гл. 8 дочитать | 1 лёгкий слот/день, до закрытия |
+| Б — этапы | Основной трек практики, порядок ниже | 2 слота/день |
+| В — реальные задачи | SadServers / KodeKloud Engineer, bash/awk на задачах | 2–3 слота/нед |
+| Г — тренды и сертификаты | platform engineering, AIOps, SPE; Terraform Associate, KCNA | 1 слот/нед |
+| Д — Go | Фазы 1–4, см. ниже | 1 слот/день |
 
-## Недельный ритм
+**Типы дня** (определяется утром):
 
-- **Пн, вт, чт, пт** — новая теория + лабораторная.
-- **Ср** — pipeline/livecoding day.
-- **Сб** — build day: проект целиком, сильная модель.
-- **Вс** — consolidation: повторение, фактчек, недельный квиз.
+- **FULL** — свободный день: MIN + MAX.
+- **SHORT** — учёба/жизнь забрала день: только MIN. Это нормальный день, не провал.
+
+**Правила:**
+
+1. **Минимум первым.** MIN делается до всего остального; сделан MIN — день засчитан.
+2. Порядок этапов жёсткий, внутри этапа темы можно менять местами.
+3. Тема знакома → теория сжимается в повторение, сразу лаба. Пробел всплыл → карточка в [[DevOps/Review Queue|Review Queue]], без прыжков.
+4. Сравнение с решениями (SadServers/KodeKloud) — не на идентичность, а на работоспособность и понимание расхождения.
+5. Уровень в [[DevOps/Skills Matrix|Skills Matrix]] растёт только от артефакта.
+
+## Структура дня (без часов — последовательность)
+
+Учтено: тренировка 60–90+ мин каждое утро; учёба в плавающие дни; сон нестабильный, энергия растёт к вечеру.
+
+1. **После тренировки — лёгкий слот** (поток А или повторение): не требует холодной головы.
+2. **День/вечер — тяжёлые слоты** (поток Б этап, поток Д Go): на пик энергии.
+3. **Вечер — ритуал отчёта** (5 минут): [[DevOps/Board|Board]] + строка в [[DevOps/Learning Log|Learning Log]].
+4. Учёба-день → SHORT: слоты 1–2 исчезают, MIN остаётся.
+
+Воскресенье — consolidation: повторение, фактчек, [[Templates/Weekly Review|Weekly Review]], без новой теории.
+
+## Поток А — книга (до закрытия)
+
+1. Заметка по главе 7 (прикладной уровень: DNS, HTTP, email, CDN) — 5 тезисов + схема. Пропущена при чтении.
+2. Дочитать главу 8 (осталось ~50 стр. до стр. 959) → заметка: криптография, подписи, сертификаты/PKI, TLS. Станет базой этапа 7.
+3. После закрытия — слот переходит потоку Д. Фоновое чтение: How Linux Works выборочно; TLPI — только справочник.
+
+## Поток Б — этапы
+
+| Этап | Тема | Артефакт | Выходной критерий (DoD) |
+|---|---|---|---|
+| 1 | **Linux internals — практика**: namespaces, cgroups v2, systemd, LVM | Runbook «Диагностика зависшего сервиса» | 4 лабы выполнены, заметки Namespaces/cgroups, 10 открытых вопросов по man7/docs |
+| 2 | **Сеть — из теории в руки**: netns, veth, NAT, tcpdump, DNS, TLS, nginx | Схема стенда + runbook «Недоступен сервис — проверка по слоям» | netns-лаба сквозная, tcpdump-выводы разобраны, nginx+TLS стенд, quiz HTTP-статусы |
+| 3 | **Containers — Docker всерьёз**: слои/кэш, PID 1, volumes, compose | Минимальный образ + Compose-стенд nginx+app+db | кэш-эксперименты задокументированы, PID 1/зомби разбор, аудит Dockerfile'ов digradation |
+| 4 | **IaC — Terraform + Ansible** | Стенд разворачивается кодом | `terraform validate/plan`, `ansible-playbook --syntax-check --check` зелёные, роль «первичная настройка сервера» |
+| 5 | **CI/CD — усиление digradation** | CD до compose-стенда | скан (trivy), кэш, артефакты, секреты, деплой по мержу на 8 существующих workflows |
+| 6 | **Kubernetes — kind/k3s** | Helm-чарт digradation в кластере | Service/Secret/RBAC/probes/NetworkPolicy лабы, 3 break/fix-разбора |
+| 7 | **Observability + Security** | Дашборд + алерты на свой стенд | алерт срабатывает на сломанный сервис, security-чеклист стенда, least privilege |
+| 8 | **Capstone** | Полный стенд + портфолио | Terraform→Ansible→CI/CD→K8s→obs end-to-end, 2–3 разбора инцидентов, mock-интервью |
+
+Ставить kubectl/terraform/trivy/dive — в начале соответствующего этапа. Ставка инструментов этапа 1 (на хосте отсутствуют): `stress-ng`, `strace`, `lvm2` — в день 1. Ansible уже есть в `Practice/.venv` (pip), системного нет.
+
+**Правило детализации:** этап, на который заходим, раскладывается на дни (MIN/MAX) в момент старта — так план не протухает. Детальный план этапа 1 ниже; этапы 2–8 раскладываются по той же схеме.
+
+### Этап 1 — детальный план (8 дней)
+
+| День | MIN | MAX |
+|---|---|---|
+| 1 | `lsns`; `unshare --user --map-root-user --pid --fork --mount-proc bash`; сравнить `ps -ef` и `readlink /proc/$$/ns/pid` внутри/снаружи | + `nsenter` обратно; начать `Notes/Linux/Namespaces.md` |
+| 2 | Второй терминал: `unshare --net`, сравнить `ip link` внутри/снаружи | пройтись по mnt/uts/user/ipc; дописать заметку |
+| 3 | 5 открытых вопросов по namespaces (проверка по man7.org) | заметка до `evergreen`, `review_at`, карточка в Review Queue |
+| 4 | `sudo pacman -S --needed stress-ng strace lvm2`; `systemd-run --property=MemoryMax=50M --property=CPUQuota=20% stress-ng ...`; наблюдать в `systemd-cgtop`, `/sys/fs/cgroup` | + `IOReadIOPSMax=`/`IOWriteIOPSMax=` (io.max в cgroup v2); заметка `cgroups v2.md` |
+| 5 | OOM-эксперимент: лимит и превышение, что пишет journald | разбор `docker-compose.override.yml.memlim` из digradation: какие лимиты и почему |
+| 6 | Порт `Systemd-unit.md` на `Type=notify` + `sd_notify` | сравнение simple/exec/notify на своём сервисе, разбор в journald |
+| 7 | LVM-лаба: snapshot, resize | восстановление из snapshot; заметка (у тебя уже есть база — эксперименты были) |
+| 8 | Черновик runbook «Диагностика зависшего сервиса» (ps → lsof → strace → journalctl → systemd-cgtop) | прогнать runbook на живом случае + фактчек + модульный квиз 10 открытых вопросов |
+
+## Поток В — реальные задачи
+
+- [SadServers](https://sadservers.com) — инцидент-сценарии на сломанных серверах. С этапа 1.
+- [KodeKloud Engineer](https://kodekloud-engineer.com) — бесплатные задачи с автопроверкой. С этапа 1.
+- [100 Days of DevOps](https://kodekloud.com/100-days-of-devops) — пул задач по текущему этапу, не подряд.
+- bash/awk прикреплять сюда: задачи на обработку логов/вывода (плюс подготовка к этапу 7).
+- Ритуал: решил сам → сравнил с решением → расхождение зафиксировал в заметке/Board.
+
+## Поток Г — тренды и сертификаты
+
+- Тренды 2026 (1 слот/нед, без углубления): platform engineering / IDP, AIOps, DevSecOps, GitOps, FinOps.
+- SPE (Systems Performance Engineering) — специализация после этапа 3: метод USE, flamegraphs, eBPF, Brendan Gregg. Естественное продолжение Linux-крена, не отдельный поток сейчас.
+- Сертификаты (маршрут из сессии 2026-11-07): Terraform Associate ($70.50, [hashicorp](https://developer.hashicorp.com/certifications/terraform-associate)) — после этапа 4; KCNA ($250, [cncf](https://www.cncf.io/training/certification/kcna)) — после этапа 6; бесплатно: SFC → SODFC ([SCRUMstudy](https://www.scrumstudy.com/certification/scrum-for-ops-and-devops-fundamentals-certified): Scrum Fundamentals → Scrum for Operations & DevOps Fundamentals, 1 вечер), LFS158 перед KCNA ([Linux Foundation](https://training.linuxfoundation.org/training/introduction-to-kubernetes)).
+
+## Поток Д — Go
+
+Go — язык экосистемы DevOps (Docker, Kubernetes, Terraform, Prometheus). Python не трогаем (digradation остаётся на Python).
+
+| Фаза | Содержание | Артефакт |
+|---|---|---|
+| 1. База | [A Tour of Go](https://go.dev/tour/welcome/1) + [Go by Example](https://gobyexample.com): синтаксис, stdlib, горутины/каналы | решение задач из Tour в репо `go-practice` |
+| 2. С тестами | [Learn Go with Tests](https://github.com/quii/learn-go-with-tests) (TDD) | пакет с тестами по книге |
+| 3. Мост в практику | переписать свои bash/awk-скрипты и `analyze.py` (livecoding-метрики) на Go | CLI-тулза с тестами — портфолио |
+| 4. DevOps-мост (после этапа 6) | мини-сервис `net/http`, клиент Kubernetes API, чтение исходников kubectl | утилита поверх K8s API |
+
+Ритм: 1 слот/день, слот атомарен, с этапом дня не смешивается. При сжатом дне режутся слоты В, затем А — но не этап и не Go.
+
+## Режимы недели
+
+**Базовый (сейчас, ~7 ч/день):**
+
+| День | Слоты |
+|---|---|
+| Пн–Пт | лёгкий (А/повторение) → этап (2 слота) → Go → по остатку В |
+| Сб | build day: digradation по текущему этапу; повторение недели |
+| Вс | consolidation: квиз, фактчек, Weekly Review, Review Queue, план недели, поток Г |
+
+**Рабочий (после выхода на эникей):**
+
+| День | Слоты |
+|---|---|
+| Пн/Ср/Пт | этап (1–2 слота) |
+| Вт/Чт | Go (1–2 слота) |
+| Сб | build day |
+| Вс | короткий consolidation |
+
+Практика с работы (Linux, тикеты, пользователи) фиксируется в Learning Log — это тоже доказательства для Skills Matrix.
+
+## Ритуалы и уведомления
+
+- **Утро** — automation ZCode (~12:00): берёт Board и Roadmap, ставит MIN/MAX в «Сегодня».
+- **Вечер** — automation ZCode (~21:30): спрашивает отчёт (максимум 2 вопроса), обновляет Board и Learning Log.
+- Automations срабатывают только при запущенном ZCode-хосте; пропустил — заполни вручную, канбан не должен копиться в голове.
+- Канбан-правило: карточка без движения 3 дня → либо режется на две, либо снимается.
 
 ## Проверка знаний
 
@@ -46,34 +150,15 @@ tags: [devops, roadmap]
 - Каждый вопрос и эталонный ответ проверяются по официальному источнику; источник указывается.
 - Практические задания проверяются выполнением: запуск, тест, линтер, валидатор.
 
-## 12 недель
-
-| Недели | Тема | Глубина | Артефакт |
-|---|---|---|---|
-| 1 | Linux internals I | boot, systemd, cgroups v2, namespaces | Unit + cgroup-лимиты + runbook |
-| 2 | Linux internals II | memory/CPU/IO, `strace`, `perf`, FS, capabilities, seccomp | Разбор зависания/утечки |
-| 3 | Networking I | TCP/IP, routing, NAT, DNS, netfilter, `tcpdump` | Сеть в network namespaces |
-| 4 | Networking II | HTTP/1–3, TLS, reverse proxy, load balancing | Nginx + TLS + VPS |
-| 5 | Containers internals | namespaces, cgroups, overlayfs, runc/containerd, OCI | Минимальный образ + Compose |
-| 6 | Kubernetes I | control plane, etcd, kubelet, CNI/CSI/CRI | kind/k3s + деплой приложения |
-| 7 | Kubernetes II | scheduling, probes, resources, RBAC, NetworkPolicy, Helm | Helm-чарт + политики |
-| 8 | Kubernetes III | troubleshooting, operators, GitOps | Break/fix + GitOps-репозиторий |
-| 9 | IaC | Terraform/OpenTofu, Ansible roles, state, idempotency | Провизion VPS/локального стенда |
-| 10 | CI/CD | GitHub Actions/GitLab CI, cache, artifacts, secrets, OIDC | Пайплайн build → scan → deploy |
-| 11 | Observability + Security | Prometheus, Grafana, Loki, OTel, SLO, supply chain | Дашборды + алерты + security gates |
-| 12 | Capstone + SRE | инциденты, postmortem, runbooks, mock interview | Полный стенд + портфолио |
-
-## Результаты
-
-- 3 проекта в портфолио: VPS + Docker, Kubernetes + CI/CD + observability, IaC + capstone.
-- Набор runbook'ов и разборов инцидентов.
-- Матрица навыков с доказательствами.
-- Подготовка к интервью: troubleshooting, design, security, incident response.
-
 ## Связанное
 
-- [[DevOps/Learning Log|Learning Log]]
-- [[DevOps/Skills Matrix|Skills Matrix]]
-- [[DevOps/Review Queue|Review Queue]]
-- [[DevOps/Sources|Sources]]
-- [[DevOps/Fact Check Queue|Fact Check Queue]]
+- [[DevOps/Board|Board]] — канбан недели
+- [[DevOps/Learning Log|Learning Log]] · [[DevOps/Skills Matrix|Skills Matrix]] · [[DevOps/Review Queue|Review Queue]] · [[DevOps/Sources|Sources]] · [[DevOps/Fact Check Queue|Fact Check Queue]]
+
+> [!check] Проверено
+> - Дата: 2026-11-07
+> - Окружение: Arch Linux, kernel 7.2.14-arch1-1, systemd 262.1-1, Docker 29.9.2
+> - Источники: man7.org (namespaces), man systemd.resource-control, docs freedesktop (systemd), [go.dev/tour](https://go.dev/tour/welcome/1), [gobyexample.com](https://gobyexample.com/), [quii/learn-go-with-tests](https://github.com/quii/learn-go-with-tests), [sadservers.com](https://sadservers.com), [kodekloud-engineer.com](https://kodekloud-engineer.com), цены сертификатов — hashicorp/cncf/linuxfoundation/scrumstudy (проверено 2026-11-07)
+> - Проверенные команды: `lsns`, `nsenter`, `systemd-run --property`, флаги `unshare --user --map-root-user --pid --fork --mount-proc` — на этом хосте 2026-11-07; `unshare --pid` без user namespace даёт Operation not permitted (воспроизведено)
+> - Фактчек: прогон верификатором 2026-11-07, риск low; исправлены `cgtop`→`systemd-cgtop`, несуществующее `IOMax`→`io.max`/`IOReadIOPSMax=`, добавлены отсутствующие инструменты этапа 1 (stress-ng, strace, lvm2)
+> - Не проверено: наличие kubectl/terraform/dive/trivy (не установлены — установка внутри своих этапов); SadServers/KodeKloud — доступность и формат задач сверить при первом заходе; TLPI — файл в Books отсутствует, только справочник по необходимости

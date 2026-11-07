@@ -26,6 +26,7 @@
 
 ## Текущий фокус
 
-- Стартовая диагностика пройдена: **20/30 (67%)**.
-- Фокус — модуль 1: Linux internals (namespaces, systemd, cgroups).
-- Дальше: containers, Kubernetes, security.
+- План переведён на этапную структуру: [[DevOps/Roadmap|Roadmap]] — 8 этапов практики поверх теории, канбан — [[DevOps/Board|Board]].
+- Сейчас: **этап 1 — Linux internals практика** (namespaces, cgroups, systemd, LVM) + старт Go (поток Д).
+- Порядок этапов: Linux → Сеть → Containers → IaC → CI/CD → Kubernetes → Obs+Sec → Capstone.
+- После выхода на работу эникейщиком — рабочий режим недели (см. Roadmap).

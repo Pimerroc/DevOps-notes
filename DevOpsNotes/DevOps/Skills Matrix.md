@@ -28,7 +28,7 @@ tags: [devops, skills]
 
 | Домен | Уровень | Доказательства | Следующий шаг |
 |---|---|---|---|
-| Linux internals | 1 | Диагностика 2026-11-06: 2/5; cgroups и сигналы — верно, namespaces/systemd/overlayfs — пробелы | Модуль 1: namespaces, systemd, cgroups |
+| Linux internals | 2 | Диагностика 2/5; с тех пор: эксперименты с LVM, systemd-unit с MemoryMax (cgroup) | Этап 1: namespaces, cgroups, Type=notify, LVM-лаба |
 | Networking | 2 | 4/5; TCP, NAT, DNS, TLS — верно; HTTP-статусы — пробел | Практика: tcpdump, DNS, TLS |
 | Git | 2 | rebase — верно | Практика: rebase/merge, конфликты |
 | Containers | 1 | 2/5; latest — верно; cache, PID 1, volumes — пробелы | Docker layers, PID 1, volumes |
@@ -38,6 +38,8 @@ tags: [devops, skills]
 | Observability | 2 | metrics, PromQL rate, SLO — верно | Prometheus/Grafana lab |
 | Security | 1 | least privilege — не знаю; остальное не проверялось | RBAC, secrets, supply chain |
 | SRE / incidents | 1 | incident priority — верно; практики нет | Incident drill, postmortem |
+| Скриптинг (bash/awk) | 2 | свои bash-скрипты с awk, но практики мало | Поток В: задачи на обработку логов |
+| Go | 1 | опыта нет; старт потока Д | Фаза 1: Tour of Go, Go by Example |
 
 ## Итог диагностики
 
