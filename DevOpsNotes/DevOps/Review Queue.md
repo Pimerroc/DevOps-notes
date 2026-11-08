@@ -23,6 +23,8 @@ tags: [devops, review]
 | Таненбаум гл. 7 | Прикладной уровень: DNS, HTTP, email, CDN (заметка не сделана) | 2026-11-11 | 2 | pending |
 | HTTP-статусы | 504 vs 502 vs 503 vs 301/308 — пробел диагностики | 2026-11-09 | 2 | pending |
 | [[Practice/DevOps/harness/README\|harness]] | systemd timers → opencode run: одна сессия, `--auto`, Persistent | 2026-11-15 | 3 | pending |
+| [[DevOps/Notes/Linux/Namespaces]] | Network namespace: `unshare --net`, сравнение `ip link` внутри/снаружи (Д2) | 2026-11-09 | 1 | pending |
+| — | Go: Tour of Go, старт фазы 1 (переносится) | 2026-11-09 | 1 | pending |
 
 ## Правила
 
