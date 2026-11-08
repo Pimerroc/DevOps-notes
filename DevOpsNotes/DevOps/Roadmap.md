@@ -140,9 +140,10 @@ Go — язык экосистемы DevOps (Docker, Kubernetes, Terraform, Prom
 
 ## Ритуалы и уведомления
 
-- **Утро** — automation ZCode (~12:00): берёт Board и Roadmap, ставит MIN/MAX в «Сегодня».
-- **Вечер** — automation ZCode (~21:30): спрашивает отчёт (максимум 2 вопроса), обновляет Board и Learning Log.
-- Automations срабатывают только при запущенном ZCode-хосте; пропустил — заполни вручную, канбан не должен копиться в голове.
+- **Утро (10:00)** — systemd user timer `devops-ritual-morning.timer` → `Practice/DevOps/harness/run.sh morning`: брифинг из Board/Roadmap/Review Queue/Learning Log, ставит MIN/MAX в «Сегодня».
+- **Вечер (20:30)** — `devops-ritual-evening.timer` → `run.sh evening`: фиксирует день по фактам (git, изменённые заметки, журнал), обновляет Board, Learning Log, Review Queue. Вопросов не задаёт: `opencode run` неинтерактивен, вызов `question` там отменяется.
+- Оба ритуала идут в одной сессии «DevOps ритуал — утро и вечер»; id — `~/.local/state/devops-ritual/session-id`. Ручное продолжение: `opencode -s "$(cat ~/.local/state/devops-ritual/session-id)"`.
+- `Persistent=true` догоняет пропуск при следующем входе, поэтому «пропустил» не теряется, но может отработать не в свой час. Вручную: `run.sh morning|evening`. Разбор — [[Practice/DevOps/harness/README|harness]].
 - Канбан-правило: карточка без движения 3 дня → либо режется на две, либо снимается.
 
 ## Проверка знаний

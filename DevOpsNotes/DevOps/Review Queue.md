@@ -22,6 +22,7 @@ tags: [devops, review]
 | [[DevOps/Diagnostics/2026-11-06]] | Security: least privilege, secrets at rest | 2026-11-12 | 1 | pending |
 | Таненбаум гл. 7 | Прикладной уровень: DNS, HTTP, email, CDN (заметка не сделана) | 2026-11-11 | 2 | pending |
 | HTTP-статусы | 504 vs 502 vs 503 vs 301/308 — пробел диагностики | 2026-11-09 | 2 | pending |
+| [[Practice/DevOps/harness/README\|harness]] | systemd timers → opencode run: одна сессия, `--auto`, Persistent | 2026-11-15 | 3 | pending |
 
 ## Правила
 

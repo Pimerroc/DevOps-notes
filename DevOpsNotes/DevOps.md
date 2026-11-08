@@ -23,6 +23,7 @@
 
 - `/live` — livecoding в kitty + nvim: логгер, live-метрики и разбор после сессии без вмешательства.
 - `.opencode/skills/livecoding/SKILL.md` — контракт скилла.
+- [[Practice/DevOps/harness/README|harness]] — ритуалы утро/вечер: systemd user timers → `opencode run` в одной сессии, брифинг из файлов vault.
 
 ## Текущий фокус
 

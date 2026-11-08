@@ -1,0 +1,12 @@
+[Unit]
+Description=Вечерний ритуал DevOps (отчёт и журнал)
+
+[Timer]
+OnCalendar=*-*-* 20:30:00
+Persistent=true
+AccuracySec=1min
+RandomizedDelaySec=120
+Unit=devops-ritual@evening.service
+
+[Install]
+WantedBy=timers.target

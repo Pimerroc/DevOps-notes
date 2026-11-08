@@ -23,6 +23,7 @@ tags:
 | 2026-11-06 | Livecoding | build | Скилл kitty + nvim: JSONL-логгер, live-метрики, анализ; smoke-тесты пройдены | `.opencode/skills/livecoding/SKILL.md` | живой ввод с клавиатуры не проверен | Первая сессия `/live` |
 | 2026-11-07 | Планирование | plan | Roadmap переписан на 8 этапов с MIN/MAX днями; канбан [[DevOps/Board\|Board]]; агенты перенесены в `.zcode/`; добавлены потоки Go, реальные задачи, тренды | [[DevOps/Roadmap]] | день-за-днём детализирован только этап 1 | День 1 этапа 1: namespaces-лаба |
 | 2026-11-07 | Namespaces, День 1 этапа 1 | lab | Отработаны user+pid+mount namespaces: `lsns`, `unshare --user --map-root-user --pid --fork --mount-proc`, `nsenter` обратно; начат черновик заметки; Таненбаум гл. 8 | [[DevOps/Notes/Linux/Namespaces]] | Go-слот не стартовал; теория по статье — завтра | Д2: `unshare --net` в двух терминалах, сравнить `ip link` |
+| 2026-11-08 | Ритуалы в OpenCode | build | systemd user timers вместо ZCode automations: `brief.sh` (брифинг из vault), `run.sh` (одна сессия утро+вечер), `install.sh`; e2e smoke через unit; разбор experimental `schedule` API | [[Practice/DevOps/harness/README\|harness]] | реальное срабатывание 10:00/20:30 не проверено; `shellcheck` отсутствует | Дождаться вечернего прогона, сверить Board и Learning Log |
 
 ## Как вести
 
