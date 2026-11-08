@@ -35,7 +35,7 @@ Practice/DevOps/harness/
 └── systemd/
     ├── devops-ritual@.service
     ├── devops-ritual-morning.timer   # 10:00, Persistent=true
-    └── devops-ritual-evening.timer   # 20:30, Persistent=true
+    └── devops-ritual-evening.timer   # 21:00, Persistent=true
 ```
 
 Состояние (не в git):
@@ -90,7 +90,8 @@ rm -f ~/.local/state/devops-ritual/session-id
 - **`opencode run --auto` снимает все `ask`**, а не только shell: правку `AGENTS.md` и `.opencode/opencode.jsonc`, чтение `*.env`, `external_directory`. Реально ограничивают только правила `deny` из `.opencode/opencode.jsonc`. Для необслуживаемого прогона это осознанный компромисс; при усилении запретов сначала менять `deny`, потом ждать от `--auto` защиты.
 - `Linger=no`: таймеры идут только при активной user-сессии. Для работы после логаута: `loginctl enable-linger max` (меняет систему, делать осознанно).
 - `Persistent=true` догоняет пропущенный запуск при следующем входе — **в любое время суток**: утренний ритуал может отработать вечером, вечерний — утром.
-- `RandomizedDelaySec=120`: фактический запуск на 0–2 минуты позже `OnCalendar`, плюс сдвиг на coalescing (`AccuracySec=1min`) — суммарно до ~3 минут.
+- `RandomizedDelaySec` не используется: для одного домашнего таймера разброс только сдвигает запуск без пользы. `AccuracySec=1s` — старт в пределах секунды от `OnCalendar`.
+- При смене `OnCalendar` у таймера с `Persistent=true` возможен **немедленный догон**: systemd считает, что новое время уже прошло. Если догон не нужен — перед `restart` обновить stamp: `systemctl --user stop <timer> && touch ~/.local/share/systemd/timers/stamp-<timer> && systemctl --user start <timer>`.
 - Сессия намеренно видима в `opencode session list` — это точка входа для ручного продолжения. `--archived` не используется: на существующую сессию он не действует.
 - Если сессия недоступна (404 или ошибка сервера), `run.sh` создаёт новую и перезаписывает `session-id`. Ошибка сервера трактуется так же, как удалённая сессия — это осознанное упрощение.
 - `question` в `opencode run` не работает: вызов отменяется, ответа нет (проверено на v2.2.6; в docs гарантировано только «dismissing cancels»). Поэтому вечерний промпт фиксирует состояние по фактам, без вопросов.

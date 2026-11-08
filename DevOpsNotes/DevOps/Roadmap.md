@@ -77,7 +77,7 @@ tags: [devops, roadmap]
 
 ### Этап 1 — детальный план (8 дней)
 
-Источники-минимум этапа: `man 7 namespaces`, `man 7 pid_namespaces`, `man 8 unshare`, `man 8 nsenter` (дни 1–3); `man 5 systemd.resource-control`, `man 8 systemd-cgtop` (дни 4–5); `man 5 systemd.service`, freedesktop sd_notify (день 6); `man 8 lvm` / Red Hat LVM admin guide (день 7).
+Источники-минимум этапа: `man 7 namespaces`, `man 7 pid_namespaces`, `man 1 unshare`, `man 1 nsenter` (дни 1–3); `man 5 systemd.resource-control`, `man 1 systemd-cgtop` (дни 4–5); `man 5 systemd.service`, freedesktop sd_notify (день 6); `man 8 lvm` / Red Hat LVM admin guide (день 7). Kerrisk, LWN «Namespaces in operation»: [p1](https://lwn.net/Articles/531114/), [p3](https://lwn.net/Articles/531419/), [p5](https://lwn.net/Articles/532593/), [p7](https://lwn.net/Articles/580893/).
 
 | День | Теория-минимум | MIN | MAX |
 |---|---|---|---|
@@ -141,7 +141,7 @@ Go — язык экосистемы DevOps (Docker, Kubernetes, Terraform, Prom
 ## Ритуалы и уведомления
 
 - **Утро (10:00)** — systemd user timer `devops-ritual-morning.timer` → `Practice/DevOps/harness/run.sh morning`: брифинг из Board/Roadmap/Review Queue/Learning Log, ставит MIN/MAX в «Сегодня».
-- **Вечер (20:30)** — `devops-ritual-evening.timer` → `run.sh evening`: фиксирует день по фактам (git, изменённые заметки, журнал), обновляет Board, Learning Log, Review Queue. Вопросов не задаёт: `opencode run` неинтерактивен, вызов `question` там отменяется.
+- **Вечер (21:00)** — `devops-ritual-evening.timer` → `run.sh evening`: фиксирует день по фактам (git, изменённые заметки, журнал), обновляет Board, Learning Log, Review Queue. Вопросов не задаёт: `opencode run` неинтерактивен, вызов `question` там отменяется.
 - Оба ритуала идут в одной сессии «DevOps ритуал — утро и вечер»; id — `~/.local/state/devops-ritual/session-id`. Ручное продолжение: `opencode -s "$(cat ~/.local/state/devops-ritual/session-id)"`.
 - `Persistent=true` догоняет пропуск при следующем входе, поэтому «пропустил» не теряется, но может отработать не в свой час. Вручную: `run.sh morning|evening`. Разбор — [[Practice/DevOps/harness/README|harness]].
 - Канбан-правило: карточка без движения 3 дня → либо режется на две, либо снимается.
