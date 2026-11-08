@@ -6,6 +6,9 @@
 #   run.sh morning [--dry-run]       # брифинг + промпт утра
 #   run.sh evening [--dry-run]       # брифинг + промпт вечера
 #   run.sh smoke [--dry-run]         # проверка конвейера без изменений в vault
+#   run.sh open [--dry-run]          # открыть сессию ритуала в TUI (пообщаться)
+#   run.sh id                        # напечатать id сессии
+#   run.sh log                       # журнал последних прогонов (journalctl)
 #
 # Одна сессия: id лежит в $XDG_STATE_HOME/devops-ritual/session-id
 # (по умолчанию ~/.local/state/devops-ritual/session-id).
@@ -18,9 +21,10 @@ STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/devops-ritual"
 SID_FILE="$STATE_DIR/session-id"
 TMP_DIR="${TMPDIR:-/tmp}/opencode/devops-ritual"
 AGENT="${RITUAL_AGENT:-devops}"
+LOG_LINES="${RITUAL_LOG_LINES:-60}"
 
 usage() {
-  sed -n '2,12p' "$0"
+  sed -n '2,14p' "$0"
 }
 
 MODE=""
@@ -32,7 +36,7 @@ for a in "$@"; do
       usage
       exit 0
       ;;
-    init|morning|evening|smoke) MODE="$a" ;;
+    init|morning|evening|smoke|open|id|log) MODE="$a" ;;
     *)
       echo "run.sh: неизвестный аргумент $a" >&2
       usage >&2
@@ -75,6 +79,23 @@ if [[ "$MODE" == init ]]; then
   exit 0
 fi
 
+if [[ "$MODE" == id ]]; then
+  if [[ ! -s "$SID_FILE" ]]; then
+    echo "run.sh: сессии ещё нет — выполни: $0 init" >&2
+    exit 1
+  fi
+  tr -d '[:space:]' < "$SID_FILE"
+  echo
+  exit 0
+fi
+
+if [[ "$MODE" == log ]]; then
+  exec journalctl --user \
+    -u devops-ritual@morning.service \
+    -u devops-ritual@evening.service \
+    -n "$LOG_LINES" --no-pager
+fi
+
 if [[ -s "$SID_FILE" ]]; then
   SID="$(tr -d '[:space:]' < "$SID_FILE")"
   if ! session_alive "$SID"; then
@@ -85,6 +106,17 @@ if [[ -s "$SID_FILE" ]]; then
 else
   create_session
   SID="$(tr -d '[:space:]' < "$SID_FILE")"
+fi
+
+if [[ "$MODE" == open ]]; then
+  CMD=(opencode -s "$SID")
+  if (( DRY )); then
+    printf '%q ' "${CMD[@]}"
+    printf '\n'
+    exit 0
+  fi
+  cd "$ROOT"
+  exec "${CMD[@]}"
 fi
 
 case "$MODE" in
