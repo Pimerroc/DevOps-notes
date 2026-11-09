@@ -34,7 +34,7 @@ Practice/DevOps/harness/
 ├── prompts/evening.md        # жёсткий промпт вечера
 └── systemd/
     ├── devops-ritual@.service
-    ├── devops-ritual-morning.timer   # 10:00, Persistent=true
+    ├── devops-ritual-morning.timer   # 07:00, Persistent=true
     └── devops-ritual-evening.timer   # 21:00, Persistent=true
 ```
 
@@ -76,7 +76,7 @@ opencode run -s "$(./run.sh id)" "вопрос"     # добавить одно 
 Сессия — обычная: в TUI видно весь транскрипт, включая брифинг, диффы правок и ответы. Права там обычные (`ask`), `--auto` действует только на прогон из таймера.
 
 > [!warning] Параллельный доступ
-> Не открывай сессию на редактирование в 10:00 и 21:00 — таймер пишет в ту же сессию. Смотреть можно, но два одновременных клиента на одной сессии дают гонку.
+> Не открывай сессию на редактирование в 07:00 и 21:00 — таймер пишет в ту же сессию. Смотреть можно, но два одновременных клиента на одной сессии дают гонку.
 
 ## Откат
 
@@ -123,4 +123,4 @@ ZCode-автоматизации не удалены; при желании вы
 > - Окружение: Arch Linux, opencode v2.2.6, systemd 262.1-1, user-сессия, Linger=no, Europe/Moscow
 > - Источники: `opencode run --help`, `opencode session --help`, живой OpenAPI (`POST /api/session`, `PATCH /api/session/{id}`), `systemd-analyze verify --user`, `man systemd.timer`, `man systemd.unit`, журнал `devops-ritual@smoke.service`
 > - Проверенные команды: `brief.sh morning|evening`, `run.sh init|smoke|--help|--dry-run`, `install.sh` + `uninstall` (дважды), `systemctl --user start devops-ritual@smoke.service`, `opencode api get /api/session/<id>`
-> - Не проверено: реальное срабатывание 10:00/20:30, поведение после `loginctl enable-linger`, `shellcheck` (не установлен — только `bash -n` + `systemd-analyze verify`)
+> - Не проверено: реальное срабатывание 07:00/21:00, поведение после `loginctl enable-linger`, `shellcheck` (не установлен — только `bash -n` + `systemd-analyze verify`)
