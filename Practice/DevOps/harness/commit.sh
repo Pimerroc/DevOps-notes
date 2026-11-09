@@ -29,7 +29,7 @@ for a in "$@"; do
   esac
 done
 
-MSG="docs(devops): итоги дня — $(date +%F)"
+MSG="docs(devops): daily summary — $(date +%F)"
 
 if (( DRY )); then
   PREVIEW="$(git -C "$ROOT" status --porcelain -- "${ALLOWED[@]}" 2>/dev/null | sed -E 's/^.{3}//' || true)"

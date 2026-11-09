@@ -22,7 +22,7 @@
 Practice/DevOps/harness/commit.sh
 ```
 
-Она сама стейджит только разрешённые пути и ставит сообщение `docs(devops): итоги дня — <сегодня>`. Других `git add`/`git commit` не выполнять.
+Она сама стейджит только разрешённые пути и ставит сообщение `docs(devops): daily summary — <today>`. Других `git add`/`git commit` не выполнять.
 
 ## Ограничения
 

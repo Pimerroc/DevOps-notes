@@ -21,12 +21,12 @@ tags: [devops, kanban]
 - Учёба-день → тип SHORT, делаем только MIN.
 - В конце недели карточки из «Готово» исчезают (архив — Learning Log).
 
-## Сегодня — 2026-11-08 (FULL)
+## Сегодня — 2026-11-09 (FULL)
 
-- [x] **MIN:** Теория: Kerrisk part 1 (overview) → [part 3 (PID ns)](https://lwn.net/Articles/531419/) → [part 5 (user ns)](https://lwn.net/Articles/532593/); лаба: netns выполнена через `ip netns add day2` + veth (продовый путь вместо `unshare --net`), сквозной пинг 10.1.1.x ✓
-- [x] MAX: + [part 7 (network ns)](https://lwn.net/Articles/580893/); обе заметки прогнаны через `devops-verifier` (risk low) *(остаток: mnt/uts/user/ipc + Namespaces.md → evergreen переезжают в Д3)*
-- [ ] Go-слот: Tour of Go, старт фазы 1 *(перенос, 2-й день)*
-- [x] Лёгкий слот: Таненбаум гл. 8 *(сверх плана: редизайн конспектов гл. 1–8 + «Самое важное», гл. 7–8 написаны)*
+- [ ] **MIN (Д3):** Сформулировать 5 открытых вопросов по namespaces и проверить ответы по `man7.org` (`namespaces(7)`, `user_namespaces(7)`/релевантные); результат — раздел с вопросами/ответами+источниками в `DevOpsNotes/DevOps/Notes/Linux/Namespaces.md` *(Q1–Q5 написаны 2026-11-09; Q1/Q2/Q4 не сверены с man — `verified: false`)*
+- [ ] MAX (Д3): пройти mnt/uts/user/ipc в заметке; довести `Namespaces.md` до `status: evergreen`, выставить `review_at`, добавить карточку в `Review Queue` *(mnt/uts/user/ipc добавлены с лабами; `status: growing` — evergreen блокирован фактчеком Q1/Q2/Q4)*
+- [ ] Go-слот: Tour of Go — старт фазы 1, пройти раздел «Basics» (packages/variables/functions) *(старт: 3 файла в `DevOpsNotes/Practice/Go_lang/basic/`; завершение Basics не подтверждено)*
+- [ ] Лёгкий слот (Review Queue, 2026-11-09): [[DevOps/Diagnostics/2026-11-06]] — Linux internals: namespaces, systemd, overlayfs (conf 1) *(доказательств повторения нет)*
 
 ## Очередь — Этап 1 (Linux internals: практика)
 
@@ -38,6 +38,14 @@ tags: [devops, kanban]
 - [ ] Д7: LVM-лаба: snapshot, resize, восстановление
 - [ ] Д8: runbook «Диагностика зависшего сервиса» + квиз 10 открытых вопросов
 - [ ] В: первый сценарий SadServers (Linux)
+
+## Очередь — Сети (Таненбаум)
+
+- [ ] Гл. 7–8: квиз — 5–6 теоретических + 5–6 практических открытых вопросов с развёрнутыми ответами. Теория: DNS, HTTP/HTTPS, CDN, TLS, DNSSEC, брандмауэры/IDS. Практика: `dig +trace`, `dig +dnssec`, `curl -vI`, `openssl s_client`, `openssl x509`, `ss` (и `tcpdump`, если установлен и есть root). Ответ — 3–6 предложений + источник (раздел/стр. книги, RFC, man). Результат: `DevOpsNotes/Networks/Таненбаум/Квиз 7–8.md`; слабые пункты → Review Queue.
+
+## Очередь — Поток В (bash/логи)
+
+- [ ] Pipeline drill #1: [[Practice/DevOps/drills/pipelines|drills]], задачи 1–3; 30 мин, без AI; эталон + запись в Review Queue.
 
 ## Очередь — Go (поток Д)
 
@@ -52,12 +60,12 @@ tags: [devops, kanban]
 
 ## Отчёты недели
 
-| Дата       | Тип  | MIN | Что сделано                                                                       | Пробел  |
-| ---------- | ---- | --- | --------------------------------------------------------------------------------- | ------- |
-| 2026-11-07 | FULL | ☐   | план зафиксирован, агенты перенесены                                              | —       |
-| 2026-11-07 | FULL | ☑   | namespaces-лаба (lsns, unshare, nsenter), черновик Namespaces.md, Таненбаум гл. 8 | Go-слот |
-| 2026-11-08 | FULL | ☐   | harness/ритуалы OpenCode (systemd timers, коммит a78da47); редизайн конспектов Таненбаум гл. 1–8 + «Самое важное» (коммит 0e7ee99, вне DevOpsNotes/DevOps) | MIN дня не закрыт (Kerrisk + `unshare --net`), Go не стартовал |
-| 2026-11-08 | FULL | ☑   | *вечер, после ритуала:* netns-лаба (ip netns + veth, сквозной пинг, cleanup ✓); квиз Q1–Q4 (Q3 чисто, Q1/Q2/Q4 частично); обе заметки финализированы верификатором (risk low); наблюдение: firefox contentproc в отдельных net ns | Go-слот; mnt/uts/ipc + Namespaces.md → evergreen (в Д3) |
+| Дата       | Тип  | MIN | Что сделано                                                                                                                                                                                                                       | Пробел                                                  |
+| ---------- | ---- | --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| 2026-11-07 | FULL | ☑   | план зафиксирован, агенты перенесены                                                                                                                                                                                              | —                                                       |
+| 2026-11-07 | FULL | ☑   | namespaces-лаба (lsns, unshare, nsenter), черновик Namespaces.md, Таненбаум гл. 8                                                                                                                                                 | Go-слот                                                 |
+| 2026-11-08 | FULL | ☑   | *вечер, после ритуала:* netns-лаба (ip netns + veth, сквозной пинг, cleanup ✓); квиз Q1–Q4 (Q2 неверно: адрес не переезжает с интерфейсом; Q3 с ошибкой: veth-пара удаляется целиком — исправлено 2026-11-09); первый фактчек заметок пройден; наблюдение: firefox contentproc в отдельных net ns | Go-слот; mnt/uts/ipc + Namespaces.md → evergreen (в Д3) |
+| 2026-11-09 | FULL | ☐   | namespaces Д3: лабы mnt/uts/user/ipc (tmpfs, hostname, `ipcs`/`ipcmk`, `uid_map`) + черновик Q1–Q5 в `Namespaces.md`; Go: 3 файла в `DevOpsNotes/Practice/Go_lang/basic/`; создан `Practice/DevOps/drills/pipelines.md` (10 задач); обновлены Skills Matrix и Roadmap | Q1/Q2/Q4 не сверены с man (`verified: false`), evergreen не закрыт; Go Basics не завершён; лёгкий слот не подтверждён |
 
 ## Связи
 

@@ -84,7 +84,7 @@ opencode run -s "$(./run.sh id)" "вопрос"     # добавить одно 
 - Утренний прогон **не коммитит** — только правит план.
 - Вечерний прогон заканчивается вызовом `commit.sh`:
   - стейджит только `DevOpsNotes/DevOps/**`, `DevOpsNotes/DevOps.md`, `Practice/DevOps/**`, `Templates/**`;
-  - сообщение ровно одно: `docs(devops): итоги дня — YYYY-MM-DD`;
+  - сообщение ровно одно: `docs(devops): daily summary — YYYY-MM-DD`;
   - если в индексе оказались файлы вне разрешённых путей — падает и ничего не коммитит.
 - Ручной прогон: `./commit.sh --dry-run` → посмотреть, `./commit.sh` → закоммитить.
 

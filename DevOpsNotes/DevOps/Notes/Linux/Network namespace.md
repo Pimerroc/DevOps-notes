@@ -1,12 +1,12 @@
 ---
 type: note
-status: growing
+status: evergreen
 topic: linux-netns
 difficulty: 1
 created: 2026-11-08
-review_at: 2026-11-12
+review_at: 2026-11-16
 verified: true
-last_verified: 2026-11-08
+last_verified: 2026-11-09
 tags: [devops, linux, networking]
 ---
 
@@ -60,13 +60,13 @@ sudo ip netns del day2
 ```
 *(поправлено на фактчеке 2026-11-08 — было «вместе с ним удалится весь наш бридж»)*
 
-На самом деле `ip netns del day2` удаляет только ИМЯ: umount и удаление точки монтирования /var/run/netns/day2 (man 8 ip-netns). Сам namespace живет, пока есть последний пользователь — процесс (наш bash внутри day2) или bind mount/fd. Когда namespace освобождается, veth1 уничтожается вместе с ним (man 7 network_namespaces: «veth devices that it contains are destroyed»), а veth0 ОСТАЕТСЯ на хосте без пира — в `ip link` у него будет NO-CARRIER (ровно как у docker0 на моей машине, когда контейнеров нет). Поэтому добить руками:
-```bash
-sudo ip link del veth0
-```
+На самом деле `ip netns del day2` удаляет только ИМЯ: umount и удаление точки монтирования /var/run/netns/day2 (man 8 ip-netns). Сам namespace живёт, пока есть последний пользователь — процесс (наш bash внутри day2) или открытый fd. Когда namespace освобождается, уничтожается **вся veth-пара**: veth1 внутри ns и veth0 на хосте (man 7 network_namespaces: «veth devices that it contains are destroyed»; в ядре `veth_dellink` снимает оба конца). Отдельный `ip link del veth0` не нужен — после смерти ns такого интерфейса уже нет.
+
+Пока namespace ещё жив после `ip netns del`, veth0 остаётся на хосте. Carrier требует UP на обоих концах: если veth0 UP, то при veth1 UP он UP/LOWER_UP, при veth1 DOWN — DOWN/NO-CARRIER; если сам veth0 DOWN, он остаётся DOWN без LOWER_UP (man 4 veth: «When either device is down, the link state of the pair is down»). `docker0` здесь не аналогия: это bridge, он остаётся и без контейнеров.
+*(поправлено на повторном фактчеке 2026-11-09: раньше здесь утверждалось, что veth0 остаётся без пира — неверно, пара удаляется целиком; проверено живым прогоном)*
 ## Ошибки и подводные камни
 
-Цитата (адаптация: в оригинале netns1): «namespaces do not share routing tables or firewall rules, as running route and iptables -L in day2 will attest» — Jake Edge, «Namespaces in operation, part 7: Network namespaces», LWN.net, 2014-01-22, https://lwn.net/Articles/580732/.
+Цитата (адаптация: в оригинале netns1): «namespaces do not share routing tables or firewall rules, as running route and iptables -L in day2 will attest» — Jake Edge, «Namespaces in operation, part 7: Network namespaces», LWN.net, 2014-01-22, https://lwn.net/Articles/580893/.
 Своими словами по man 7 network_namespaces: у каждого ns свои IP routing tables и firewall rules, поэтому внутри day2 `route` и `iptables -L` показывают не то, что на хосте (команды рабочие, man 8 ip-netns: `ip netns exec`):
 ```bash
 ip netns exec day2 route
@@ -74,10 +74,22 @@ ip netns exec day2 iptables -L
 ```
 ## Проверка себя
 
-- Почему `lo` в новом namespace создается в состоянии DOWN и что это меняет для `ping 127.0.0.1`?
-- Что именно уедет в ns при `ip link set veth1 netns day2` — и что будет с адресом, если он был назначен ДО переноса?
-- Что останется на хосте после `ip netns del day2` и почему у veth0 будет NO-CARRIER?
-- Чем `ip netns exec day2 cmd` отличается от `nsenter --net=/var/run/netns/day2 cmd` (что `ip netns exec` делает с файлами из /etc/netns/)?
+**1. Почему `lo` в новом namespace создаётся без UP и что это меняет для `ping 127.0.0.1`?**
+Новый net ns получает loopback без флага UP. Пока интерфейс не поднят, `127.0.0.1` в этом ns не работает, и `ping` падает с `connect: Network is unreachable`. После `ip link set lo up` — проходит.
+Проверено 2026-11-09: `unshare --user --map-root-user --net --fork` → `lo DOWN`, ping unreachable, после `ip link set lo up` — 0% packet loss.
+
+**2. Что именно уедет в ns при `ip link set veth1 netns day2` — и что будет с адресом, если он был назначен ДО переноса?**
+Переезжает сам netdev, но не вся конфигурация: L2-параметры (имя, MAC, MTU) сохраняются, а L3-адреса и флаг UP сбрасываются — интерфейс появляется в целевом ns в состоянии DOWN и без адресов.
+Проверено 2026-11-09 на veth и dummy: `10.9.9.2/24` и `10.9.9.3/24` после переноса отсутствуют, имя/MAC/MTU не изменились.
+Оговорка: переносить можно не всё. `lo`, bridge и wireless — netns-local: `ip link set lo netns ...` → `Error: The interface netns is immutable.` (сообщение iproute2 7.3.0; man 8 ip-link: «Invalid argument»). Для физической NIC механизм тот же (`netif_close` → `NETDEV_UNREGISTER` → удаление адресов), но на реальном устройстве не проверялось.
+*(В квизе 2026-11-08 было сказано «адрес едет с интерфейсом» — это неверно, исправлено.)*
+
+**3. Что произойдёт с veth-парой после `ip netns del day2`?**
+`ip netns del` удаляет только имя: umount и удаление точки монтирования `/var/run/netns/day2` (man 8 ip-netns). Namespace живёт, пока есть процесс или fd. Когда последний пользователь уходит, уничтожается вся veth-пара — veth1 внутри ns и veth0 на хосте (man 7 network_namespaces: «veth devices that it contains are destroyed»; `veth_dellink` снимает peer). Проверено 2026-11-09: после `ip netns del` при живом holder veth0 ещё есть (UP/LOWER_UP), после kill holder — `Device "veth0" does not exist`; `ip link del veth0` не нужен.
+Пока ns жив, veth0 остаётся; carrier требует UP на обоих концах (man 4 veth). `docker0` — bridge, а не veth: он остаётся без контейнеров, это другая история.
+
+**4. Чем `ip netns exec day2 cmd` отличается от `nsenter --net=/var/run/netns/day2 cmd`?**
+`ip netns exec` делает `setns` в net ns **и** создаёт mount namespace, bind-mount'я конфиги из `/etc/netns/NAME/` поверх `/etc/` (`resolv.conf`, `hosts` и т.д.) — man 8 ip-netns: «creating a mount namespace and bind mounting all of the per network namespace configure files into their traditional location in /etc». `nsenter --net=...` только переключает net ns, файлы `/etc` остаются хостовыми.
 
 ## В дикой природе
 
@@ -110,8 +122,8 @@ flowchart LR
 - [[Namespaces]]
 
 > [!check] Проверено
-> - Дата: 2026-11-08
+> - Дата: 2026-11-09 (повторный фактчек: Q3 исправлен — veth-пара удаляется целиком, а не остаётся veth0; Q2 — оговорка про netns-immutable)
 > - Окружение: Arch Linux, kernel 7.2.14-arch1-1, iproute2 7.3.0 (`ip -V`), man-pages 6.20
-> - Источники: man 7 network_namespaces; man 8 ip-netns; man 8 ip-link; man 4 veth; man 7 namespaces (Namespace lifetime); man 7 unix; Jake Edge, «Namespaces in operation, part 7: Network namespaces», LWN.net, 2014-01-22 — https://lwn.net/Articles/580893/
-> - Проверенные команды: `ip -V`; `lsns -t net`; `ip netns list`; `ip link show docker0`; чтение man-страниц (`man 7 network_namespaces`, `man 8 ip-netns`, `man 8 ip-link`, `man 4 veth`, `man 7 namespaces`, `man 7 unix`)
-> - Не проверено: живой прогон лабы из «Практики» в этой сессии (sudo требует пароль, эмпирический прогон не состоялся) — шаги сверены с man-pages, поведение NO-CARRIER подтверждено живым `docker0` на этом хосте; наблюдение Firefox-contentproc в `lsns -t net` — живое, без внешнего источника; поведение адреса, назначенного ДО переноса интерфейса в ns — открытый вопрос в «Проверка себя».
+> - Источники: man 7 network_namespaces; man 8 ip-netns; man 8 ip-link; man 4 veth; man 1 nsenter; man 7 namespaces (Namespace lifetime); man 7 unix; Jake Edge, «Namespaces in operation, part 7: Network namespaces», LWN.net, 2014-01-22 — https://lwn.net/Articles/580893/
+> - Проверенные команды: `unshare --user --map-root-user --net --fork` (lo DOWN → `Network is unreachable` → `ip link set lo up` → ping ok); `unshare ... --mount` + tmpfs на `/run` и `/etc`: `ip netns add/del`, перенос veth/dummy (адреса и UP сбрасываются; MAC/MTU/имя сохраняются), после освобождения ns veth-пара исчезает целиком (`Device "veth0" does not exist`), `ip link set lo netns` → `netns is immutable`, `ip netns exec` vs `nsenter` и `/etc/netns/NAME/resolv.conf`; `ip -V`; `lsns -t net`; чтение man-страниц
+> - Не проверено: перенос реальной физической NIC и wireless (по man/kernel — тот же сброс адресов и UP, живьём не запускалось); `ip netns del` при mountpoint, занятом в другом mount ns; наблюдение Firefox-contentproc в `lsns -t net` — живое, без внешнего источника
