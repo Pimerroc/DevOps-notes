@@ -28,7 +28,8 @@ ZCode automations работают только пока запущен деск
 ```
 Practice/DevOps/harness/
 ├── brief.sh                  # читает vault → markdown-брифинг (stdout)
-├── run.sh                    # init | morning | evening | smoke [--dry-run]
+├── run.sh                    # init | morning | evening | smoke | open | id | log
+├── commit.sh                 # «итоги дня»: stage разрешённых путей + коммит
 ├── install.sh                # install | uninstall | --dry-run
 ├── prompts/morning.md        # жёсткий промпт утра
 ├── prompts/evening.md        # жёсткий промпт вечера
@@ -77,6 +78,15 @@ opencode run -s "$(./run.sh id)" "вопрос"     # добавить одно 
 
 > [!warning] Параллельный доступ
 > Не открывай сессию на редактирование в 07:00 и 21:00 — таймер пишет в ту же сессию. Смотреть можно, но два одновременных клиента на одной сессии дают гонку.
+
+## Коммиты
+
+- Утренний прогон **не коммитит** — только правит план.
+- Вечерний прогон заканчивается вызовом `commit.sh`:
+  - стейджит только `DevOpsNotes/DevOps/**`, `DevOpsNotes/DevOps.md`, `Practice/DevOps/**`, `Templates/**`;
+  - сообщение ровно одно: `docs(devops): итоги дня — YYYY-MM-DD`;
+  - если в индексе оказались файлы вне разрешённых путей — падает и ничего не коммитит.
+- Ручной прогон: `./commit.sh --dry-run` → посмотреть, `./commit.sh` → закоммитить.
 
 ## Откат
 

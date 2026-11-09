@@ -108,12 +108,12 @@ tags: [devops, roadmap]
 
 Go — язык экосистемы DevOps (Docker, Kubernetes, Terraform, Prometheus). Python не трогаем (digradation остаётся на Python).
 
-| Фаза | Содержание | Артефакт |
-|---|---|---|
-| 1. База | [A Tour of Go](https://go.dev/tour/welcome/1) + [Go by Example](https://gobyexample.com): синтаксис, stdlib, горутины/каналы | решение задач из Tour в репо `go-practice` |
-| 2. С тестами | [Learn Go with Tests](https://github.com/quii/learn-go-with-tests) (TDD) | пакет с тестами по книге |
-| 3. Мост в практику | переписать свои bash/awk-скрипты и `analyze.py` (livecoding-метрики) на Go | CLI-тулза с тестами — портфолио |
-| 4. DevOps-мост (после этапа 6) | мини-сервис `net/http`, клиент Kubernetes API, чтение исходников kubectl | утилита поверх K8s API |
+| Фаза                           | Содержание                                                                                                                   | Артефакт                                   |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| 1. База                        | [A Tour of Go](https://go.dev/tour/welcome/1) + [Go by Example](https://gobyexample.com): синтаксис, stdlib, горутины/каналы | решение задач из Tour в репо `go-practice` |
+| 2. С тестами                   | [Learn Go with Tests](https://github.com/quii/learn-go-with-tests) (TDD)                                                     | пакет с тестами по книге                   |
+| 3. Мост в практику             | переписать свои bash/awk-скрипты и `analyze.py` (livecoding-метрики) на Go                                                   | CLI-тулза с тестами — портфолио            |
+| 4. DevOps-мост (после этапа 6) | мини-сервис `net/http`, клиент Kubernetes API, чтение исходников kubectl                                                     | утилита поверх K8s API                     |
 
 Ритм: 1 слот/день, слот атомарен, с этапом дня не смешивается. При сжатом дне режутся слоты В, затем А — но не этап и не Go.
 
@@ -121,20 +121,20 @@ Go — язык экосистемы DevOps (Docker, Kubernetes, Terraform, Prom
 
 **Базовый (сейчас, ~7 ч/день):**
 
-| День | Слоты |
-|---|---|
-| Пн–Пт | лёгкий (А/повторение) → этап (2 слота) → Go → по остатку В |
-| Сб | build day: digradation по текущему этапу; повторение недели |
-| Вс | consolidation: квиз, фактчек, Weekly Review, Review Queue, план недели, поток Г |
+| День  | Слоты                                                                           |
+| ----- | ------------------------------------------------------------------------------- |
+| Пн–Пт | лёгкий (А/повторение) → этап (2 слота) → Go → по остатку В                      |
+| Сб    | build day: digradation по текущему этапу; повторение недели                     |
+| Вс    | consolidation: квиз, фактчек, Weekly Review, Review Queue, план недели, поток Г |
 
 **Рабочий (после выхода на эникей):**
 
-| День | Слоты |
-|---|---|
-| Пн/Ср/Пт | этап (1–2 слота) |
-| Вт/Чт | Go (1–2 слота) |
-| Сб | build day |
-| Вс | короткий consolidation |
+| День     | Слоты                  |
+| -------- | ---------------------- |
+| Пн/Ср/Пт | этап (1–2 слота)       |
+| Вт/Чт    | Go (1–2 слота)         |
+| Сб       | build day              |
+| Вс       | короткий consolidation |
 
 Практика с работы (Linux, тикеты, пользователи) фиксируется в Learning Log — это тоже доказательства для Skills Matrix.
 
@@ -144,6 +144,7 @@ Go — язык экосистемы DevOps (Docker, Kubernetes, Terraform, Prom
 - **Вечер (21:00)** — `devops-ritual-evening.timer` → `run.sh evening`: фиксирует день по фактам (git, изменённые заметки, журнал), обновляет Board, Learning Log, Review Queue. Вопросов не задаёт: `opencode run` неинтерактивен, вызов `question` там отменяется.
 - Оба ритуала идут в одной сессии «DevOps ритуал — утро и вечер»; id — `~/.local/state/devops-ritual/session-id`. Ручное продолжение: `opencode -s "$(cat ~/.local/state/devops-ritual/session-id)"`.
 - `Persistent=true` догоняет пропуск при следующем входе, поэтому «пропустил» не теряется, но может отработать не в свой час. Вручную: `run.sh morning|evening`. Разбор — [[Practice/DevOps/harness/README|harness]].
+- **Коммит — только вечером**: `Practice/DevOps/harness/commit.sh` → `docs(devops): итоги дня — YYYY-MM-DD`, stage только разрешённых путей. Утренний прогон не коммитит.
 - Канбан-правило: карточка без движения 3 дня → либо режется на две, либо снимается.
 
 ## Проверка знаний
