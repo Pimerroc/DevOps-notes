@@ -26,11 +26,11 @@ tags: [devops, review]
 | [[DevOps/Notes/Linux/Network namespace]] | Network namespace: `unshare --net`, veth, перенос интерфейса, cleanup (Д2) | 2026-11-16 | 3 | pending |
 | — | Go: Tour of Go, старт фазы 1 (переносится) | 2026-11-09 | 1 | pending |
 | [[DevOps/Notes/Linux/Namespaces]] | 8 типов ns, mnt/uts/ipc/user, uid_map — active recall | 2026-11-10 | 2 | pending |
-| [[DevOps/Notes/Linux/Namespaces]] | фактчек Q1/Q2/Q4: uid_map, `--fork`, `--mount-proc`; лабы mnt/uts/ipc — `verified: false` | 2026-11-10 | 1 | pending |
+| [[DevOps/Notes/Linux/Namespaces]] | фактчек Q1/Q2/Q4: uid_map, `--fork`, `--mount-proc`; лабы mnt/uts/ipc — `verified: false` | 2026-11-10 | 1 | done |
 | [[Linux/Сценарии Bash (кратко)]] | bash: pipes, awk/sed/grep/xargs, exit codes | 2026-11-10 | 2 | pending |
 | [[Practice/DevOps/drills/pipelines]] | pipeline drills #1–10: nginx logs, awk/jq | 2026-11-10 | 1 | pending |
 | How Linux Works (PDF) | boot/systemd, processes, memory, fs — 5 вопросов | 2026-11-12 | 2 | pending |
-| Таненбаум гл. 7–8 | квиз: DNS/HTTP/TLS/DNSSEC/security | 2026-11-13 | 2 | pending |
+| Таненбаум гл. 7–8 | квиз: DNS/HTTP/TLS/DNSSEC/security | 2026-11-11 | 2 | pending |
 
 ## Правила
 

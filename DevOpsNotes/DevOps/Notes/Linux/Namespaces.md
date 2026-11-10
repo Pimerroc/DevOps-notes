@@ -1,6 +1,6 @@
 ---
 type: note
-status: growing
+status: evergreen
 topic: linux-namespaces
 difficulty: 1
 created: 2026-11-07
