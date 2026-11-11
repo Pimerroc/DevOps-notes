@@ -21,16 +21,16 @@ tags: [devops, kanban]
 - Учёба-день → тип SHORT, делаем только MIN.
 - В конце недели карточки из «Готово» исчезают (архив — Learning Log).
 
-## Сегодня — 2026-11-10 (FULL)
+## Сегодня — 2026-11-11 (FULL)
 
 > [!note] Добавлено агентом
 
-- [x] **MIN — закрыть Д3:** `Namespaces.md` → `status: evergreen`, `verified: true`; карточка фактчека в Review Queue → `done`; Д3 в «Очереди» `[x]` *(2026-11-10)*
-- [ ] **Сети — квиз 7–8:** 5 теоретических + 5 практических вопросов (DNS, HTTP, CDN, TLS/DNSSEC; `dig +trace`, `dig +dnssec`, `curl -vI`, `openssl s_client`), ответы 3–6 предложений + источник; результат — `DevOpsNotes/Networks/Таненбаум/Квиз 7–8.md` *(не начат, перенос на 2026-11-11)*
-- [ ] **Поток В:** pipeline drill #1 — top-10 IP; лог в `/tmp/access.log`; 25 мин без AI; проверка: сумма counts = `wc -l` *(не начат, перенос на 2026-11-11)*
-- [ ] **Поток Д:** Tour of Go «Basics» — flow control (`for`/`if`/`switch`/`defer`); `flow.go` в `DevOpsNotes/Practice/Go_lang/basic/`, `go run` *(не начат, перенос на 2026-11-11)*
-- [ ] **Лёгкий слот:** HTTP-статусы 504/502/503/301/308 — 10 мин, закрыть просроченную карточку *(не сделан, перенос на 2026-11-11)*
-- Перенос: cgroups v2 (Д4) — на 2026-11-11, после закрытия хвостов.
+- [ ] **MIN (Д4):** cgroups v2: `sudo pacman -S --needed stress-ng strace lvm2`; `systemd-run --unit=cgtest --property=MemoryMax=50M --property=CPUQuota=20% stress-ng --cpu 2 --vm 1 --timeout 60s`; снять `systemd-cgtop` и `systemctl show cgtest -p MemoryMax,CPUQuotaPerSecUSec`; проверить путь юнита в `/sys/fs/cgroup`. Результат — unit `cgtest` с лимитами и снятые значения
+- [ ] MAX (Д4): продолжить cgroups v2 — `IOReadIOPSMax=`/`IOWriteIOPSMax=` (io.max), проверить `systemctl show`; создать `DevOpsNotes/DevOps/Notes/Linux/cgroups v2.md` с лабой и наблюдениями
+- [ ] Go-слот: Tour of Go «Basics» — flow control (`for`/`if`/`switch`/`defer`); `flow.go` в `DevOpsNotes/Practice/Go_lang/basic/`, `go run` *(перенос с 2026-11-10)*
+- [ ] Лёгкий слот (Review Queue, просрочено с 2026-11-09): [[DevOps/Diagnostics/2026-11-06]] — Linux internals: namespaces, systemd, overlayfs (conf 1)
+- [x] **Сети — квиз 7–8, теория:** T1–T6 + добор сданы, разбор и повторный ответ — в [[DevOps/Notes/Networks/Квиз 7–8|Квиз 7–8]]; практика P1–P5 — отдельная сессия *(2026-11-11)*
+- Хвосты с 2026-11-10 (остаются в очереди, не дублирую): квиз Таненбаума 7–8 (практика), pipeline drill #1.
 
 ## Очередь — Этап 1 (Linux internals: практика)
 

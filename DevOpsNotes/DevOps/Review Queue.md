@@ -30,7 +30,11 @@ tags: [devops, review]
 | [[Linux/Сценарии Bash (кратко)]] | bash: pipes, awk/sed/grep/xargs, exit codes | 2026-11-10 | 2 | pending |
 | [[Practice/DevOps/drills/pipelines]] | pipeline drills #1–10: nginx logs, awk/jq | 2026-11-10 | 1 | pending |
 | How Linux Works (PDF) | boot/systemd, processes, memory, fs — 5 вопросов | 2026-11-12 | 2 | pending |
-| Таненбаум гл. 7–8 | квиз: DNS/HTTP/TLS/DNSSEC/security | 2026-11-11 | 2 | pending |
+| Таненбаум гл. 7–8 | квиз: DNS/HTTP/TLS/DNSSEC/security | 2026-11-11 | 2 | done |
+| [[DevOps/Notes/Networks/Квиз 7–8]] | Квиз 7–8: повторные ответы T1–T6 + добор | 2026-11-13 | 2 | pending |
+| [[DevOps/Notes/Networks/Квиз 7–8]] | CDN: сертификат на edge, SNI, DoH/ECS, anycast (T4) | 2026-11-13 | 1 | pending |
+| [[DevOps/Notes/Networks/Квиз 7–8]] | TLS 1.3: handshake, HKDF; где кончается TLS у CDN (T5) | 2026-11-13 | 1 | pending |
+| [[DevOps/Notes/Networks/Квиз 7–8]] | Firewalls: packet/stateful/ALG, NIDS/HIDS, base rate, IPS inline (T6) | 2026-11-13 | 1 | pending |
 
 ## Правила
 
