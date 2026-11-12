@@ -35,8 +35,9 @@ tags: [devops, review]
 | [[Квиз 7–8]] | CDN: сертификат на edge, SNI, DoH/ECS, anycast (T4) | 2026-11-13 | 1 | pending |
 | [[Квиз 7–8]] | TLS 1.3: handshake, HKDF; где кончается TLS у CDN (T5) | 2026-11-13 | 1 | pending |
 | [[Квиз 7–8]] | Firewalls: packet/stateful/ALG, NIDS/HIDS, base rate, IPS inline (T6) | 2026-11-13 | 1 | pending |
-| — | cgroups v2: `MemoryMax`, `CPUQuota`, `io.max`, `systemd-cgtop`, путь юнита в `/sys/fs/cgroup` — лаба не выполнена | 2026-11-12 | 1 | pending |
-| [[Квиз 7–8]] | Практика P1–P5: `dig +trace`, `dig +dnssec`, `curl -vI`, `openssl s_client`, HTTP→HTTPS | 2026-11-12 | 2 | pending |
+| — | cgroups v2: `MemoryMax`, `CPUQuota`, `io.max`, `systemd-cgtop`, путь юнита в `/sys/fs/cgroup` — лаба не выполнена | 2026-11-13 | 1 | pending |
+| [[Квиз 7–8]] | Практика P1–P5: `dig +trace`, `dig +dnssec`, `curl -vI`, `openssl s_client`, HTTP→HTTPS | 2026-11-12 | 2 | done |
+| `DevOpsNotes/Practice/networks/2026-11-11-dns-tls-ss.md` | Фактчек лабы DNS/TLS: выводы P1–P5, `ss`-состояния, TLS-цепочка; frontmatter повреждён | 2026-11-13 | 1 | pending |
 
 ## Правила
 
