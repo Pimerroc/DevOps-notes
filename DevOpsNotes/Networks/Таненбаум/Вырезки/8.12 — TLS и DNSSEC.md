@@ -5,7 +5,7 @@ topic: networks
 difficulty: 3
 created: 2026-11-08
 review_at: 2026-12-08
-verified: true
+verified: false
 last_verified: 2026-11-08
 tags: [devops, networks, excerpt]
 ---
