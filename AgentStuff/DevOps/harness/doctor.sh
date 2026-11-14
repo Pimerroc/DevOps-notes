@@ -107,6 +107,29 @@ else
   ok "застарелых ссылок Practice/DevOps/ нет"
 fi
 
+# 8. Паритет канонических агентов с установленными копиями
+canon_dir="$AGENTSTUFF_ROOT/DevOps/agents"
+for canon in "$canon_dir"/*.md; do
+  name="$(basename "$canon" .md)"
+  installed="$VAULT_ROOT/.zcode/agents/$name.md"
+  if [[ ! -s "$installed" ]]; then
+    fail "zcode-агент '$name' не установлен — запусти AgentStuff/DevOps/agents/install.sh"
+  else
+    fm_end="$(grep -nm2 '^---$' "$installed" | tail -1 | cut -d: -f1)"
+    if ! diff -q <(tail -n "+$((fm_end + 1))" "$installed") "$canon" >/dev/null 2>&1; then
+      warn "zcode-агент '$name' расходится с каноном — перезапусти agents/install.sh"
+    else
+      ok "агент $name соответствует канону"
+    fi
+  fi
+  if [[ ! -s "${HOME}/.config/opencode/agents/$name.md" ]]; then
+    warn "глобальный OpenCode-агент '$name' отсутствует — полный прогон agents/install.sh вне vault-сессии"
+  fi
+done
+[[ -r "$VAULT_ROOT/.opencode/skills/livecoding/SKILL.md" ]] \
+  && ok "opencode-скилл livecoding установлен" \
+  || fail "opencode-скилл livecoding отсутствует"
+
 # Итог
 printf '\ndoctor: %d fail, %d warn\n' "$FAIL" "$WARN"
 (( FAIL == 0 ))
