@@ -17,13 +17,15 @@
 
 ## Практика
 
-- [[DevOpsNotes/Practice Theory/DevOps/README|Practice/DevOps]] — лабораторные и проекты
+- [[DevOpsNotes/Practice Theory/DevOps/README|Practice Theory]] — заметки-лабы
+- `DevOpsNotes/Practice/` — код-артефакты: Go (`Practice/Go_lang/`), livecoding, grafana-стенд, ansible_quickstart
+- [[AgentStuff/DevOps/drills/pipelines|drills]] — практические задачи
 
 ## Инструменты
 
 - `/live` — livecoding в kitty + nvim: логгер, live-метрики и разбор после сессии без вмешательства.
 - `.opencode/skills/livecoding/SKILL.md` — контракт скилла.
-- [[Practice/DevOps/harness/README|harness]] — ритуалы утро/вечер: systemd user timers → `opencode run` в одной сессии, брифинг из файлов vault.
+- [[AgentStuff/DevOps/harness/README|harness]] — ритуалы утро/вечер: systemd user timers → `opencode run` в одной сессии, брифинг из файлов vault.
 
 ## Текущий фокус
 

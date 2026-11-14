@@ -21,17 +21,18 @@ tags: [devops, kanban]
 - Учёба-день → тип SHORT, делаем только MIN.
 - В конце недели карточки из «Готово» исчезают (архив — Learning Log).
 
-## Сегодня — 2026-11-12 (FULL)
+## Сегодня — 2026-11-14 (FULL)
 
 > [!note] Добавлено агентом
 
-- [ ] **MIN (Д4):** cgroups v2: `sudo pacman -S --needed stress-ng strace lvm2`; `systemd-run --unit=cgtest --property=MemoryMax=50M --property=CPUQuota=20% stress-ng --cpu 2 --vm 1 --timeout 60s`; снять `systemd-cgtop` и `systemctl show cgtest -p MemoryMax,CPUQuotaPerSecUSec`; проверить путь юнита в `/sys/fs/cgroup`. Результат — unit `cgtest` с лимитами и снятые значения *(не сделан: лабы нет, `cgroups v2.md` нет — перенос на 2026-11-13)*
-- [ ] MAX (Д4): продолжить cgroups v2 — `IOReadIOPSMax=`/`IOWriteIOPSMax=` (io.max), проверить `systemctl show`; создать `DevOpsNotes/DevOps/Notes/Linux/cgroups v2.md` с лабой и наблюдениями *(не сделан — перенос на 2026-11-13)*
-- [ ] Go-слот: Tour of Go «Basics» — flow control (`for`/`if`/`switch`/`defer`); `flow.go` в `DevOpsNotes/Practice/Go_lang/basic/`, `go run` *(не сделан: `flow.go` нет — перенос на 2026-11-13; остальные Basics-файлы уже есть)*
-- [ ] Лёгкий слот (Review Queue, просрочено с 2026-11-09): [[DevOps/Diagnostics/2026-11-06]] — Linux internals: namespaces, systemd, overlayfs (conf 1) *(не сделан — перенос на 2026-11-13)*
-- [x] Сети — квиз 7–8, теория: сдана 2026-11-11, разбор — в [[Квиз 7–8|Квиз 7–8]]; практика P1–P5 — сдана 2026-11-12.
-- [x] **Сети — практика P1–P5:** `dig +trace`, `dig +dnssec` (+ `dnssec-failed.org`, `+cd`), `curl -vI`, `openssl s_client`/`x509`, `ss`; выводы и разбор — в лабе `DevOpsNotes/Practice/networks/2026-11-11-dns-tls-ss.md` *(2026-11-12; `status: seed`, `verified: false` — нужен фактчек)*
-- Хвосты (остаются в очереди, не дублирую): pipeline drill #1 (перенос с 2026-11-10); фактчек лабы DNS/TLS (новый, 2026-11-13).
+- [ ] **MIN (Д4):** cgroups v2 — `sudo pacman -S --needed stress-ng strace lvm2`; `systemd-run --unit=cgtest --property=MemoryMax=50M --property=CPUQuota=20% stress-ng --cpu 2 --vm 1 --timeout 60s`; снять `systemd-cgtop` и `systemctl show cgtest -p MemoryMax,CPUQuotaPerSecUSec`; проверить путь юнита в `/sys/fs/cgroup`. Результат — unit `cgtest` с лимитами и снятые значения *(перенос с 2026-11-13)*
+- [ ] **MAX (Д4):** cgroups v2 — `IOReadIOPSMax=`/`IOWriteIOPSMax=` (io.max), `systemctl show`; заметка `DevOpsNotes/DevOps/Notes/Linux/cgroups v2.md` *(перенос с 2026-11-13)*
+- [ ] **Go-слот:** Tour of Go «Basics» — flow control (`for`/`if`/`switch`/`defer`); `flow.go` в `DevOpsNotes/Practice/Go_lang/basic/`, `go run` *(перенос с 2026-11-13; остальные Basics-файлы уже есть)*
+- [ ] **Лёгкий слот (Review Queue, просрочено с 2026-11-09):** [[DevOps/Diagnostics/2026-11-06]] — Linux internals: namespaces, systemd, overlayfs (conf 1) *(перенос с 2026-11-13)*
+- [ ] **Теория (если останется время):** повтор T1–T6 по [[Квиз 7–8]] — 3–5 предложений своими словами + источник *(перенос с 2026-11-13; карточки в Review Queue — 2026-11-14)*
+- [x] **Разбор практики P1–P5:** 5 контрольных ответов проверены (2.2/5), разбор выдан 2026-11-13; лаба — правки/фактчек 2026-11-16.
+- [x] **Сети — квиз 7–8:** теория сдана 2026-11-11, практика P1–P5 — 2026-11-12, разбор — 2026-11-13.
+- Хвосты: pipeline drill #1 (перенос с 2026-11-10); разбор выводов лабы DNS/TLS + «Что сломалось» + фактчек — 2026-11-16.
 
 ## Очередь — Этап 1 (Linux internals: практика)
 
@@ -50,7 +51,7 @@ tags: [devops, kanban]
 
 ## Очередь — Поток В (bash/логи)
 
-- [ ] Pipeline drill #1: [[Practice/DevOps/drills/pipelines|drills]], задачи 1–3; 30 мин, без AI; эталон + запись в Review Queue.
+- [ ] Pipeline drill #1: [[pipelines|drills]], задачи 1–3; 30 мин, без AI; эталон + запись в Review Queue.
 
 ## Очередь — Go (поток Д)
 
@@ -74,6 +75,7 @@ tags: [devops, kanban]
 | 2026-11-10 | FULL | ☑   | Д3 закрыт: `Namespaces.md` → `status: evergreen` (`verified: true`, last_verified 2026-11-09), карточка фактчека в Review Queue → `done`, Д3 в Board `[x]`; Board переписан под закрытие хвостов (сети, В, Д, HTTP-статусы), cgroups перенесён на 2026-11-11                                                                                                         | квиз 7–8, drill #1, `flow.go`, HTTP-статусы не начаты — доказательств нет; cgroups не сделан                   |
 | 2026-11-11 | FULL | ☐   | Квиз Таненбаум 7–8: теория T1–T6 + добор сдана, разбор и эталоны — в `DevOpsNotes/Networks/Таненбаум/Квиз 7–8.md`; проверены реальные `dig +trace` и `dig +dnssec`: resolver 192.168.0.1 не валидирует DNSSEC, 1.1.1.1/8.8.8.8/9.9.9.9 валидируют; Go: `imports.go`, `exported-names.go`, `functions.go`, `multiple-results.go`, `named-results.go`, `.golangci.yml`; гигиена git: английские сообщения 12 коммитов | cgroups v2 (MIN и MAX) не сделан — лабы и `cgroups v2.md` нет; `flow.go` (flow control) не сделан; pipeline drill #1 и лёгкий слот не сделаны; force-push после `filter-branch` не согласован |
 | 2026-11-12 | FULL | ☐   | Практика квиза 7–8 P1–P5 выполнена: `dig +trace` (делегирование), `dig +dnssec` (+ `dnssec-failed.org`, `+cd`), `curl -vI`, `openssl s_client`/`x509`, `ss`; выводы 3–6 предложений и разборы — в лабе `DevOpsNotes/Practice/networks/2026-11-11-dns-tls-ss.md`; в «Самое важное» добавлены ссылки Cloudflare по DNSSEC/anycast | cgroups v2 (MIN и MAX) не сделан — лабы и `cgroups v2.md` нет; `flow.go` не сделан; лёгкий слот и drill #1 не сделаны; лаба `status: seed`, `verified: false`, frontmatter повреждён; файлы вне разрешённых путей — не в git |
+| 2026-11-13 | SHORT | ☐   | Разбор практики P1–P5: 5 контрольных ответов проверены (2.2/5) — P5 почти зачёт, P1/P2/P3 половина, P4 пересдать; в лабе исправлен frontmatter `review_at`, добавлены выводы P1 (`dig +trace +comments edu.vsu.ru`); vault реорганизован: harness и drills → `AgentStuff/DevOps/`, лаба → `AgentStuff/DevOps/networks/`; обновлены Sources (Docker Deep Dive и план книг), Skills Matrix, Roadmap, `DevOps.md`; квиз 7–8 и Go-файлы застейджены | cgroups v2 MIN не сделан — лабы и `cgroups v2.md` нет; повтор T1–T6 не подтверждён (карточки pending); `flow.go` не сделан; drill #1 не сделан; «Что сломалось» в лабе не заполнено; коммит не выполнен — `Practice/DevOps/harness/commit.sh` переехал в `AgentStuff/`, а в индексе пути вне allowlist |
 
 ## Связи
 

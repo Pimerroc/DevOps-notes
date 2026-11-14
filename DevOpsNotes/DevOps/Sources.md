@@ -46,6 +46,19 @@ tags: [devops, sources]
 4. Для облака — документация провайдера и проверка в временном окружении.
 5. Блог, Stack Overflow и AI-ответ — не источник истины; только подсказка, что проверить.
 
+## Книги и учебные ресурсы
+
+> [!note] Добавлено агентом
+
+**Сейчас:** Docker Deep Dive, 2025 edition — Nigel Poulton. Этап 3: слои, образы, контейнеры, volumes, Compose, networking.
+
+**Позже, по мере этапов:**
+- Ansible: Up and Running, 3rd ed. — Bas Meijer, Lorin Hochstein, René Moser. Этап 4; Ansible применим почти везде.
+- CI/CD: официальная документация GitLab CI/CD + GitHub Actions in Action — Michael Kaufmann, Rob Bos, Marcel de Vries. Этап 5; закрывает GitLab и GitHub Actions.
+- The Kubernetes Book — Nigel Poulton. Этап 6.
+
+**Отложено:** Terraform: Up & Running — не приоритет для джуна; вернуться, когда появится реальная IaC-задача.
+
 ## Связанное
 
 - [[DevOps/Fact Check Queue|Fact Check Queue]]

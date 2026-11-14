@@ -140,11 +140,11 @@ Go — язык экосистемы DevOps (Docker, Kubernetes, Terraform, Prom
 
 ## Ритуалы и уведомления
 
-- **Утро (07:00)** — systemd user timer `devops-ritual-morning.timer` → `Practice/DevOps/harness/run.sh morning`: брифинг из Board/Roadmap/Review Queue/Learning Log, ставит MIN/MAX в «Сегодня».
+- **Утро (07:00)** — systemd user timer `devops-ritual-morning.timer` → `AgentStuff/DevOps/harness/run.sh morning`: брифинг из Board/Roadmap/Review Queue/Learning Log, ставит MIN/MAX в «Сегодня».
 - **Вечер (21:00)** — `devops-ritual-evening.timer` → `run.sh evening`: фиксирует день по фактам (git, изменённые заметки, журнал), обновляет Board, Learning Log, Review Queue. Вопросов не задаёт: `opencode run` неинтерактивен, вызов `question` там отменяется.
 - Оба ритуала идут в одной сессии «DevOps ритуал — утро и вечер»; id — `~/.local/state/devops-ritual/session-id`. Ручное продолжение: `opencode -s "$(cat ~/.local/state/devops-ritual/session-id)"`.
-- `Persistent=true` догоняет пропуск при следующем входе, поэтому «пропустил» не теряется, но может отработать не в свой час. Вручную: `run.sh morning|evening`. Разбор — [[Practice/DevOps/harness/README|harness]].
-- **Коммит — только вечером**: `Practice/DevOps/harness/commit.sh` → `docs(devops): итоги дня — YYYY-MM-DD`, stage только разрешённых путей. Утренний прогон не коммитит.
+- `Persistent=true` догоняет пропуск при следующем входе, поэтому «пропустил» не теряется, но может отработать не в свой час. Вручную: `run.sh morning|evening`. Разбор — [[AgentStuff/DevOps/harness/README|harness]].
+- **Коммит — только вечером**: `AgentStuff/DevOps/harness/commit.sh` → `docs(devops): итоги дня — YYYY-MM-DD`, stage только разрешённых путей. Утренний прогон не коммитит.
 - Канбан-правило: карточка без движения 3 дня → либо режется на две, либо снимается.
 
 ## Проверка знаний
