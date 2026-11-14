@@ -12,7 +12,9 @@
 - `DevOpsNotes/DevOps.md` — главный хаб.
 - `DevOpsNotes/DevOps/` — учебный контур: roadmap, журнал, матрица навыков, очередь повторения, источники, фактчек.
 - `DevOpsNotes/DevOps/Notes/` — тематические заметки по доменам.
-- `DevOpsNotes/Practice/DevOps/` — лабораторные и проекты.
+- `DevOpsNotes/Practice/` — код-артефакты практик: Go, livecoding, grafana-стенд, ansible_quickstart.
+- `DevOpsNotes/Practice Theory/` — заметки-лабы (Systemd-unit, настройка сервера, Ansible).
+- `AgentStuff/DevOps/` — агентская инфраструктура: harness (ритуалы утро/вечер), drills, промпты, systemd-юниты.
 - `Templates/` — шаблоны заметок, лабораторных, runbook'ов и инцидентов.
 - `DevOpsNotes/Books/`, PDF и существующие изображения — только чтение.
 
@@ -37,7 +39,7 @@
 
 - Скилл `livecoding` запускает kitty + nvim, пишет метаданные в `~/.local/share/opencode/livecoding/` и показывает live-метрики.
 - Во время сессии не вмешиваться: ни подсказок, ни вопросов, ни комментариев, пока пользователь не напишет «готово», «стоп» или явно не попросит помощь.
-- После сессии — анализ метрик, ревью кода, 3 вопроса на рефлексию, отчёт в `Practice/DevOps/livecoding/`.
+- После сессии — анализ метрик, ревью кода, 3 вопроса на рефлексию, отчёт в `DevOpsNotes/Practice/livecoding/`.
 - Сырые логи не коммитить и не вставлять в заметки; только метрики и выводы.
 
 ## Фактологическая проверка — обязательна
@@ -101,7 +103,7 @@ tags: [devops]
 
 Автокоммит разрешён после успешной сессии и фактчека.
 
-- Стейджи только: `DevOpsNotes/DevOps/**`, `DevOpsNotes/DevOps.md`, `Practice/DevOps/**`, `Templates/**`.
+- Стейджи только: `DevOpsNotes/DevOps/**`, `DevOpsNotes/DevOps.md`, `DevOpsNotes/Practice/**`, `DevOpsNotes/Practice Theory/**`, `AgentStuff/**`, `Templates/**`.
 - Не добавляй `GRAFANA_GUIDE.md` и посторонние изменения.
 - Если в diff есть файлы вне разрешённых путей — остановись и спроси.
 - Сообщение коммита: `docs(devops): <topic in English> — YYYY-MM-DD`.
