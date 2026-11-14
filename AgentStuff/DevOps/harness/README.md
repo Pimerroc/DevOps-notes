@@ -26,7 +26,7 @@ ZCode automations работают только пока запущен деск
 ## Состав
 
 ```
-Practice/DevOps/harness/
+AgentStuff/DevOps/harness/
 ├── brief.sh                  # читает vault → markdown-брифинг (stdout)
 ├── run.sh                    # init | morning | evening | smoke | open | id | log
 ├── commit.sh                 # «итоги дня»: stage разрешённых путей + коммит
@@ -47,7 +47,7 @@ Practice/DevOps/harness/
 ## Установка
 
 ```sh
-cd /home/max/DevOps_Notes/Practice/DevOps/harness
+cd /home/max/DevOps_Notes/AgentStuff/DevOps/harness
 ./run.sh init          # создать сессию, привязанную к vault
 ./run.sh smoke         # проверка конвейера, ничего не меняет
 ./install.sh           # units → ~/.config/systemd/user, enable --now таймеры
@@ -83,7 +83,7 @@ opencode run -s "$(./run.sh id)" "вопрос"     # добавить одно 
 
 - Утренний прогон **не коммитит** — только правит план.
 - Вечерний прогон заканчивается вызовом `commit.sh`:
-  - стейджит только `DevOpsNotes/DevOps/**`, `DevOpsNotes/DevOps.md`, `Practice/DevOps/**`, `Templates/**`;
+  - стейджит только `DevOpsNotes/DevOps/**`, `DevOpsNotes/DevOps.md`, `DevOpsNotes/Practice/**`, `DevOpsNotes/Practice Theory/**`, `AgentStuff/**`, `Templates/**`;
   - сообщение ровно одно: `docs(devops): daily summary — YYYY-MM-DD`;
   - если в индексе оказались файлы вне разрешённых путей — падает и ничего не коммитит.
 - Ручной прогон: `./commit.sh --dry-run` → посмотреть, `./commit.sh` → закоммитить.

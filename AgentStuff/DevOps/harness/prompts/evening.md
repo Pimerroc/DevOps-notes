@@ -19,14 +19,14 @@
 6. Закоммить итоги дня ровно одной командой:
 
 ```sh
-Practice/DevOps/harness/commit.sh
+AgentStuff/DevOps/harness/commit.sh
 ```
 
 Она сама стейджит только разрешённые пути и ставит сообщение `docs(devops): daily summary — <today>`. Других `git add`/`git commit` не выполнять.
 
 ## Ограничения
 
-- Не редактируй ничего вне `DevOpsNotes/DevOps/**` и `Practice/DevOps/**`.
+- Не редактируй ничего вне `DevOpsNotes/DevOps/**`, `DevOpsNotes/Practice/**`, `DevOpsNotes/Practice Theory/**` и `AgentStuff/**`.
 - Не удаляй строки из журналов и не переписывай историю.
 - Секреты, ключи, `.env` — не читать и не писать.
 - Если правка неоднозначна — оставь как есть и напиши одной строкой, что требует решения.
