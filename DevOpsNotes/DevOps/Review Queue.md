@@ -24,20 +24,21 @@ tags: [devops, review]
 | HTTP-статусы | 504 vs 502 vs 503 vs 301/308 — пробел диагностики | 2026-11-09 | 2 | pending |
 | [[AgentStuff/DevOps/harness/README\|harness]] | systemd timers → opencode run: одна сессия, `--auto`, Persistent | 2026-11-15 | 3 | pending |
 | [[DevOps/Notes/Linux/Network namespace]] | Network namespace: `unshare --net`, veth, перенос интерфейса, cleanup (Д2) | 2026-11-16 | 3 | pending |
-| — | Go: Tour of Go — Basics; functions/multiple-results/named-results сделаны, flow control (`flow.go`) pending | 2026-11-14 | 1 | pending |
+| — | Go: Tour of Go — Basics; functions/multiple-results/named-results сделаны, flow control (`flow.go`) pending | 2026-11-15 | 1 | pending |
 | [[DevOps/Notes/Linux/Namespaces]] | 8 типов ns, mnt/uts/ipc/user, uid_map — active recall | 2026-11-10 | 2 | pending |
 | [[DevOps/Notes/Linux/Namespaces]] | фактчек Q1/Q2/Q4: uid_map, `--fork`, `--mount-proc`; лабы mnt/uts/ipc — `verified: false` | 2026-11-10 | 1 | done |
 | [[Linux/Сценарии Bash (кратко)]] | bash: pipes, awk/sed/grep/xargs, exit codes | 2026-11-10 | 2 | pending |
 | [[pipelines]] | pipeline drills #1–10: nginx logs, awk/jq | 2026-11-10 | 1 | pending |
 | How Linux Works (PDF) | boot/systemd, processes, memory, fs — 5 вопросов | 2026-11-12 | 2 | pending |
 | Таненбаум гл. 7–8 | квиз: DNS/HTTP/TLS/DNSSEC/security | 2026-11-11 | 2 | done |
-| [[Квиз 7–8]] | Квиз 7–8: повторные ответы T1–T6 + добор | 2026-11-14 | 2 | pending |
-| [[Квиз 7–8]] | CDN: сертификат на edge, SNI, DoH/ECS, anycast (T4) | 2026-11-14 | 1 | pending |
-| [[Квиз 7–8]] | TLS 1.3: handshake, HKDF; где кончается TLS у CDN (T5) | 2026-11-14 | 1 | pending |
-| [[Квиз 7–8]] | Firewalls: packet/stateful/ALG, NIDS/HIDS, base rate, IPS inline (T6) | 2026-11-14 | 1 | pending |
-| — | cgroups v2: `MemoryMax`, `CPUQuota`, `io.max`, `systemd-cgtop`, путь юнита в `/sys/fs/cgroup` — лаба не выполнена | 2026-11-14 | 1 | pending |
+| [[Квиз 7–8]] | Квиз 7–8: повторные ответы T1–T6 + добор | 2026-11-15 | 2 | pending |
+| [[Квиз 7–8]] | CDN: сертификат на edge, SNI, DoH/ECS, anycast (T4) | 2026-11-15 | 1 | pending |
+| [[Квиз 7–8]] | TLS 1.3: handshake, HKDF; где кончается TLS у CDN (T5) | 2026-11-15 | 1 | pending |
+| [[Квиз 7–8]] | Firewalls: packet/stateful/ALG, NIDS/HIDS, base rate, IPS inline (T6) | 2026-11-15 | 1 | pending |
+| — | cgroups v2: `MemoryMax`, `CPUQuota`, `io.max`, `systemd-cgtop`, путь юнита в `/sys/fs/cgroup` — лаба выполнена 2026-11-14 (`cgtest`, `cghigh`, `cgoom`), `io.max` не проверен | 2026-11-14 | 1 | done |
+| [[DevOps/Notes/Linux/Cgroups\|Cgroups]] | Фактчек лабы cgroups v2: `cgtest`/`cghigh`/`cgoom`, `memory.max`, `cpu.max`, OOM; заполнить `[!check]` и разделы заметки | 2026-11-15 | 1 | pending |
 | [[Квиз 7–8]] | Практика P1–P5: `dig +trace`, `dig +dnssec`, `curl -vI`, `openssl s_client`, HTTP→HTTPS | 2026-11-12 | 2 | done |
-| [[2026-11-11-dns-tls-ss]] | Лаба DNS/TLS: исправить выводы P1–P5 + «Что сломалось» + фактчек; пересдать P4 (trust anchor, pathlen); frontmatter `review_at` повреждён | 2026-11-16 | 2 | pending |
+| [[2026-11-11-dns-tls-ss]] | Лаба DNS/TLS: исправить выводы P1–P5 + «Что сломалось» + фактчек; пересдать P4 (trust anchor, pathlen) | 2026-11-16 | 2 | pending |
 
 ## Правила
 
