@@ -16,7 +16,9 @@
 set -euo pipefail
 
 SELF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="${VAULT_ROOT:-$(cd "$SELF_DIR/../../.." && pwd)}"
+# shellcheck source=./config.env
+source "$SELF_DIR/config.env"
+ROOT="$VAULT_ROOT"
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/devops-ritual"
 SID_FILE="$STATE_DIR/session-id"
 TMP_DIR="${TMPDIR:-/tmp}/opencode/devops-ritual"
@@ -137,6 +139,21 @@ esac
 BRIEF_FILE="$TMP_DIR/brief-$BRIEF_MODE.md"
 mkdir -p "$TMP_DIR"
 "$SELF_DIR/brief.sh" "$BRIEF_MODE" > "$BRIEF_FILE"
+
+# Сенсоры: doctor (утро/вечер) и vault-lint (вечер). В dry-run не мешаем
+# предпросмотру — их вывод будет в живом брифинге.
+if (( ! DRY )); then
+  if "$SELF_DIR/doctor.sh" --quiet >> "$BRIEF_FILE" 2>&1; then
+    printf '\n(doctor: ok)\n' >> "$BRIEF_FILE"
+  else
+    printf '\n( doctor: ЕСТЬ ПРОБЛЕМЫ — блок выше )\n' >> "$BRIEF_FILE"
+  fi
+  if [[ "$MODE" == evening ]]; then
+    printf '\n## Vault lint\n\n```\n' >> "$BRIEF_FILE"
+    "$SELF_DIR/vault-lint.sh" >> "$BRIEF_FILE" 2>&1 || true
+    printf '```\n' >> "$BRIEF_FILE"
+  fi
+fi
 
 TITLE="DevOps ритуал — $MODE $(date +%F)"
 CMD=(opencode run --agent "$AGENT" --auto --title "$TITLE" -s "$SID" -f "$BRIEF_FILE" "$PROMPT")

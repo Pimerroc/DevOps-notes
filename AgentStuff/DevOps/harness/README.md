@@ -27,9 +27,12 @@ ZCode automations работают только пока запущен деск
 
 ```
 AgentStuff/DevOps/harness/
+├── config.env                # единый источник путей и allowlist (SYNC: AGENTS.md)
 ├── brief.sh                  # читает vault → markdown-брифинг (stdout)
 ├── run.sh                    # init | morning | evening | smoke | open | id | log
 ├── commit.sh                 # «итоги дня»: stage разрешённых путей + коммит
+├── doctor.sh                 # сенсор дрифта: пути, units, allowlist, старые ссылки
+├── vault-lint.sh             # линтер заметок: wikilinks, frontmatter, [!check]
 ├── install.sh                # install | uninstall | --dry-run
 ├── prompts/morning.md        # жёсткий промпт утра
 ├── prompts/evening.md        # жёсткий промпт вечера
@@ -88,6 +91,21 @@ opencode run -s "$(./run.sh id)" "вопрос"     # добавить одно 
   - если в индексе оказались файлы вне разрешённых путей — падает и ничего не коммитит.
 - Ручной прогон: `./commit.sh --dry-run` → посмотреть, `./commit.sh` → закоммитить.
 
+## Сенсоры
+
+- **`config.env`** — единственное место с путями vault/практик и allowlist'ом.
+  Переименование директорий = правка одного файла → `./install.sh` → `./doctor.sh`.
+  Кейс 2026-11-13 (203/EXEC): путь жил в шести местах, обновили одно —
+  сенсор ниже ловит такой дрифт до падения ритуала.
+- **`doctor.sh`** (утренний ритуал, секция `doctor` в брифинге): пути из
+  config существуют, установленный unit совпадает с репо-юнитом, таймеры
+  включены, `git status` покрыт allowlist, нет ссылок на старые пути.
+  Вручную: `./doctor.sh` (полный) / `--quiet` (только [fail]/[warn]).
+- **`vault-lint.sh`** (вечерний ритуал, секция `## Vault lint` в брифинге):
+  R1 — неразрешимые wikilinks; R2/R2b — frontmatter; R3 — `verified: true`
+  без блока `[!check]`; R4 — пустые поля в блоке. Журналы-история и шаблоны
+  исключены (см. `LINT_SKIP_PATHS`). Вручную: `./vault-lint.sh --strict`.
+
 ## Откат
 
 ```sh
@@ -129,8 +147,8 @@ rm -f ~/.local/state/devops-ritual/session-id
 ZCode-автоматизации не удалены; при желании выключить их в приложении, чтобы не было двойных прогонов.
 
 > [!check] Проверено
-> - Дата: 2026-11-08
+> - Дата: 2026-11-14 (сенсоры), 2026-11-08 (ритуалы)
 > - Окружение: Arch Linux, opencode v2.2.6, systemd 262.1-1, user-сессия, Linger=no, Europe/Moscow
 > - Источники: `opencode run --help`, `opencode session --help`, живой OpenAPI (`POST /api/session`, `PATCH /api/session/{id}`), `systemd-analyze verify --user`, `man systemd.timer`, `man systemd.unit`, журнал `devops-ritual@smoke.service`
-> - Проверенные команды: `brief.sh morning|evening`, `run.sh init|smoke|--help|--dry-run`, `install.sh` + `uninstall` (дважды), `systemctl --user start devops-ritual@smoke.service`, `opencode api get /api/session/<id>`
-> - Не проверено: реальное срабатывание 07:00/21:00, поведение после `loginctl enable-linger`, `shellcheck` (не установлен — только `bash -n` + `systemd-analyze verify`)
+> - Проверенные команды: `brief.sh morning|evening`, `run.sh init|smoke|--help|--dry-run`, `install.sh` + `uninstall` (дважды), `doctor.sh` (полный, 2026-11-14: 0 fail / 2 warn), `vault-lint.sh` (2026-11-14: 0 errors / 0 warnings после правки 13 вырезок verified→false), `commit.sh --dry-run`
+> - Не проверено: живой вечерний ритуал с сенсорами (первый прогон 21:00 2026-11-14), поведение после `loginctl enable-linger`, `shellcheck` (не установлен — только `bash -n`)

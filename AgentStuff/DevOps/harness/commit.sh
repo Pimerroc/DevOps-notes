@@ -13,10 +13,12 @@
 set -euo pipefail
 
 SELF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="${VAULT_ROOT:-$(cd "$SELF_DIR/../../.." && pwd)}"
+# shellcheck source=./config.env
+source "$SELF_DIR/config.env"
+ROOT="$VAULT_ROOT"
 
-ALLOWED=(DevOpsNotes/DevOps DevOpsNotes/DevOps.md DevOpsNotes/Practice "DevOpsNotes/Practice Theory" AgentStuff Templates)
-ALLOWED_RE='^(DevOpsNotes/DevOps/|DevOpsNotes/DevOps\.md$|DevOpsNotes/Practice/|DevOpsNotes/Practice Theory/|AgentStuff/|Templates/)'
+ALLOWED=("${COMMIT_PATHS[@]}")
+ALLOWED_RE="$COMMIT_PATHS_RE"
 
 DRY=0
 for a in "$@"; do

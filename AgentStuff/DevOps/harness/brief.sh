@@ -24,7 +24,9 @@ case "$MODE" in
 esac
 
 SELF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="${VAULT_ROOT:-$(cd "$SELF_DIR/../../.." && pwd)}"
+# shellcheck source=./config.env
+source "$SELF_DIR/config.env"
+ROOT="$VAULT_ROOT"
 N="$ROOT/DevOpsNotes/DevOps"
 BOARD="$N/Board.md"
 ROADMAP="$N/Roadmap.md"
