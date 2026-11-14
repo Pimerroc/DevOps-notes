@@ -67,7 +67,7 @@ tags: [devops, roadmap]
 | 3 | **Containers — Docker всерьёз**: слои/кэш, PID 1, volumes, compose | Минимальный образ + Compose-стенд nginx+app+db | кэш-эксперименты задокументированы, PID 1/зомби разбор, аудит Dockerfile'ов digradation |
 | 4 | **IaC — Terraform + Ansible** | Стенд разворачивается кодом | `terraform validate/plan`, `ansible-playbook --syntax-check --check` зелёные, роль «первичная настройка сервера» |
 | 5 | **CI/CD — усиление digradation** | CD до compose-стенда | скан (trivy), кэш, артефакты, секреты, деплой по мержу на 8 существующих workflows |
-| 6 | **Kubernetes — kind/k3s** | Helm-чарт digradation в кластере | Service/Secret/RBAC/probes/NetworkPolicy лабы, 3 break/fix-разбора |
+| 6 | **Kubernetes — kind/k3s** | Helm-чарт digradation в кластере | Service/Secret/RBAC/probes/NetworkPolicy лабы, 3 break/fix-разбора. **Старт досрочно: 2026-11-15–16** — реальное подключение digradation к Kubernetes (см. [[DevOps/Board|Board]]); артефакты выходных засчитываются в этап |
 | 7 | **Observability + Security** | Дашборд + алерты на свой стенд | алерт срабатывает на сломанный сервис, security-чеклист стенда, least privilege |
 | 8 | **Capstone** | Полный стенд + портфолио | Terraform→Ansible→CI/CD→K8s→obs end-to-end, 2–3 разбора инцидентов, mock-интервью |
 

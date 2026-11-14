@@ -25,7 +25,7 @@ tags: [devops, kanban]
 
 > [!note] Добавлено агентом
 
-- [ ] **MIN (Д4):** cgroups v2 — `sudo pacman -S --needed stress-ng strace lvm2`; `systemd-run --unit=cgtest --property=MemoryMax=50M --property=CPUQuota=20% stress-ng --cpu 2 --vm 1 --timeout 60s`; снять `systemd-cgtop` и `systemctl show cgtest -p MemoryMax,CPUQuotaPerSecUSec`; проверить путь юнита в `/sys/fs/cgroup`. Результат — unit `cgtest` с лимитами и снятые значения *(перенос с 2026-11-13)*
+- [ ] **MIN (Д4):** cgroups v2 — инструменты уже в системе (`stress-ng` 0.22.02, `strace`, `lvm2`); `systemd-run --unit=cgtest --property=MemoryMax=50M --property=CPUQuota=20% stress-ng --cpu 2 --vm 1 --timeout 60s`; снять `systemd-cgtop` и `systemctl show cgtest -p MemoryMax,CPUQuotaPerSecUSec`; проверить путь юнита в `/sys/fs/cgroup`. Результат — unit `cgtest` с лимитами и снятые значения *(перенос с 2026-11-13)*
 - [ ] **MAX (Д4):** cgroups v2 — `IOReadIOPSMax=`/`IOWriteIOPSMax=` (io.max), `systemctl show`; заметка `DevOpsNotes/DevOps/Notes/Linux/cgroups v2.md` *(перенос с 2026-11-13)*
 - [ ] **Go-слот:** Tour of Go «Basics» — flow control (`for`/`if`/`switch`/`defer`); `flow.go` в `DevOpsNotes/Practice/Go_lang/basic/`, `go run` *(перенос с 2026-11-13; остальные Basics-файлы уже есть)*
 - [ ] **Лёгкий слот (Review Queue, просрочено с 2026-11-09):** [[DevOps/Diagnostics/2026-11-06]] — Linux internals: namespaces, systemd, overlayfs (conf 1) *(перенос с 2026-11-13)*
@@ -44,6 +44,14 @@ tags: [devops, kanban]
 - [ ] Д7: LVM-лаба: snapshot, resize, восстановление
 - [ ] Д8: runbook «Диагностика зависшего сервиса» + квиз 10 открытых вопросов
 - [ ] В: первый сценарий SadServers (Linux)
+
+## Выходные (2026-11-15…16) — digradation → Kubernetes (досрочный старт этапа 6)
+
+Реальная задача вместо синтетики: то же, что этап 6, но на живом проекте. Остатки этапа 1 (Д5–Д8) и потоки В/Д не отменяются — уезжают на следующую неделю после закрытия weekend-цели.
+
+- [ ] **Сб (11-15):** окружение: `sudo pacman -S --needed kubectl helm` + выбрать и поставить **kind** или **k3s**; digradation: собрать образы, поднять локальный кластер, задеплоить первый сервис (db или backend) с Service. Артефакт — кластер с работающим подом + заметка `Notes/Kubernetes/digradation-01.md` (что поставил, какие манифесты, где споткнулся)
+- [ ] **Вс (11-16):** digradation: скелет helm-чарта (db + backend + frontend), ConfigMap/Secret для конфигов, probes. Артефакт — чарт разворачивается `helm install` + short consolidation (Review Queue — 1 слот, без новой теории)
+- Формат: build day в оба дня. Если кластер съест больше времени — MIN выходного = только окружение/первый под, остальное переносится без штрафа.
 
 ## Очередь — Сети (Таненбаум)
 
