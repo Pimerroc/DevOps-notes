@@ -50,7 +50,7 @@ AgentStuff/DevOps/harness/
 ## Установка
 
 ```sh
-cd /home/max/DevOps_Notes/AgentStuff/DevOps/harness
+cd ~/DevOps_Notes/AgentStuff/DevOps/harness
 ./run.sh init          # создать сессию, привязанную к vault
 ./run.sh smoke         # проверка конвейера, ничего не меняет
 ./install.sh           # units → ~/.config/systemd/user, enable --now таймеры
@@ -65,7 +65,7 @@ journalctl --user -u devops-ritual@smoke.service -n 30 --no-pager
 opencode api get "/api/session/$(cat ~/.local/state/devops-ritual/session-id)" | grep -o '"directory":"[^"]*"'
 ```
 
-Ожидаемо: два таймера, `harness ok` в journal, `directory` = `/home/max/DevOps_Notes`.
+Ожидаемо: два таймера, `harness ok` в journal, `directory` = `~/DevOps_Notes`.
 
 Ручное продолжение той же сессии:
 
