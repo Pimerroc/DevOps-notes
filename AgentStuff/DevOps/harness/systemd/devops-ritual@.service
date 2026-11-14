@@ -1,6 +1,6 @@
 [Unit]
 Description=OpenCode DevOps ritual (%i)
-Documentation=file://%h/DevOps_Notes/Practice/DevOps/harness/README.md
+Documentation=file://%h/DevOps_Notes/AgentStuff/DevOps/harness/README.md
 After=basic.target
 
 [Service]
@@ -8,6 +8,6 @@ Type=oneshot
 WorkingDirectory=%h/DevOps_Notes
 Environment=HOME=%h
 Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
-ExecStart=%h/DevOps_Notes/Practice/DevOps/harness/run.sh %i
+ExecStart=%h/DevOps_Notes/AgentStuff/DevOps/harness/run.sh %i
 TimeoutStartSec=45min
 Nice=10

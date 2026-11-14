@@ -5,8 +5,9 @@
 #   commit.sh            # stage разрешённых путей и коммит
 #   commit.sh --dry-run  # показать, что попадёт в коммит
 #
-# Разрешённые пути (из AGENTS.md):
-#   DevOpsNotes/DevOps/**, DevOpsNotes/DevOps.md, Practice/DevOps/**, Templates/**
+# Разрешённые пути (AGENTS.md, синхронизировано 2026-11-14):
+#   DevOpsNotes/DevOps/**, DevOpsNotes/DevOps.md, DevOpsNotes/Practice/**,
+#   DevOpsNotes/Practice Theory/**, AgentStuff/**, Templates/**
 # Всё остальное в индекс не попадает; если там уже что-то есть — скрипт падает.
 
 set -euo pipefail
@@ -14,8 +15,8 @@ set -euo pipefail
 SELF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="${VAULT_ROOT:-$(cd "$SELF_DIR/../../.." && pwd)}"
 
-ALLOWED=(DevOpsNotes/DevOps DevOpsNotes/DevOps.md Practice/DevOps Templates)
-ALLOWED_RE='^(DevOpsNotes/DevOps/|DevOpsNotes/DevOps\.md$|Practice/DevOps/|Templates/)'
+ALLOWED=(DevOpsNotes/DevOps DevOpsNotes/DevOps.md DevOpsNotes/Practice "DevOpsNotes/Practice Theory" AgentStuff Templates)
+ALLOWED_RE='^(DevOpsNotes/DevOps/|DevOpsNotes/DevOps\.md$|DevOpsNotes/Practice/|DevOpsNotes/Practice Theory/|AgentStuff/|Templates/)'
 
 DRY=0
 for a in "$@"; do
