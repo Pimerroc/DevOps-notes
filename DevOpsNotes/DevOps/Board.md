@@ -21,18 +21,20 @@ tags: [devops, kanban]
 - Учёба-день → тип SHORT, делаем только MIN.
 - В конце недели карточки из «Готово» исчезают (архив — Learning Log).
 
-## Сегодня — 2026-11-14 (FULL)
+## Сегодня — 2026-11-15 (FULL)
 
 > [!note] Добавлено агентом
 
-- [x] **MIN (Д4):** cgroups v2 — unit `cgtest` создан: `memory.max=52428800`, `cpu.max=20000 100000`, путь `/sys/fs/cgroup/system.slice/cgtest.service`; дополнительно `cghigh` (`MemoryHigh=30M`) и `cgoom` (`Failed with result 'oom-kill'`); выводы — в `DevOpsNotes/DevOps/Notes/Linux/Cgroups.md` *(2026-11-14)*
-- [ ] **MAX (Д4):** cgroups v2 — `IOReadIOPSMax=`/`IOWriteIOPSMax=` (io.max), `systemctl show`; заметка `DevOpsNotes/DevOps/Notes/Linux/Cgroups.md` *(частично: заметка создана `status: seed`, `io.max` не проверен, разделы «Как работает», «Ошибки», «Проверка себя» и блок «Проверено» пусты — перенос на 2026-11-15)*
-- [ ] **Go-слот:** Tour of Go «Basics» — flow control (`for`/`if`/`switch`/`defer`); `flow.go` в `DevOpsNotes/Practice/Go_lang/basic/`, `go run` *(не сделан: `flow.go` нет — перенос на 2026-11-15)*
-- [ ] **Лёгкий слот (Review Queue, просрочено с 2026-11-09):** [[DevOps/Diagnostics/2026-11-06]] — Linux internals: namespaces, systemd, overlayfs (conf 1) *(не сделан — перенос на 2026-11-15)*
-- [ ] **Теория:** повтор T1–T6 по [[Квиз 7–8]] — 3–5 предложений своими словами + источник *(не сделан — перенос на 2026-11-15)*
-- [x] **Разбор практики P1–P5:** 5 контрольных ответов проверены (2.2/5), разбор выдан 2026-11-13; лаба — правки/фактчек 2026-11-16.
-- [x] **Сети — квиз 7–8:** теория сдана 2026-11-11, практика P1–P5 — 2026-11-12, разбор — 2026-11-13.
-- Хвосты: pipeline drill #1 (перенос с 2026-11-10); разбор выводов лабы DNS/TLS + «Что сломалось» + фактчек — 2026-11-16; фактчек `Cgroups.md` + заполнить блок `[!check]` (6 lint warnings) — 2026-11-15.
+- harness: глобальный агент `devops-secrets-auditor` не установлен — нужен `agents/install.sh` из сессии вне vault (doctor: 1 warn).
+- [ ] **MIN (Д4, MAX вчера):** `io.max` — взять диск из `lsblk` (например `/dev/nvme0n1` или `/dev/sda`), затем `sudo systemd-run --unit=cgio --property=IOReadIOPSMax="/dev/<disk> 100" --property=IOWriteIOPSMax="/dev/<disk> 100" stress-ng --hdd 1 --timeout 30s`; снять `systemctl show cgio -p IOReadIOPSMax,IOWriteIOPSMax` и `cat /sys/fs/cgroup/system.slice/cgio.service/io.max`. Результат — unit с io-лимитами и снятые значения *(не сделан: unit `cgio` нет, `Cgroups.md` не менялся с 2026-11-14 — перенос на 2026-11-16)*
+- [ ] **MAX (Д4):** добить `DevOpsNotes/DevOps/Notes/Linux/Cgroups.md` — заполнить «Как работает», «Ошибки и подводные камни», «Проверка себя», блок `[!check]` (Дата, Окружение, Источники, Команды, Не проверено), `review_at`; `status: seed` → `growing` *(не сделан: lint по-прежнему 6 warnings — перенос на 2026-11-16)*
+- [ ] **Go-слот:** Tour of Go «Basics» — flow control (`for`/`if`/`switch`/`defer`); `flow.go` в `DevOpsNotes/Practice/Go_lang/basic/`, `go run` *(не сделан: `flow.go` нет — перенос на 2026-11-16)*
+- [ ] **Лёгкий слот (Review Queue, просрочено с 2026-11-09):** [[DevOps/Diagnostics/2026-11-06]] — Linux internals: namespaces, systemd, overlayfs (conf 1) *(не сделан — перенос на 2026-11-16)*
+- [ ] **Теория:** повтор T1–T6 по [[Квиз 7–8]] — 3–5 предложений своими словами + источник *(не сделан — перенос на 2026-11-16)*
+- [x] **Kubernetes: Deployment (вне плана):** `DevOpsNotes/Practice/Kubernetes/Deployment/services/nginx-deployment.yaml` — `replicas: 3`, `selector.matchLabels`, `requests` 50m/64Mi и `limits` 200m/512Mi; `Deployment/docs.md` — ссылка на docs *(2026-11-15)*
+- [x] **cgroups v2 MIN:** `cgtest` (`memory.max=52428800`, `cpu.max=20000 100000`), `cghigh`, `cgoom` (OOM kill) — 2026-11-14; заметка `Cgroups.md` создана.
+- [x] **Сети — квиз 7–8:** теория 2026-11-11, практика P1–P5 — 2026-11-12, разбор — 2026-11-13.
+- Хвосты: pipeline drill #1 (перенос с 2026-11-10); разбор выводов лабы DNS/TLS + «Что сломалось» + фактчек — 2026-11-16; фактчек `Cgroups.md` + `[!check]` (6 lint warnings) — 2026-11-16.
 
 ## Очередь — Этап 1 (Linux internals: практика)
 
@@ -85,6 +87,7 @@ tags: [devops, kanban]
 | 2026-11-12 | FULL | ☐   | Практика квиза 7–8 P1–P5 выполнена: `dig +trace` (делегирование), `dig +dnssec` (+ `dnssec-failed.org`, `+cd`), `curl -vI`, `openssl s_client`/`x509`, `ss`; выводы 3–6 предложений и разборы — в лабе `DevOpsNotes/Practice/networks/2026-11-11-dns-tls-ss.md`; в «Самое важное» добавлены ссылки Cloudflare по DNSSEC/anycast | cgroups v2 (MIN и MAX) не сделан — лабы и `cgroups v2.md` нет; `flow.go` не сделан; лёгкий слот и drill #1 не сделаны; лаба `status: seed`, `verified: false`, frontmatter повреждён; файлы вне разрешённых путей — не в git |
 | 2026-11-13 | SHORT | ☐   | Разбор практики P1–P5: 5 контрольных ответов проверены (2.2/5) — P5 почти зачёт, P1/P2/P3 половина, P4 пересдать; в лабе исправлен frontmatter `review_at`, добавлены выводы P1 (`dig +trace +comments edu.vsu.ru`); vault реорганизован: harness и drills → `AgentStuff/DevOps/`, лаба → `AgentStuff/DevOps/networks/`; обновлены Sources (Docker Deep Dive и план книг), Skills Matrix, Roadmap, `DevOps.md`; квиз 7–8 и Go-файлы застейджены | cgroups v2 MIN не сделан — лабы и `cgroups v2.md` нет; повтор T1–T6 не подтверждён (карточки pending); `flow.go` не сделан; drill #1 не сделан; «Что сломалось» в лабе не заполнено; коммит не выполнен — `Practice/DevOps/harness/commit.sh` переехал в `AgentStuff/`, а в индексе пути вне allowlist |
 | 2026-11-14 | FULL | ☑   | cgroups v2 MIN: unit `cgtest` (`memory.max=52428800`, `cpu.max=20000 100000`, путь `/sys/fs/cgroup/system.slice/cgtest.service`), `cghigh` (`MemoryHigh=30M`), `cgoom` (OOM kill, `Failed with result 'oom-kill'`); создана заметка `DevOpsNotes/DevOps/Notes/Linux/Cgroups.md` (`status: seed`); инфраструктура: `config.env`, `doctor.sh`, `vault-lint.sh`, allowlist `commit.sh`, канонические промпты в `AgentStuff/DevOps/agents`; 13 вырезок Таненбаума → `verified: false`; коммиты `0596500`, `7665158`, `7da04dd` | `io.max` не проверен; в `Cgroups.md` пусты «Как работает», «Ошибки», «Проверка себя» и блок `[!check]` (6 lint warnings); `flow.go`, drill #1, повтор T1–T6 и лёгкий слот не сделаны; глобальный агент `devops-secrets-auditor` отсутствует (doctor: 1 warn) |
+| 2026-11-15 | FULL | ☐   | Вне плана: Kubernetes Deployment — `DevOpsNotes/Practice/Kubernetes/Deployment/services/nginx-deployment.yaml` (`replicas: 3`, `selector.matchLabels`, `requests` 50m/64Mi, `limits` 200m/512Mi) и `Deployment/docs.md` со ссылкой на docs; в Board объединены дубли строки «Хвосты» | `io.max` не сделан — unit `cgio` нет; `Cgroups.md` не менялся с 2026-11-14, lint: 6 warnings (пустой `review_at` и `[!check]`); `flow.go`, drill #1, повтор T1–T6 и лёгкий слот не сделаны; doctor: 1 warn — глобальный `devops-secrets-auditor` не установлен |
 
 ## Связи
 
