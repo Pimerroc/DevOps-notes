@@ -21,17 +21,16 @@ tags: [devops, kanban]
 - Учёба-день → тип SHORT, делаем только MIN.
 - В конце недели карточки из «Готово» исчезают (архив — Learning Log).
 
-## Сегодня — 2026-11-16 (SHORT — режим восстановления)
+## Сегодня — 2026-11-16 (SHORT)
 
-> [!note] Добавлено агентом — тримаж 2026-11-16. Открытых карточек было ~10; по правилу «3 дня без движения» сняты 4. Одна главная нить — **Kubernetes**. Остальное — в «Заморозке», вскрывается пакетом 2026-11-23.
+> [!note] Добавлено агентом — обновлено по решению пользователя (2026-11-16, вечер): сегодня только rabbit → StatefulSet; digradation дальше — по выходным. Вечерний таймер остановлен, ритуал запустится вручную после работы.
 
-- [ ] **MIN:** K8s: Service для существующего `nginx-deployment` + **один** сервис digradation (db) под с лимитами ресурсов. Артефакт — `kubectl get svc` показывает оба
-- [ ] **MIN-2 (15 мин):** io.max: `sudo systemd-run --unit=cgio --property=IOReadIOPSMax="/dev/sda 100" --property=IOWriteIOPSMax="/dev/sda 100" stress-ng --hdd 1 --timeout 30s` → снять `systemctl show cgio -p IOReadIOPSMax,IOWriteIOPSMax` и `io.max`/`io.stat`. Если ядро откажет на этом устройстве — зафиксировать отказ и причину: это тоже результат лабы
-- [ ] **MAX (если есть силы):** helm-чарт скелет digradation (db + backend), ConfigMap/Secret, probes
+- [ ] **MIN:** rabbitmq → **StatefulSet** (не Deployment): манифест StatefulSet + headless Service + `volumeClaimTemplates` (PVC под данные rabbit). Артефакт — `kubectl apply` → pod Ready, PVC Bound, `kubectl get sts` виден
 - [x] **cgroups v2:** лаба cgtest/cghigh/cgoom (OOM) + заметка-заготовка; разбор квиза: Q2/Q4 в цель, Q1/Q3 — вывод «лимит принадлежит группе, файлы = интерфейс лимитов» (разбор в чате 2026-11-15)
 - [x] **K8s день 1 (11-15):** nginx-deployment (`replicas: 3`, requests/limits), kubectl v1.37.2
 - [x] **Сети — квиз 7–8:** теория 2026-11-11, практика P1–P5 — 2026-11-12, разбор — 2026-11-13
-- Следующие слоты K8s-нити (не сегодня): helm-чарт целиком → `helm install` digradation → probes/NetworkPolicy → break/fix
+- Ритм K8s-нити: **только выходные** + бонус-слоты после закрытия MAX дня. Helm-чарт — после стабилизации манифестов (руками → потом шаблонизация).
+- Ритуал: таймер `devops-ritual-evening` остановлен на сегодня; после работы — `systemctl --user start devops-ritual-evening.timer` (Persistent догонит пропущенный запуск сразу).
 
 ## Заморозка (вскрытие пакетом 2026-11-23)
 
@@ -42,6 +41,7 @@ tags: [devops, kanban]
 - [ ] Повтор T1–T6 полный; повтор Diagnostics 2026-11-06 (интервалы в Review Queue сброшены на 2026-11-23 — догонять не нужно)
 - [ ] Д5–Д8 этапа 1: OOM+journald, разбор `docker-compose.override.yml.memlim`, Type=notify, LVM-лаба, runbook «Диагностика зависшего сервиса»
 - [ ] SadServers — первый сценарий (уместнее после этапа 2 — сеть)
+- [ ] io.max (15 мин): unit `cgio` с `IOReadIOPSMax`/`IOWriteIOPSMax` на `/dev/sda`; отказ ядра на устройстве — тоже результат (было MIN-2 на 11-16, снято)
 - [ ] Go: `flow.go`, фаза 2 (Learn Go with Tests), goroutines/channels — Basics не дедлайн
 - Инфра-мелочи на 5 минут в любой момент: `agents/install.sh` полный прогон вне vault; `git push --force-with-lease origin main`
 
@@ -49,7 +49,7 @@ tags: [devops, kanban]
 
 - [x] Д2: netns-лаба выполнена (`ip netns add` + veth-пара, сквозной пинг), cleanup полный; заметка [[DevOps/Notes/Linux/Network namespace]] финализирована
 - [x] Д3: 5 открытых вопросов по namespaces; заметка → evergreen (2026-11-10)
-- [x] Д4: cgroups v2 — cgtest/cghigh/cgoom (2026-11-14); io.max → MIN-2 сегодня
+- [x] Д4: cgroups v2 — cgtest/cghigh/cgoom (2026-11-14); io.max → «Заморозка»
 - Д5–Д8 → «Заморозка» до 2026-11-23
 - В: SadServers → «Заморозка» (после этапа 2)
 
