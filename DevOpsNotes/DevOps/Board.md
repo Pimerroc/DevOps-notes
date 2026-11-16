@@ -21,54 +21,57 @@ tags: [devops, kanban]
 - Учёба-день → тип SHORT, делаем только MIN.
 - В конце недели карточки из «Готово» исчезают (архив — Learning Log).
 
-## Сегодня — 2026-11-15 (FULL)
+## Сегодня — 2026-11-16 (SHORT — режим восстановления)
 
-> [!note] Добавлено агентом
+> [!note] Добавлено агентом — тримаж 2026-11-16. Открытых карточек было ~10; по правилу «3 дня без движения» сняты 4. Одна главная нить — **Kubernetes**. Остальное — в «Заморозке», вскрывается пакетом 2026-11-23.
 
-- harness: глобальный агент `devops-secrets-auditor` не установлен — нужен `agents/install.sh` из сессии вне vault (doctor: 1 warn).
-- [ ] **MIN (Д4, MAX вчера):** `io.max` — взять диск из `lsblk` (например `/dev/nvme0n1` или `/dev/sda`), затем `sudo systemd-run --unit=cgio --property=IOReadIOPSMax="/dev/<disk> 100" --property=IOWriteIOPSMax="/dev/<disk> 100" stress-ng --hdd 1 --timeout 30s`; снять `systemctl show cgio -p IOReadIOPSMax,IOWriteIOPSMax` и `cat /sys/fs/cgroup/system.slice/cgio.service/io.max`. Результат — unit с io-лимитами и снятые значения *(не сделан: unit `cgio` нет, `Cgroups.md` не менялся с 2026-11-14 — перенос на 2026-11-16)*
-- [ ] **MAX (Д4):** добить `DevOpsNotes/DevOps/Notes/Linux/Cgroups.md` — заполнить «Как работает», «Ошибки и подводные камни», «Проверка себя», блок `[!check]` (Дата, Окружение, Источники, Команды, Не проверено), `review_at`; `status: seed` → `growing` *(не сделан: lint по-прежнему 6 warnings — перенос на 2026-11-16)*
-- [ ] **Go-слот:** Tour of Go «Basics» — flow control (`for`/`if`/`switch`/`defer`); `flow.go` в `DevOpsNotes/Practice/Go_lang/basic/`, `go run` *(не сделан: `flow.go` нет — перенос на 2026-11-16)*
-- [ ] **Лёгкий слот (Review Queue, просрочено с 2026-11-09):** [[DevOps/Diagnostics/2026-11-06]] — Linux internals: namespaces, systemd, overlayfs (conf 1) *(не сделан — перенос на 2026-11-16)*
-- [ ] **Теория:** повтор T1–T6 по [[Квиз 7–8]] — 3–5 предложений своими словами + источник *(не сделан — перенос на 2026-11-16)*
-- [x] **Kubernetes: Deployment (вне плана):** `DevOpsNotes/Practice/Kubernetes/Deployment/services/nginx-deployment.yaml` — `replicas: 3`, `selector.matchLabels`, `requests` 50m/64Mi и `limits` 200m/512Mi; `Deployment/docs.md` — ссылка на docs *(2026-11-15)*
-- [x] **cgroups v2 MIN:** `cgtest` (`memory.max=52428800`, `cpu.max=20000 100000`), `cghigh`, `cgoom` (OOM kill) — 2026-11-14; заметка `Cgroups.md` создана.
-- [x] **Сети — квиз 7–8:** теория 2026-11-11, практика P1–P5 — 2026-11-12, разбор — 2026-11-13.
-- Хвосты: pipeline drill #1 (перенос с 2026-11-10); разбор выводов лабы DNS/TLS + «Что сломалось» + фактчек — 2026-11-16; фактчек `Cgroups.md` + `[!check]` (6 lint warnings) — 2026-11-16.
+- [ ] **MIN:** K8s: Service для существующего `nginx-deployment` + **один** сервис digradation (db) под с лимитами ресурсов. Артефакт — `kubectl get svc` показывает оба
+- [ ] **MIN-2 (15 мин):** io.max: `sudo systemd-run --unit=cgio --property=IOReadIOPSMax="/dev/sda 100" --property=IOWriteIOPSMax="/dev/sda 100" stress-ng --hdd 1 --timeout 30s` → снять `systemctl show cgio -p IOReadIOPSMax,IOWriteIOPSMax` и `io.max`/`io.stat`. Если ядро откажет на этом устройстве — зафиксировать отказ и причину: это тоже результат лабы
+- [ ] **MAX (если есть силы):** helm-чарт скелет digradation (db + backend), ConfigMap/Secret, probes
+- [x] **cgroups v2:** лаба cgtest/cghigh/cgoom (OOM) + заметка-заготовка; разбор квиза: Q2/Q4 в цель, Q1/Q3 — вывод «лимит принадлежит группе, файлы = интерфейс лимитов» (разбор в чате 2026-11-15)
+- [x] **K8s день 1 (11-15):** nginx-deployment (`replicas: 3`, requests/limits), kubectl v1.37.2
+- [x] **Сети — квиз 7–8:** теория 2026-11-11, практика P1–P5 — 2026-11-12, разбор — 2026-11-13
+- Следующие слоты K8s-нити (не сегодня): helm-чарт целиком → `helm install` digradation → probes/NetworkPolicy → break/fix
+
+## Заморозка (вскрытие пакетом 2026-11-23)
+
+Заморозка ≠ провал: хвост уезжает за главной нитью и вскрывается всё разом, не по карточке.
+
+- [ ] Разбор лабы DNS/TLS: правки выводов P1–P4, «Что сломалось», фактчек лабы
+- [ ] Фактчек `Cgroups.md` + блок `[!check]` + заполнение «Как работает» (материал уже выдан в чате 2026-11-15)
+- [ ] Повтор T1–T6 полный; повтор Diagnostics 2026-11-06 (интервалы в Review Queue сброшены на 2026-11-23 — догонять не нужно)
+- [ ] Д5–Д8 этапа 1: OOM+journald, разбор `docker-compose.override.yml.memlim`, Type=notify, LVM-лаба, runbook «Диагностика зависшего сервиса»
+- [ ] SadServers — первый сценарий (уместнее после этапа 2 — сеть)
+- [ ] Go: `flow.go`, фаза 2 (Learn Go with Tests), goroutines/channels — Basics не дедлайн
+- Инфра-мелочи на 5 минут в любой момент: `agents/install.sh` полный прогон вне vault; `git push --force-with-lease origin main`
 
 ## Очередь — Этап 1 (Linux internals: практика)
 
 - [x] Д2: netns-лаба выполнена (`ip netns add` + veth-пара, сквозной пинг), cleanup полный; заметка [[DevOps/Notes/Linux/Network namespace]] финализирована
 - [x] Д3: 5 открытых вопросов по namespaces; заметка → evergreen (2026-11-10)
-- [ ] Д4: `systemd-run` MemoryMax/CPUQuota + cgtop; заметка `cgroups v2.md`
-- [ ] Д5: OOM-эксперимент + journald; разбор `docker-compose.override.yml.memlim` (digradation)
-- [ ] Д6: `Type=notify` + `sd_notify` (порт Systemd-unit.md)
-- [ ] Д7: LVM-лаба: snapshot, resize, восстановление
-- [ ] Д8: runbook «Диагностика зависшего сервиса» + квиз 10 открытых вопросов
-- [ ] В: первый сценарий SadServers (Linux)
+- [x] Д4: cgroups v2 — cgtest/cghigh/cgoom (2026-11-14); io.max → MIN-2 сегодня
+- Д5–Д8 → «Заморозка» до 2026-11-23
+- В: SadServers → «Заморозка» (после этапа 2)
 
-## Выходные (2026-11-15…16) — digradation → Kubernetes (досрочный старт этапа 6)
+## Выходные (2026-11-15…16) — digradation → Kubernetes: итог
 
-Реальная задача вместо синтетики: то же, что этап 6, но на живом проекте. Остатки этапа 1 (Д5–Д8) и потоки В/Д не отменяются — уезжают на следующую неделю после закрытия weekend-цели.
-
-- [ ] **Сб (11-15):** окружение: `sudo pacman -S --needed kubectl helm` + выбрать и поставить **kind** или **k3s**; digradation: собрать образы, поднять локальный кластер, задеплоить первый сервис (db или backend) с Service. Артефакт — кластер с работающим подом + заметка `Notes/Kubernetes/digradation-01.md` (что поставил, какие манифесты, где споткнулся)
-- [ ] **Вс (11-16):** digradation: скелет helm-чарта (db + backend + frontend), ConfigMap/Secret для конфигов, probes. Артефакт — чарт разворачивается `helm install` + short consolidation (Review Queue — 1 слот, без новой теории)
-- Формат: build day в оба дня. Если кластер съест больше времени — MIN выходного = только окружение/первый под, остальное переносится без штрафа.
+- [x] **День 1 (11-15):** kubectl v1.37.2, nginx-deployment с лимитами ресурсов — `Practice/Kubernetes/Deployment/`
+- [ ] **День 2 (11-16):** см. «Сегодня» — MIN: Service + db digradation; MAX: helm-чарт скелет
 
 ## Очередь — Сети (Таненбаум)
 
-- [ ] Гл. 7–8: квиз — 5–6 теоретических + 5–6 практических открытых вопросов с развёрнутыми ответами. Теория: DNS, HTTP/HTTPS, CDN, TLS, DNSSEC, брандмауэры/IDS. Практика: `dig +trace`, `dig +dnssec`, `curl -vI`, `openssl s_client`, `openssl x509`, `ss` (и `tcpdump`, если установлен и есть root). Ответ — 3–6 предложений + источник (раздел/стр. книги, RFC, man). Результат: `DevOpsNotes/Networks/Таненбаум/Квиз 7–8.md`; слабые пункты → Review Queue.
+- [ ] Гл. 7–8: квиз — теория сдана 2026-11-11, практика P1–P5 — 2026-11-12, разбор — 2026-11-13; слабые пункты (T3, DoH/ECS, TLS 1.3 у CDN, типы firewall, base rate, IPS inline) → «Заморозка» / Review Queue
 
 ## Очередь — Поток В (bash/логи)
 
-- [ ] Pipeline drill #1: [[pipelines|drills]], задачи 1–3; 30 мин, без AI; эталон + запись в Review Queue.
+- Pipeline drill #1 → «Заморозка» (без движения с 2026-11-10)
 
 ## Очередь — Go (поток Д)
 
-- [ ] Фаза 1: Tour of Go — основы (переменные, функции, структуры)
-- [ ] Фаза 1: Go by Example — goroutines/channels
-- [ ] Фаза 2: Learn Go with Tests — старт
-- [ ] Фаза 3: порт `analyze.py` на Go — CLI с тестами
+- [ ] Фаза 1: Tour of Go — основы *(частично: 5 файлов Basics; `flow.go` в «Заморозке»)*
+- [ ] Фаза 1: Go by Example — goroutines/channels → «Заморозка» до 2026-11-23
+- [ ] Фаза 2: Learn Go with Tests — старт → «Заморозка»
+- [ ] Фаза 3: порт `analyze.py` на Go — CLI с тестами → «Заморозка»
 
 ## Готово (неделя)
 
