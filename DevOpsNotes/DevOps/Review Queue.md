@@ -37,12 +37,12 @@ tags: [devops, review]
 | [[Квиз 7–8]] | Firewalls: packet/stateful/ALG, NIDS/HIDS, base rate, IPS inline (T6) | 2026-11-23 | 1 | pending |
 | — | cgroups v2: `MemoryMax`, `CPUQuota`, `io.max`, `systemd-cgtop`, путь юнита в `/sys/fs/cgroup` — лаба выполнена 2026-11-14 (`cgtest`, `cghigh`, `cgoom`), `io.max` не проверен | 2026-11-14 | 1 | done |
 | [[DevOps/Notes/Linux/Cgroups]] | cgroups v2: «Как работает», io.max, разбор Q1/Q3 — «лимит принадлежит группе» | 2026-11-23 | 1 | pending |
+| [[DevOps/Notes/Linux/Cgroups\|Cgroups]] | Фактчек лабы cgroups v2: `cgtest`/`cghigh`/`cgoom`, `memory.max`, `cpu.max`, OOM, `io.max` (не проверен); заполнить `[!check]` и разделы заметки | 2026-11-23 | 1 | pending |
+| [[Practice/Kubernetes/Deployment/docs\|Kubernetes Deployment]] | Deployment: `replicas`, `selector.matchLabels`, `requests`/`limits`, rolling update; манифест не применялся | 2026-11-23 | 1 | pending |
+| [[Квиз 7–8]] | Практика P1–P5: `dig +trace`, `dig +dnssec`, `curl -vI`, `openssl s_client`, HTTP→HTTPS | 2026-11-12 | 2 | done |
+| [[2026-11-11-dns-tls-ss]] | Лаба DNS/TLS: исправить выводы P1–P5 + «Что сломалось» + фактчек; пересдать P4 (trust anchor, pathlen) | 2026-11-23 | 2 | pending |
 
 > [!note] Добавлено агентом — тримаж 2026-11-16: просроченные интервалы сброшены на 2026-11-23 (дата вскрытия «Заморозки» в Board). Догоняющего повторения нет: интервал начинается заново с даты вскрытия.
-| [[DevOps/Notes/Linux/Cgroups\|Cgroups]] | Фактчек лабы cgroups v2: `cgtest`/`cghigh`/`cgoom`, `memory.max`, `cpu.max`, OOM, `io.max` (не проверен); заполнить `[!check]` и разделы заметки | 2026-11-16 | 1 | pending |
-| [[Practice/Kubernetes/Deployment/docs\|Kubernetes Deployment]] | Deployment: `replicas`, `selector.matchLabels`, `requests`/`limits`, rolling update; манифест не применялся | 2026-11-16 | 1 | pending |
-| [[Квиз 7–8]] | Практика P1–P5: `dig +trace`, `dig +dnssec`, `curl -vI`, `openssl s_client`, HTTP→HTTPS | 2026-11-12 | 2 | done |
-| [[2026-11-11-dns-tls-ss]] | Лаба DNS/TLS: исправить выводы P1–P5 + «Что сломалось» + фактчек; пересдать P4 (trust anchor, pathlen) | 2026-11-16 | 2 | pending |
 
 ## Правила
 
