@@ -156,14 +156,23 @@ if (( ! DRY )); then
 fi
 
 TITLE="DevOps ритуал — $MODE $(date +%F)"
-CMD=(opencode run --agent "$AGENT" --auto --title "$TITLE" -s "$SID" -f "$BRIEF_FILE" "$PROMPT")
+CMD=(opencode run --agent "$AGENT" --auto --title "$TITLE" -s "$SID" -f "$BRIEF_FILE")
 
 if (( DRY )); then
-  printf '%q ' "${CMD[@]}"
+  printf '%q ' "${CMD[@]}" "$PROMPT"
   printf '\n'
+  if [[ "$MODE" == morning ]]; then
+    printf '%q ' "${CMD[@]}" "$(cat "$SELF_DIR/prompts/plan.md")"
+    printf '\n'
+  fi
   echo "brief: $BRIEF_FILE ($(wc -l < "$BRIEF_FILE") строк)"
   exit 0
 fi
 
 cd "$ROOT"
-exec "${CMD[@]}"
+"${CMD[@]}" "$PROMPT"
+
+# Второй шаг утра: план с таймбоксами в той же сессии. Вечер — один прогон.
+if [[ "$MODE" == morning ]]; then
+  "${CMD[@]}" "$(cat "$SELF_DIR/prompts/plan.md")"
+fi

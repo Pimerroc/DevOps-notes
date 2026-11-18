@@ -85,6 +85,7 @@ done
 # 6. git status покрыт allowlist
 outside="$(git -C "$VAULT_ROOT" status --porcelain 2>/dev/null \
   | sed -E 's/^.{3}//' \
+  | sed -E 's/^"(.*)"$/\1/' \
   | grep -vE "$COMMIT_PATHS_RE" || true)"
 if [[ -n "$outside" ]]; then
   warn "git status содержит пути вне allowlist (коммитить вручную или расширить config.env):"

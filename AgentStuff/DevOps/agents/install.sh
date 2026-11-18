@@ -73,7 +73,9 @@ ACT cp "$SELF_DIR/../skills/livecoding/SKILL.md" "$Z_SKILL/SKILL.md"
 for s in "$SELF_DIR/../skills/livecoding/scripts/"*; do
   ACT cp "$s" "$Z_SKILL/scripts/$(basename "$s")"
 done
-ACT cp "$SELF_DIR/../commands/live.md" "$Z_CMD/live.md"
+for f in "$SELF_DIR/../commands/"*.md; do
+  ACT cp "$f" "$Z_CMD/$(basename "$f")"
+done
 
 echo "== OpenCode (vault .opencode) =="
 ACT mkdir -p "$O_SKILL/scripts" "$O_CMD"
@@ -89,13 +91,18 @@ fi
 for s in "$SELF_DIR/../skills/livecoding/scripts/"*; do
   ACT cp "$s" "$O_SKILL/scripts/$(basename "$s")"
 done
-# OpenCode-команда: добавляем agent: devops в frontmatter.
-if (( DRY )); then
-  echo "+ cp канона + agent: devops → $O_CMD/live.md"
-else
-  awk '/^---$/ && c==0 { print; print "agent: devops"; c++; next } { print }' \
-    "$SELF_DIR/../commands/live.md" > "$O_CMD/live.md"
-fi
+# OpenCode-команды: канон + agent по имени команды.
+declare -A CMD_AGENT=([live]=devops [learn]=devops-tutor [plan]=devops)
+for name in "${!CMD_AGENT[@]}"; do
+  src="$SELF_DIR/../commands/$name.md"
+  [[ -r "$src" ]] || continue
+  if (( DRY )); then
+    echo "+ cp канона + agent: ${CMD_AGENT[$name]} → $O_CMD/$name.md"
+  else
+    awk -v ag="${CMD_AGENT[$name]}" '/^---$/ && c==0 { print; print "agent: " ag; c++; next } { print }' \
+      "$src" > "$O_CMD/$name.md"
+  fi
+done
 
 if (( SKIP_GLOBAL )); then
   echo "== Глобальные OpenCode-агенты пропущены (--skip-global) =="

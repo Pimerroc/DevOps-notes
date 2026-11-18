@@ -21,13 +21,14 @@ tags: [devops, kanban]
 - Учёба-день → тип SHORT, делаем только MIN.
 - В конце недели карточки из «Готово» исчезают (архив — Learning Log).
 
-## Сегодня — 2026-11-17 (SHORT)
+## Сегодня — 2026-11-18 (SHORT)
 
 > [!note] Добавлено агентом — обновлено по решению пользователя (2026-11-16, вечер): сегодня только rabbit → StatefulSet; digradation дальше — по выходным. Вечерний таймер остановлен, ритуал запустится вручную после работы.
 
+- harness: глобальный агент `devops-secrets-auditor` не установлен — нужен `agents/install.sh` из сессии вне vault (doctor: 1 warn).
 - [x] **MIN (11-16):** rabbitmq → **StatefulSet** — манифест `/home/max/Projects/digradation_in_kube/k8s/rabbitmq.yaml` (коммит `601f358`, 2026-11-17 — probes fix): StatefulSet `digradation-rabbit` + headless Service (`clusterIP: None`) + `volumeClaimTemplates`; `kubectl get sts` → `digradation-rabbit 1/1`, PVC `rabbitmq-data-digradation-rabbit-0` — `Bound`, 1Gi *(2026-11-16; доказательства сняты 2026-11-17)*
-- [ ] **MIN:** перенести артефакт в vault — `DevOpsNotes/Practice/Kubernetes/StatefulSet/rabbitmq.yaml` (копия манифеста) + `docs.md` с источником, коммитом `601f358` и выводами `kubectl get sts`/`get pvc`. Результат — файлы в vault *(не сделан: `Practice/Kubernetes/StatefulSet/` нет — перенос на 2026-11-18)*
-- [ ] **MAX:** разобрать манифест — headless Service (`clusterIP: None`), `volumeClaimTemplates`, startup/liveness/readiness probes — 5–7 строк в `docs.md`; следующий кластерный шаг (Service + db, helm) — выходные 2026-11-21/22 *(не сделан — перенос на 2026-11-18/выходные)*
+- [ ] **MIN:** перенести артефакт в vault — `DevOpsNotes/Practice/Kubernetes/StatefulSet/rabbitmq.yaml` (копия манифеста) + `docs.md` с источником, коммитом `601f358` и выводами `kubectl get sts`/`get pvc`. Результат — файлы в vault *(перенос с 2026-11-17)*
+- [ ] **MAX:** разобрать манифест — headless Service (`clusterIP: None`), `volumeClaimTemplates`, startup/liveness/readiness probes — 5–7 строк в `docs.md`; следующий кластерный шаг (Service + db, helm) — выходные 2026-11-21/22 *(перенос с 2026-11-17)*
 - [ ] **Go-слот:** — (Go в заморозке до 2026-11-23)
 - [ ] **Лёгкий слот:** — (Review Queue пуст: ближайшие карточки — 2026-11-23)
 - [x] **Вне плана: Cgroups.md — «Как работает»** — заполнен раздел (service/scope/slice, контроллеры cgroups v1/v2, `/proc/self/cgroup`, `systemd-cgtop`), исправлен frontmatter (`topic: linux-cgroups`, `created: 2026-11-14`, `tags`), код-фенс на `bash` *(2026-11-17, 09:16)*
