@@ -133,6 +133,7 @@ rm -f ~/.local/state/devops-ritual/session-id
 - Если сессия недоступна (404 или ошибка сервера), `run.sh` создаёт новую и перезаписывает `session-id`. Ошибка сервера трактуется так же, как удалённая сессия — это осознанное упрощение.
 - `question` в `opencode run` не работает: вызов отменяется, ответа нет (проверено на v2.2.6; в docs гарантировано только «dismissing cancels»). Поэтому вечерний промпт фиксирует состояние по фактам, без вопросов.
 - Брифинг растёт вместе с Board и очередями; следить за размером `/tmp/opencode/devops-ritual/brief-*.md`.
+- **Субагенты связаны своими permissions из `~/.config/opencode/agents/*.md`.** `install.sh` синхронизирует только тело промпта, frontmatter с `permissions` сохраняется как есть, поэтому allow-списки путей в глобальных копиях дрейфуют от `.opencode/opencode.jsonc` и от канона (на 2026-11-18: у `devops-tutor` нет `DevOpsNotes/Networks/**`, а путь практики указан в старом виде — без префикса `DevOpsNotes/`; у `devops-verifier` — `edit: * deny` без allow). Правило глобального конфига правится только из сессии вне vault; после правки нужен перезапуск — frontmatter читается на старте.
 
 ## Отличия от ZCode automations
 

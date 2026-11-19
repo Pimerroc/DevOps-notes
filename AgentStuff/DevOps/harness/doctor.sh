@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# doctor.sh — сенсор дрифта harness: пути, юниты, allowlist, застарелые ссылки.
+# doctor.sh — сенсор дрифта harness: пути, юниты, allowlist, застарелые ссылки, Board.
 #
 # Использование:
 #   doctor.sh            # все проверки; exit 1 при [fail], [warn] не мешают
@@ -130,6 +130,18 @@ done
 [[ -r "$VAULT_ROOT/.opencode/skills/livecoding/SKILL.md" ]] \
   && ok "opencode-скилл livecoding установлен" \
   || fail "opencode-скилл livecoding отсутствует"
+
+# 9. Board — только учебный контур: без внешних проектов и harness-обвязки
+BOARD_FILE="$VAULT_ROOT/DevOpsNotes/DevOps/Board.md"
+if [[ -r "$BOARD_FILE" ]]; then
+  board_leaks="$(grep -inE 'digradation|/home/max/Projects|minikube|statefulset|rabbitmq|rabbit|K8s-нит|harness|doctor\.sh|commit\.sh|install\.sh|\.opencode|\.zcode|AGENTS\.md|Templates/' "$BOARD_FILE" || true)"
+  if [[ -n "$board_leaks" ]]; then
+    warn "Board содержит записи вне учебного контура (внешний проект или harness) — вынести в Learning Log:"
+    printf '%s\n' "$board_leaks" | sed 's/^/       /'
+  else
+    ok "Board: только учебный контур"
+  fi
+fi
 
 # Итог
 printf '\ndoctor: %d fail, %d warn\n' "$FAIL" "$WARN"
